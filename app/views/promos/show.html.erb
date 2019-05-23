@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Unique:</strong>
+  <%= @promo.unique_id %>
+</p>
+
+<p>
+  <strong>Discount:</strong>
+  <%= @promo.discount %>
+</p>
+
+<%= link_to 'Edit', edit_promo_path(@promo) %> |
+<%= link_to 'Back', promos_path %>
