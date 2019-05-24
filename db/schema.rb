@@ -43,14 +43,17 @@ ActiveRecord::Schema.define(version: 2019_05_23_100145) do
     t.float "price"
     t.text "description"
     t.string "image_url"
-    t.string "string"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "promos", force: :cascade do |t|
-    t.string "unique_id"
-    t.integer "discount"
+    t.float "amount", default: 0.0
+    t.integer "limit", default: 0
+    t.date "expiration"
+    t.string "code"
+    t.boolean "percentage", default: false
+    t.integer "used", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

@@ -61,6 +61,22 @@ class PromosController < ApplicationController
     end
   end
 
+  #validates promo code
+  def validate
+    @promo = Promo.find_code(params[:code])
+    if @promo.present?
+      response = { valid: @promo.is_valid?, 
+                   discounted_price: @promo.discounted_price }
+    else
+      response = { valid: false, discounted_price: PRICE }
+    end
+    respond_to do |format|
+      format.json { render json: response }
+    end
+  end
+
+
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_promo
