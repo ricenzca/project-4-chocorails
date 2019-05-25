@@ -61,6 +61,19 @@ class ProductsController < ApplicationController
     end
   end
 
+  def get_all_products
+
+     respond_to do |format|
+
+       @products = Product.all
+
+       format.json {
+        render json: @products
+       }
+    end
+
+   end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_product
