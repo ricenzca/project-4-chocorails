@@ -61,10 +61,6 @@ class ProductsController < ApplicationController
     end
   end
 
-  def checkout
-    render "checkout"
-  end
-
   def main
   end
 
