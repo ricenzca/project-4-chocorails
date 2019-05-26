@@ -9,12 +9,16 @@ export default class App extends React.Component {
     constructor () {
         super();
         this.state = {
-            cart: "hello"
+            cart: [
+                "AN: need the add to cart functionality",
+                "CH: need to render nicely",
+                "LL: need to grab price of all items in basket and set subtotal in state via method"
+            ]
         }
     }
 
 	render() {
-        console.log("in app component", this.state)
+        // console.log("in app component", this.state)
 		return (
 			<div>
 				<Switch>
