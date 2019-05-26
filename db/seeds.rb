@@ -17,6 +17,7 @@ require 'faker'
 # 	)
 # end
 
+
 product = Product.create([
   {brand: 'Krakakoa', name: 'Arenga 100% Dark', img_url: 'https://www.krakakoa.com/wp-content/uploads/2018/04/100-dark-chocolate.jpg', origin: 'Sumatra, Indonesia', ingredients: 'Cocoa beans', desc: 'This is 100% Sumatran cocoa at its purest. A complex bar with robust natural acidity of fermented cocoa and complex earthy aromas.', price: 3.6, weight: 50},
   {brand: 'Krakakoa', name: 'Arenga 85% Dark', img_url: 'https://www.krakakoa.com/wp-content/uploads/2018/04/85-dark-chocolate.jpg', origin: 'Sulawesi, Indonesia', ingredients: 'Cocoa beans, Palm sugar, Sunflower lecithin', desc: 'We blend Arenga palm sugar, harvested from the rainforests of Sulawesi, with sustainably grown cocoa, creating delicious chocolate with caramel notes that is also a force for wildlife conservation.', price: 4, weight: 50},

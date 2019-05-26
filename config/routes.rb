@@ -8,6 +8,9 @@ Rails.application.routes.draw do
   post '/customers/customers' => 'customers#subscribe'
 
   get '/products/getall' => 'products#get_all_products', defaults: { format: 'json'}
+
+  get '/promo/:promo' => 'promos#validate'
+
   resources :products
   root 'products#main'
 

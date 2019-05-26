@@ -18,15 +18,18 @@ class Promo < ApplicationRecord
 	# Returns full price if the code is not valid
 	# PRICE is set in an initializer, 
 	# based on a environment variable.
-	def discounted_price
+	def discounted_price(order)
+		puts "order"
+		p order
+		hello = order
     price = if is_valid?
               if percentage
-                PRICE - (PRICE * (amount/100))
+                hello - (hello * (amount/100))
               else
-                (PRICE - amount)
+                (hello - amount)
               end
             else
-              PRICE
+              hello
             end
     return price.floor
 	end
