@@ -14,8 +14,21 @@ class Checkout extends React.Component {
             del_Suburb: "",
             del_State: "",
             del_Postcode: "",
-            del_Country: ""
+            del_Country: "",
+            bill_FirstName: "",
+            bill_LastName: "",
+            bill_Email: "",
+            bill_Telephone: "",
+            bill_DeliveryAdd: "",
+            bill_Suburb: "",
+            bill_State: "",
+            bill_Postcode: "",
+            bill_Country: ""
         }
+    }
+
+    formInputHandler(value) {
+
     }
 
     render() {
@@ -25,7 +38,7 @@ class Checkout extends React.Component {
           <div>
           <h1> THIS IS THE  CHECKOUT PAGE </h1>
             <Checkout_render cart={this.props.cart} subtotal={this.state.subtotal}/>
-            <Checkout_details deet={this.state} />
+            <Checkout_details deet={this.state} formInputHandler={this.formInputHandler} />
             <Checkout_payments />
           </div>
         );
@@ -60,8 +73,16 @@ class Checkout_render extends React.Component {
 
 class Checkout_details extends React.Component {
 
-    formInputHandler(value) {
+    constructor () {
+        super();
+        this.state = {
+            checked: true
+        }
+    }
 
+    handleCheckChange() {
+        console.log("checked", this.state.checked)
+        this.setState({ checked: !this.state.checked });
     }
 
     render() {
@@ -82,12 +103,31 @@ class Checkout_details extends React.Component {
                     State/Territory* <input /><br/>
                     Postcode* <input /><br/>
                     Country* <input /><br/>
+
+                <br/>
+                <input type="checkbox" onClick={(e)=>{this.handleCheckChange();}} defaultChecked/> <b>Same Billing Address</b>
+
+                { !this.state.checked && <div>
+                    <br/>
+                    First name* <input /><br/>
+                    Last name* <input /><br/>
+                    Email address* <input /><br/>
+                    Telephone* <input /><br/>
+                    Delivery address* <input /><br/>
+                    <input /><br/>
+                    Suburb/Town* <input /><br/>
+                    State/Territory* <input /><br/>
+                    Postcode* <input /><br/>
+                    Country* <input /><br/>
+                </div> }
+
                 </form>
             </div>
         );
     }
 
 }
+
 
 class Checkout_payments extends React.Component {
 
