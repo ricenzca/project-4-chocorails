@@ -10,7 +10,8 @@ class Checkout extends React.Component {
             del_LastName: "",
             del_Email: "",
             del_Telephone: "",
-            del_DeliveryAdd: "",
+            del_DeliveryAdd1: "",
+            del_DeliveryAdd2: "",
             del_Suburb: "",
             del_State: "",
             del_Postcode: "",
@@ -19,16 +20,19 @@ class Checkout extends React.Component {
             bill_LastName: "",
             bill_Email: "",
             bill_Telephone: "",
-            bill_DeliveryAdd: "",
+            bill_DeliveryAdd1: "",
+            bill_DeliveryAdd2: "",
             bill_Suburb: "",
             bill_State: "",
             bill_Postcode: "",
             bill_Country: ""
         }
+        this.formInputHandler=this.formInputHandler.bind(this)
     }
 
-    formInputHandler(value) {
-
+    formInputHandler(e1, e2) {
+        console.log("this", e1, e2);
+        this.setState({[e1]: e2});
     }
 
     render() {
@@ -48,8 +52,7 @@ class Checkout extends React.Component {
 class Checkout_render extends React.Component {
 
     render() {
-        console.log("in child component", this.props.cart)
-
+        // console.log("in child component", this.props.cart)
         var cartContents = this.props.cart.cart.map((item, index) => {
             return (
                 <p>{index+1}) {item}</p>
@@ -81,45 +84,46 @@ class Checkout_details extends React.Component {
     }
 
     handleCheckChange() {
-        console.log("checked", this.state.checked)
+        // console.log("checked", this.state.checked)
         this.setState({ checked: !this.state.checked });
+        //add logic for set billing and delivery details
     }
 
     render() {
-        console.log("deets", this.props)
+        // console.log("deets", this.props)
         return (
             <div>
                 <br/>
                 <h1>Delivery address</h1>
                 <h3>All fields required</h3>
-                <form onChange={(e)=> {this.props.formInputHandler(e.target.value);}}>
-                    First name* <input /><br/>
-                    Last name* <input /><br/>
-                    Email address* <input /><br/>
-                    Telephone* <input /><br/>
-                    Delivery address* <input /><br/>
-                    <input /><br/>
-                    Suburb/Town* <input /><br/>
-                    State/Territory* <input /><br/>
-                    Postcode* <input /><br/>
-                    Country* <input /><br/>
+                <form >
+                    First name* <input type="text" name="del_FirstName" onChange={(e)=> {this.props.formInputHandler(e.target.name, e.target.value);}}/><br/>
+                    Last name* <input type="text" name="del_LastName" onChange={(e)=> {this.props.formInputHandler(e.target.name, e.target.value);}}/><br/>
+                    Email address* <input type="text" name="del_Email" onChange={(e)=> {this.props.formInputHandler(e.target.name, e.target.value);}}/><br/>
+                    Telephone* <input type="text" name="del_Telephone" onChange={(e)=> {this.props.formInputHandler(e.target.name, e.target.value);}}/><br/>
+                    Delivery address* <input type="text" name="del_DeliveryAdd1" onChange={(e)=> {this.props.formInputHandler(e.target.name, e.target.value);}}/><br/>
+                    <input type="text" name="del_DeliveryAdd2" onChange={(e)=> {this.props.formInputHandler(e.target.name, e.target.value);}}/><br/>
+                    Suburb/Town* <input type="text" name="del_Suburb" onChange={(e)=> {this.props.formInputHandler(e.target.name, e.target.value);}}/><br/>
+                    State/Territory* <input type="text" name="del_State" onChange={(e)=> {this.props.formInputHandler(e.target.name, e.target.value);}}/><br/>
+                    Postcode* <input type="text" name="del_Postcode" onChange={(e)=> {this.props.formInputHandler(e.target.name, e.target.value);}}/><br/>
+                    Country* <input type="text" name="del_Country" onChange={(e)=> {this.props.formInputHandler(e.target.name, e.target.value);}}/><br/>
 
-                <br/>
-                <input type="checkbox" onClick={(e)=>{this.handleCheckChange();}} defaultChecked/> <b>Same Billing Address</b>
-
-                { !this.state.checked && <div>
                     <br/>
-                    First name* <input /><br/>
-                    Last name* <input /><br/>
-                    Email address* <input /><br/>
-                    Telephone* <input /><br/>
-                    Delivery address* <input /><br/>
-                    <input /><br/>
-                    Suburb/Town* <input /><br/>
-                    State/Territory* <input /><br/>
-                    Postcode* <input /><br/>
-                    Country* <input /><br/>
-                </div> }
+                    <input type="checkbox" onClick={(e)=>{this.handleCheckChange();}} defaultChecked/> <b>Same Billing Address</b>
+
+                    { !this.state.checked && <div>
+                        <br/>
+                        First name* <input type="text" name="bill_FirstName" onChange={(e)=> {this.props.formInputHandler(e.target.name, e.target.value);}}/><br/>
+                        Last name* <input type="text" name="bill_LastName" onChange={(e)=> {this.props.formInputHandler(e.target.name, e.target.value);}}/><br/>
+                        Email address* <input type="text" name="bill_Email" onChange={(e)=> {this.props.formInputHandler(e.target.name, e.target.value);}}/><br/>
+                        Telephone* <input type="text" name="bill_Telephone" onChange={(e)=> {this.props.formInputHandler(e.target.name, e.target.value);}}/><br/>
+                        Delivery address* <input type="text" name="bill_DeliveryAdd1" onChange={(e)=> {this.props.formInputHandler(e.target.name, e.target.value);}}/><br/>
+                        <input type="text" name="bill_DeliveryAdd2" onChange={(e)=> {this.props.formInputHandler(e.target.name, e.target.value);}}/><br/>
+                        Suburb/Town* <input type="text" name="bill_Suburb" onChange={(e)=> {this.props.formInputHandler(e.target.name, e.target.value);}}/><br/>
+                        State/Territory* <input type="text" name="bill_State" onChange={(e)=> {this.props.formInputHandler(e.target.name, e.target.value);}}/><br/>
+                        Postcode* <input type="text" name="bill_Postcode" onChange={(e)=> {this.props.formInputHandler(e.target.name, e.target.value);}}/><br/>
+                        Country* <input type="text" name="bill_Country" onChange={(e)=> {this.props.formInputHandler(e.target.name, e.target.value);}}/><br/>
+                    </div> }
 
                 </form>
             </div>
