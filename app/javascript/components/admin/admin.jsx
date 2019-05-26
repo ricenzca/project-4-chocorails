@@ -1,4 +1,5 @@
 import React from 'react';
+import EmailSub from '../emailsub/emailsub'
 
 class Admin extends React.Component {
 
@@ -15,6 +16,7 @@ class Admin extends React.Component {
     this.orderList = this.orderList.bind(this);
     this.promoList = this.promoList.bind(this);
     this.productList = this.productList.bind(this);
+    this.testing = this.testing.bind(this);
     }
 
   customerList() {
@@ -132,11 +134,21 @@ class Admin extends React.Component {
     oReq.send();
   }
 
+    testing() {
+    console.log("hello");
+  }
+
   render(){
         let customers = this.state.customers.map((customer, index)=>{
-        return (<p key={index}>
-                {customer.email} {customer.id}
-                </p>
+        return (
+            <tr>
+                <td key={index} onClick={this.testing}> {customer.id} </td>
+                <td> {customer.email} </td>
+                <td> {customer.address} </td>
+                <td> {customer.postal_code} </td>
+                <td> {customer.country} </td>
+                <td> {customer.contact} </td>
+            </tr>
             )
     });
 
@@ -162,6 +174,7 @@ class Admin extends React.Component {
     });
 
     return( <React.Fragment>
+        <h1> Admin Backend </h1>
         <div className="row">
             <h1 className="col-md-3" onClick={this.productList}> Products </h1>
             <h1 className="col-md-3" onClick={this.orderList}> Ordersss </h1>
@@ -174,6 +187,7 @@ class Admin extends React.Component {
           {promos}
           {products}
           </div>
+          <EmailSub />
           </React.Fragment>
           );
   }
