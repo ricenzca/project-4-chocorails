@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import style from "./style.scss";
+// import style from "./style.scss";
 
 class Product extends React.Component {
     constructor(props) {
@@ -60,9 +60,9 @@ class Product extends React.Component {
                                         src={product.img_url}
                                     />
                                     <div className="card-body">
-                                        <h1 className="card-title">
+                                        <h4 className="card-title">
                                             {product.name}
-                                        </h1>
+                                        </h4>
                                         <p className="card-text">
                                             ${product.price}
                                         </p>
