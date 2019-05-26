@@ -10,8 +10,9 @@ export default class App extends React.Component {
 		return (
 			<div>
 				<Switch>
-					<Route exact path="/" component={Product} />
+
 					<Route exact path="/checkout" component={Checkout} />
+                    <Route exact path="/" component={Product} />
 				</Switch>
 			</div>
 			);
