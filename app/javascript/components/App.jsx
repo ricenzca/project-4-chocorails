@@ -23,7 +23,6 @@ export default class App extends React.Component {
         // console.log("in app component", this.state)
 		return (
 			<div>
-                <EmailSub />
 				<Switch>
 					<Route exact path= "/checkout"
            render= {(props) => <Checkout {...props} cart={this.state} />}

@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import style from "./style.scss";
+import EmailSub from '../emailsub/emailsub';
 
 class Product extends React.Component {
     constructor(props) {
@@ -30,6 +31,12 @@ class Product extends React.Component {
                     });
                 }
             );
+
+    $('#choco1').on('click', () => {
+        $('#chocotext1').slideToggle(400);
+        console.log("ASDASDS")
+    });
+
     }
 
     toggleClass(e) {
@@ -45,27 +52,30 @@ class Product extends React.Component {
         } else {
             return (
                 <div>
+                    <EmailSub />
                     <Link to="/checkout">Checkout LINK!</Link>
                     <div className="container-fluid">
                         <div
                             className="row"
-                            onMouseOver={e => {
-                                this.toggleClass(e);
-                            }}
+
                         >
-                            {products.map(product => (
-                                <div className="card col-md-4">
+                            {products.map((product, index) => (
+                                <div className="card col-md-4" >
                                     <img
                                         className="card-img-top"
                                         src={product.img_url}
+                                        data-toggle="collapse" href={"#choco" + (index+1)}
                                     />
                                     <div className="card-body">
-                                        <h1 className="card-title">
+                                        <h4 className="card-title">
                                             {product.name}
-                                        </h1>
+                                        </h4>
                                         <p className="card-text">
                                             ${product.price}
                                         </p>
+                                        <div className="collapse" id={"choco" + (index+1)}>
+                                        <button className="btn-success"> ADD CCB </button>
+                                        </div>
                                     </div>
                                 </div>
                             ))}
