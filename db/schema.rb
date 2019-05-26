@@ -39,10 +39,14 @@ ActiveRecord::Schema.define(version: 2019_05_23_100145) do
   end
 
   create_table "products", force: :cascade do |t|
+    t.string "brand"
     t.string "name"
+    t.string "img_url"
+    t.string "origin"
+    t.string "ingredients"
+    t.text "desc"
     t.float "price"
-    t.text "description"
-    t.string "image_url"
+    t.integer "weight"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
