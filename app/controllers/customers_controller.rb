@@ -61,6 +61,13 @@ class CustomersController < ApplicationController
     end
   end
 
+  def subscribe
+    p params[:email]
+    @email = params[:email]
+    @customer = Customer.new(email:@email)
+    @customer.save
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_customer
@@ -71,4 +78,9 @@ class CustomersController < ApplicationController
     def customer_params
       params.require(:customer).permit(:email, :address, :postal_code, :country, :city, :contact)
     end
+
+    def subscribe_params
+      params.require(:customer).permit(:email)
+    end
+
 end

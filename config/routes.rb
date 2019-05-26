@@ -6,6 +6,7 @@ Rails.application.routes.draw do
 
   get '/checkout' => 'products#checkout', :as => 'checkout'
   get '/admin' => 'admin#index', :as => 'admin'
+  post '/customers/customers' => 'customers#subscribe'
 
   resources :products
 
