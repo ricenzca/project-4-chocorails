@@ -13,3 +13,19 @@
  *= require_tree .
  *= require_self
  */
+@import "bootstrap";
+
+/* Products */
+
+.btn {
+	opacity: 0;
+}
+
+.show-btn {
+	.card-body {
+		height: 127px;
+	}
+	.btn {
+		opacity: 1;
+	}
+}
