@@ -1,15 +1,15 @@
 import React from 'react';
 
-class Checkout extends React.Component {
+class Admin extends React.Component {
 
   render() {
     return (
       <div>
-        <h1>Checkout!!!</h1>
+        <h1>Checkoadadaut!!!</h1>
       </div>
     );
   }
 }
 
 
-export default Checkout;
+export default Admin;

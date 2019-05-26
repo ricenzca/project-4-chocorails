@@ -3,8 +3,9 @@ Rails.application.routes.draw do
   resources :reviews
   resources :orders
   resources :customers
-  
+
   get '/checkout' => 'products#checkout', :as => 'checkout'
+  get '/admin' => 'admin#index', :as => 'admin'
 
   resources :products
 
