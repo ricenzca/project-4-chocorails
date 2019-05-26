@@ -1,5 +1,4 @@
 import React from 'react';
-import EmailSub from '../emailsub/emailsub'
 
 class Admin extends React.Component {
 
@@ -160,9 +159,11 @@ class Admin extends React.Component {
     });
 
         let promos = this.state.promos.map((promo, index)=>{
-        return (<p key={index}>
-                {promo.unique_id}
-                </p>
+        return (
+            <tr>
+            <td key={index}> {promo.unique_id} </td>
+            <td key> {promo.discount} </td>
+            </tr>
             )
     });
 
@@ -187,7 +188,6 @@ class Admin extends React.Component {
           {promos}
           {products}
           </div>
-          <EmailSub />
           </React.Fragment>
           );
   }
