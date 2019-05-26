@@ -5,17 +5,27 @@ class Checkout extends React.Component {
     constructor () {
         super();
         this.state = {
-            subtotal: 0
+            subtotal: 0,
+            del_FirstName: "",
+            del_LastName: "",
+            del_Email: "",
+            del_Telephone: "",
+            del_DeliveryAdd: "",
+            del_Suburb: "",
+            del_State: "",
+            del_Postcode: "",
+            del_Country: ""
         }
     }
 
     render() {
     // console.log("in checkout component", this.props.cart)
+    console.log("checkout state", this.state)
         return (
           <div>
           <h1> THIS IS THE  CHECKOUT PAGE </h1>
             <Checkout_render cart={this.props.cart} subtotal={this.state.subtotal}/>
-            <Checkout_details />
+            <Checkout_details deet={this.state} />
             <Checkout_payments />
           </div>
         );
@@ -50,14 +60,28 @@ class Checkout_render extends React.Component {
 
 class Checkout_details extends React.Component {
 
+    formInputHandler(value) {
+
+    }
+
     render() {
+        console.log("deets", this.props)
         return (
             <div>
                 <br/>
                 <h1>Delivery address</h1>
                 <h3>All fields required</h3>
-                <form>
-                    <input />
+                <form onChange={(e)=> {this.props.formInputHandler(e.target.value);}}>
+                    First name* <input /><br/>
+                    Last name* <input /><br/>
+                    Email address* <input /><br/>
+                    Telephone* <input /><br/>
+                    Delivery address* <input /><br/>
+                    <input /><br/>
+                    Suburb/Town* <input /><br/>
+                    State/Territory* <input /><br/>
+                    Postcode* <input /><br/>
+                    Country* <input /><br/>
                 </form>
             </div>
         );
