@@ -1,8 +1,10 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
 
-import Product from "./product/product";
-import Checkout from "./checkout/checkout";
+import Product from './product/product'
+import Checkout from './checkout/checkout'
+import Admin from './admin/admin'
+import EmailSub from './emailsub/emailsub'
 
 export default class App extends React.Component {
 
@@ -21,14 +23,15 @@ export default class App extends React.Component {
         // console.log("in app component", this.state)
 		return (
 			<div>
+                <EmailSub />
 				<Switch>
 					<Route exact path= "/checkout"
            render= {(props) => <Checkout {...props} cart={this.state} />}
           />
           <Route exact path="/" component={Product} />
+          <Route exact path="/admin" component={Admin} />
 				</Switch>
 			</div>
 		);
 	}
 }
-
