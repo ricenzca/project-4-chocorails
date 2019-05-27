@@ -37,8 +37,8 @@ class ProductsController < ApplicationController
     end
   end
 
-  def testing
-    render plain: params.inspect
+  def admincreate
+    redirect_to '/admin'
     @brand = params[:brand]
     @name = params[:name]
     @ime_url = params[:img_url]

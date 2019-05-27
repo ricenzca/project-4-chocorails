@@ -2,17 +2,6 @@ import React from 'react';
 
 class AdminProducts extends React.Component {
 
-  constructor() {
-    super()
-    this.state = {
-        customers: [],
-        orders: [],
-        promos: [],
-        products: []
-        }
-
-    }
-
   render(){
     return(
         <div>
