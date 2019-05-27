@@ -59,7 +59,6 @@ class Product extends React.Component {
         } else {
             return (
                 <div>
-                    <EmailSub />
                     <Link to="/checkout">Checkout LINK!</Link>
                     <div className="container-fluid">
                         <div
