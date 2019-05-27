@@ -201,16 +201,16 @@ class Admin extends React.Component {
             <h1 className="col-md-3" onClick={this.customerList}> Customers </h1>
             <h1 className="col-md-3" onClick={this.promoList}> Promos </h1>
           </div>
-          <div>
           {customers}
           {orders}
           {promos}
           {products}
-          </div>
-          <AdminProducts /> <br/>
-          <AdminPromos /> <br/>
-          <AdminCustomers /> <br/>
-          <AdminOrders /> <br/>
+              <div className="row">
+                  <AdminProducts /> <br/>
+                  <AdminPromos /> <br/>
+                  <AdminCustomers /> <br/>
+                  <AdminOrders /> <br/>
+              </div>
           </React.Fragment>
           );
   }

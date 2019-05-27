@@ -2,11 +2,34 @@ import React from 'react';
 
 class AdminPromos extends React.Component {
 
+  constructor() {
+    super();
+    this.state = {
+        display:'none'
+    }
+
+    this.visibleState = this.visibleState.bind(this);
+  }
+
+  visibleState() {
+
+    if (this.state.display === 'none') {
+        this.setState({
+        display: ''
+            })
+    } else {
+        this.setState({
+            display: 'none'
+        })
+    }
+
+  }
+
   render(){
     return(
-        <div>
-            <h1> Create Promos </h1>
-            <form action="/promos/create" method="POST">
+        <div className="col-md-3">
+            <h1 onClick = {this.visibleState}> Create Promos </h1>
+            <form action="/promos/create" method="POST" style={this.state}>
                 <label> Amount </label>
                 <input type="text" name="amount"/> <br/>
 
