@@ -32,6 +32,7 @@ class Product extends React.Component {
                     });
                 }
             );
+
     }
 
     toggleClass = e => {
@@ -58,13 +59,12 @@ class Product extends React.Component {
         } else {
             return (
                 <div>
+                    <EmailSub />
                     <Link to="/checkout">Checkout LINK!</Link>
                     <div className="container-fluid">
                         <div
                             className="row"
-                            onMouseOver={e => {
-                                this.toggleClass(e);
-                            }}
+
                         >
                             {products.map((product, index) => (
                                 <div
@@ -74,6 +74,7 @@ class Product extends React.Component {
                                     <img
                                         className="card-img-top"
                                         src={product.img_url}
+                                        data-toggle="collapse" href={"#choco" + (index+1)}
                                     />
                                     <div className="card-body">
                                         <h4 className="card-title">
@@ -82,8 +83,8 @@ class Product extends React.Component {
                                         <p className="card-text">
                                             ${product.price}
                                         </p>
-                                        <button
-                                            className="btn btn-light"
+                                        <div className="collapse" id={"choco" + (index+1)}>
+                                        <button className="btn btn-light"
                                             onClick={() =>
                                                 //Pass in the following from <App />
                                                 this.addChocolatesToCart(
@@ -91,10 +92,8 @@ class Product extends React.Component {
                                                     this.props.cart,
                                                     this.props.updateCart
                                                 )
-                                            }
-                                        >
-                                            Add to Cart
-                                        </button>
+                                            }> Add to Cart </button>
+                                        </div>
                                     </div>
                                 </div>
                             ))}

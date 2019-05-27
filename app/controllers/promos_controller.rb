@@ -81,6 +81,32 @@ class PromosController < ApplicationController
     end
   end
 
+  def admincreate
+    render plain: params.inspect
+
+    @amount = params[:amount]
+    @limit = params[:limit]
+    @expiration = params[:expiration]
+    @code = params[:code]
+    @percentage = params[:percentage]
+    @used = params[:used]
+
+    @promo = Promo.new(amount:@amount, limit:@limit, expiration:@expiration, code:@code, percentage:@percentage, used:@used)
+    @promo.save
+
+    # redirect_to '/admin'
+    # @brand = params[:brand]
+    # @name = params[:name]
+    # @ime_url = params[:img_url]
+    # @origin = params[:origin]
+    # @ingredients = params[:ingredients]
+    # @price = params[:price]
+    # @weight = params[:weight]
+
+    # @product = Product.new(brand:@brand, name:@name, img_url:@img_url, origin:@origin, ingredients:@ingredients, price:@price, weight:@weight)
+    # @product.save
+  end
+
 
 
   private

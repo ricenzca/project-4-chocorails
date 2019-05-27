@@ -47,7 +47,7 @@ class EmailSub extends React.Component {
 
   render(){
     return(<div style={{backgroundColor:'black', color: 'white', padding:2, textAlign:'center'}}>
-            <form action="/customers/customers" method="POST">
+            <form action="/customers/subscribe" method="POST">
                 <input type="email" value={this.state.email} onChange={this.onChangeHandler} style={this.state.style} name="email" placeholder="Subscribe to get 10% Off!" noValidate required/>
                 <button type="submit" style={this.state.style} onClick={this.onClickHandler} className="btn-primary"> Submit </button>
                 <p>{this.state.promo} {this.state.error}</p>

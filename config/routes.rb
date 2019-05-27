@@ -5,7 +5,11 @@ Rails.application.routes.draw do
   resources :customers
 
   get '/admin' => 'admin#index', :as => 'admin'
-  post '/customers/customers' => 'customers#subscribe'
+  post '/customers/subscribe' => 'customers#subscribe'
+
+  post '/products/create' => 'products#admincreate'
+  post '/promos/create' => 'promos#admincreate'
+  post '/customers/create' => 'customers#admincreate'
 
   get '/products/getall' => 'products#get_all_products', defaults: { format: 'json'}
 

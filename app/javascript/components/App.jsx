@@ -31,6 +31,7 @@ export default class App extends React.Component {
 
     render() {
         // console.log("in app component", this.state)
+
         return (
             <div>
                 <EmailSub />
@@ -75,3 +76,4 @@ export default class App extends React.Component {
         );
     }
 }
+

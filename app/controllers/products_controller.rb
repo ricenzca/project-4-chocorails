@@ -37,6 +37,21 @@ class ProductsController < ApplicationController
     end
   end
 
+  def admincreate
+    redirect_to '/admin'
+    @brand = params[:brand]
+    @name = params[:name]
+    @ime_url = params[:img_url]
+    @origin = params[:origin]
+    @ingredients = params[:ingredients]
+    @price = params[:price]
+    @weight = params[:weight]
+
+    @product = Product.new(brand:@brand, name:@name, img_url:@img_url, origin:@origin, ingredients:@ingredients, price:@price, weight:@weight)
+    @product.save
+
+  end
+
   # PATCH/PUT /products/1
   # PATCH/PUT /products/1.json
   def update
