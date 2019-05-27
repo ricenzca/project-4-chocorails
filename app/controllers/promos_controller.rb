@@ -63,12 +63,18 @@ class PromosController < ApplicationController
 
   #validates promo code
   def validate
-    @promo = Promo.find_code(params[:code])
+    puts "params"
+    p params[:promo]
+    @promo = Promo.find_by(code: params[:promo])
     if @promo.present?
-      response = { valid: @promo.is_valid?,
-                   discounted_price: @promo.discounted_price }
+      puts "promo code present"
+      response = { valid: @promo.is_valid?, 
+                   discount: @promo.discount
+                 }
     else
-      response = { valid: false, discounted_price: PRICE }
+      puts "promo code not present"
+      response = { valid: false, 
+      }
     end
     respond_to do |format|
       format.json { render json: response }
