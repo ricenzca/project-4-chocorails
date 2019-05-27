@@ -1,4 +1,5 @@
 import React from 'react';
+import AdminProducts from './adminproducts.jsx'
 
 class Admin extends React.Component {
 
@@ -15,7 +16,6 @@ class Admin extends React.Component {
     this.orderList = this.orderList.bind(this);
     this.promoList = this.promoList.bind(this);
     this.productList = this.productList.bind(this);
-    this.testing = this.testing.bind(this);
     }
 
   customerList() {
@@ -129,13 +129,11 @@ class Admin extends React.Component {
 
     var oReq = new XMLHttpRequest();
     oReq.addEventListener("load", reqListener);
-    oReq.open("GET", "/products.json");
+    oReq.open("GET", "/products/getall");
     oReq.send();
   }
 
-    testing() {
-    console.log("hello");
-  }
+
 
   render(){
         let customers = this.state.customers.map((customer, index)=>{
@@ -188,6 +186,7 @@ class Admin extends React.Component {
           {promos}
           {products}
           </div>
+          <AdminProducts />
           </React.Fragment>
           );
   }

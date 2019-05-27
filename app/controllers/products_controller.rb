@@ -37,6 +37,10 @@ class ProductsController < ApplicationController
     end
   end
 
+  def testing
+    render :plain
+  end
+
   # PATCH/PUT /products/1
   # PATCH/PUT /products/1.json
   def update

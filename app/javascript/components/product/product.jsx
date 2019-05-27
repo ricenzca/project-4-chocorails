@@ -32,11 +32,6 @@ class Product extends React.Component {
                 }
             );
 
-    $('#choco1').on('click', () => {
-        $('#chocotext1').slideToggle(400);
-        console.log("ASDASDS")
-    });
-
     }
 
     toggleClass(e) {
