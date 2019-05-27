@@ -1,6 +1,7 @@
 import React from 'react';
 import AdminProducts from './adminproducts.jsx'
 import AdminPromos from './adminpromo.jsx'
+import AdminCustomers from './admincustomers.jsx'
 
 class Admin extends React.Component {
 
@@ -187,9 +188,9 @@ class Admin extends React.Component {
           {promos}
           {products}
           </div>
-          <AdminProducts />
-          <br/>
-          <AdminPromos />
+          <AdminProducts /> <br/>
+          <AdminPromos /> <br/>
+          <AdminCustomers />
           </React.Fragment>
           );
   }

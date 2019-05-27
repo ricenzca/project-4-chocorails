@@ -9,6 +9,7 @@ Rails.application.routes.draw do
 
   post '/products/create' => 'products#admincreate'
   post '/promos/create' => 'promos#admincreate'
+  post '/customers/create' => 'customers#admincreate'
 
   get '/products/getall' => 'products#get_all_products', defaults: { format: 'json'}
   resources :products
