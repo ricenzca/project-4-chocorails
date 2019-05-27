@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   get '/admin' => 'admin#index', :as => 'admin'
   post '/customers/customers' => 'customers#subscribe'
 
-  post '/products/testing' => 'products#testing'
+  post '/products/create' => 'products#testing'
 
   get '/products/getall' => 'products#get_all_products', defaults: { format: 'json'}
   resources :products

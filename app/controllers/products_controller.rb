@@ -38,7 +38,18 @@ class ProductsController < ApplicationController
   end
 
   def testing
-    render :plain
+    render plain: params.inspect
+    @brand = params[:brand]
+    @name = params[:name]
+    @ime_url = params[:img_url]
+    @origin = params[:origin]
+    @ingredients = params[:ingredients]
+    @price = params[:price]
+    @weight = params[:weight]
+
+    @product = Product.new(brand:@brand, name:@name, img_url:@img_url, origin:@origin, ingredients:@ingredients, price:@price, weight:@weight)
+    @product.save
+
   end
 
   # PATCH/PUT /products/1
