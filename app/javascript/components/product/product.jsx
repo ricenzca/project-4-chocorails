@@ -32,7 +32,6 @@ class Product extends React.Component {
                     });
                 }
             );
-
     }
 
     toggleClass = e => {
@@ -41,13 +40,29 @@ class Product extends React.Component {
 
     addChocolatesToCart = (index, cart, updateCart) => {
         const selectedChocolateObj = this.state.products[index];
-        // console.log(selectedChocolateObj);
-        // console.log(cart);
-        //newCart is the cart(<App />) 'plus' selectedChocolateObj
-        const newCart = [...cart, selectedChocolateObj];
-        //We call the method from <App /> to set the state of cart in <App />..
-        updateCart(newCart);
-        // console.log(`updatedCart: `, newCart);
+        //if cart is not empty
+        if (cart.length > 0) {
+            //if choco added before
+            if (cart.some(choco => choco.id === selectedChocolateObj.id)) {
+                let selectedId = selectedChocolateObj.id;
+                cart.forEach(chocoInCart => {
+                    if (chocoInCart.id === selectedId) {
+                        chocoInCart.quantity++;
+                    }
+                });
+                updateCart(cart);
+            } //else choco not added before
+            else {
+                selectedChocolateObj.quantity = 1;
+                const newCart = [...cart, selectedChocolateObj];
+                updateCart(newCart);
+            }
+        } //else cart is empty
+        else {
+            selectedChocolateObj.quantity = 1;
+            const newCart = [...cart, selectedChocolateObj];
+            updateCart(newCart);
+        }
     };
 
     render() {
@@ -61,10 +76,7 @@ class Product extends React.Component {
                 <div>
                     <Link to="/checkout">Checkout LINK!</Link>
                     <div className="container-fluid">
-                        <div
-                            className="row"
-
-                        >
+                        <div className="row">
                             {products.map((product, index) => (
                                 <div
                                     className="card col-md-4"
@@ -73,7 +85,8 @@ class Product extends React.Component {
                                     <img
                                         className="card-img-top"
                                         src={product.img_url}
-                                        data-toggle="collapse" href={"#choco" + (index+1)}
+                                        data-toggle="collapse"
+                                        href={"#choco" + (index + 1)}
                                     />
                                     <div className="card-body">
                                         <h4 className="card-title">
@@ -82,16 +95,24 @@ class Product extends React.Component {
                                         <p className="card-text">
                                             ${product.price}
                                         </p>
-                                        <div className="collapse" id={"choco" + (index+1)}>
-                                        <button className="btn btn-light"
-                                            onClick={() =>
-                                                //Pass in the following from <App />
-                                                this.addChocolatesToCart(
-                                                    index,
-                                                    this.props.cart,
-                                                    this.props.updateCart
-                                                )
-                                            }> Add to Cart </button>
+                                        <div
+                                            className="collapse"
+                                            id={"choco" + (index + 1)}
+                                        >
+                                            <button
+                                                className="btn btn-light"
+                                                onClick={() =>
+                                                    //Pass in the following from <App />
+                                                    this.addChocolatesToCart(
+                                                        index,
+                                                        this.props.cart,
+                                                        this.props.updateCart
+                                                    )
+                                                }
+                                            >
+                                                {" "}
+                                                Add to Cart
+                                            </button>
                                         </div>
                                     </div>
                                 </div>

@@ -6,6 +6,7 @@ import Checkout from "./checkout/checkout";
 import Admin from "./admin/admin";
 import EmailSub from "./emailsub/emailsub";
 import Promo from "./promo/promo";
+import Cart from "./cart/cart";
 
 export default class App extends React.Component {
     constructor() {
@@ -19,6 +20,7 @@ export default class App extends React.Component {
 
     //Takes in a new arr(with selected chocolates) and 'updates' this.state.cart
     updateCart = newCart => {
+        console.log(newCart);
         this.setState({
             cart: newCart
         });
@@ -47,13 +49,11 @@ export default class App extends React.Component {
                         exact
                         path="/"
                         render={props => (
-                            <div>
-                                <Product
-                                    {...props}
-                                    updateCart={this.updateCart}
-                                    cart={this.state.cart}
-                                />
-                            </div>
+                            <Product
+                                {...props}
+                                updateCart={this.updateCart}
+                                cart={this.state.cart}
+                            />
                         )}
                     />
                     <Route exact path="/admin" component={Admin} />
@@ -76,4 +76,3 @@ export default class App extends React.Component {
         );
     }
 }
-
