@@ -142,20 +142,29 @@ class Admin extends React.Component {
         let customers = this.state.customers.map((customer, index)=>{
         return (
             <tr>
-                <td key={index} onClick={this.testing}> {customer.id} </td>
+                <td key={index} > {customer.id} </td>
                 <td> {customer.email} </td>
                 <td> {customer.address} </td>
                 <td> {customer.postal_code} </td>
                 <td> {customer.country} </td>
                 <td> {customer.contact} </td>
+                <td> <a href={"/customers/" + (index+1) + "/edit"}> <button> Edit Customer </button> </a> </td>
             </tr>
             )
     });
 
         let orders = this.state.orders.map((order, index)=>{
-        return (<p key={index}>
-                Order Id:{order.id}
-                </p>
+        return (
+            <tr>
+            <td key={index}> Order Id:{order.id} </td>
+            <td> {order.quantity}</td>
+            <td> {order.delivery_address}</td>
+            <td> {order.total_amount}</td>
+            <td> {order.stripe_id}</td>
+            <td> {order.order_number}</td>
+            <td> {order.promo_id}</td>
+            <td> <a href={"/orders/" + (index+1) + "/edit"}> <button> Edit Order </button> </a> </td>
+            </tr>
             )
     });
 
@@ -169,9 +178,18 @@ class Admin extends React.Component {
     });
 
         let products = this.state.products.map((product, index)=>{
-        return (<p key={index}>
-                {product.price}
-                </p>
+        return (
+            <tr>
+            <td key={index}> {product.id} </td>
+            <td > {product.brand} </td>
+            <td> {product.name} </td>
+            <td> {product.origin}</td>
+            <td> {product.ingredients} </td>
+            <td> {product.desc} </td>
+            <td> {product.price} </td>
+            <td> {product.weight} </td>
+            <td> <a href={"/products/" + (index+1) + "/edit"}> <button> Edit Product </button> </a> </td>
+            </tr>
             )
     });
 
