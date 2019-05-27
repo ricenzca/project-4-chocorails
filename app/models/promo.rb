@@ -5,8 +5,7 @@ class Promo < ApplicationRecord
 
 	has_many :orders
 
-	# returns true if the code is valid
-	# false otherwise
+	# returns true if the code is valid, otherwise returns false
 	def is_valid?
     # Expiration date is nil, or equal to or greater than today?
     (self.expiration.nil? || self.expiration >= Date.current) &&
