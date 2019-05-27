@@ -5,6 +5,7 @@ class AdminPromos extends React.Component {
   render(){
     return(
         <div>
+            <h1> Create Promos </h1>
             <form action="/promos/create" method="POST">
                 <label> Amount </label>
                 <input type="text" name="amount"/> <br/>

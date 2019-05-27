@@ -61,6 +61,22 @@ class OrdersController < ApplicationController
     end
   end
 
+  def admincreate
+
+    redirect_to '/admin'
+
+    @quantity = params[:quantity]
+    @delivery_address = params[:delivery_address]
+    @total_amount = params[:total_amount]
+    @stripe_id = params[:stripe_id]
+    @order_number = params[:order_number]
+    @promo_id = params[:promo_id]
+
+    @order = Order.new(quantity:@quantity, delivery_address:@delivery_address, total_amount:@total_amount, stripe_id:@stripe_id, order_number:@order_number, promo_id:@promo_id)
+    @order.save
+
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_order

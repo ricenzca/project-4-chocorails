@@ -5,6 +5,7 @@ class AdminProducts extends React.Component {
   render(){
     return(
         <div>
+            <h1> Create Products </h1>
             <form action="/products/create" method="POST">
                 <label> Brand  </label>
                 <input type="text" name="brand"/> <br/>
