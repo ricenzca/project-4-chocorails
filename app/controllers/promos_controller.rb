@@ -63,7 +63,7 @@ class PromosController < ApplicationController
 
   #validates promo code
   def validate
-    puts "params"
+    puts "validate params"
     p params[:promo]
     @promo = Promo.find_by(code: params[:promo])
     if @promo.present?
@@ -79,6 +79,19 @@ class PromosController < ApplicationController
     respond_to do |format|
       format.json { render json: response }
     end
+  end
+
+  def charge
+    puts "charge params"
+    p params
+    # Stripe::Charge.create(
+    #   amount: order_amount,
+    #   description: customer.email,
+    #   currency: DEFAULT_CURRENCY
+    #   source: 
+    # )
+    response = "charged!"
+    render json: response
   end
 
   def admincreate

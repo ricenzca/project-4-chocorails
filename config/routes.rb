@@ -15,6 +15,8 @@ Rails.application.routes.draw do
 
   get '/promo/:promo' => 'promos#validate'
 
+  post '/charge' => 'promos#charge'
+
   resources :products
   root 'products#main'
 
