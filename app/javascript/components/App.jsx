@@ -5,30 +5,47 @@ import Product from "./product/product";
 import Checkout from "./checkout/checkout";
 
 export default class App extends React.Component {
-
-    constructor () {
+    constructor() {
         super();
         this.state = {
-            cart: [
-                "AN: need the add to cart functionality",
-                "CH: need to render nicely",
-                "LL: need to grab price of all items in basket and set subtotal in state via method"
-            ]
-        }
+            cart: []
+        };
     }
 
-	render() {
-        // console.log("in app component", this.state)
-		return (
-			<div>
-				<Switch>
-					<Route exact path= "/checkout"
-           render= {(props) => <Checkout {...props} cart={this.state} />}
-          />
-          <Route exact path="/" component={Product} />
-				</Switch>
-			</div>
-		);
-	}
-}
+    //Takes in a new arr(with selected chocolates) and 'updates' this.state.cart
+    updateCart = newCart => {
+        this.setState({
+            cart: newCart
+        });
+    };
 
+    render() {
+        return (
+            <div>
+                <Switch>
+                    <Route
+                        exact
+                        path="/checkout"
+                        render={props => (
+                            <Checkout {...props} cart={this.state} />
+                        )}
+                    />
+                    <Route
+                        exact
+                        path="/"
+                        render={props => (
+                            <div>
+                                <Product
+                                    {...props}
+                                    updateCart={this.updateCart}
+                                    cart={this.state.cart}
+                                />
+                                <Cart {...props} cart={this.state.cart} />
+                            </div>
+                        )}
+                    />
+                </Switch>
+            </div>
+        );
+    }
+}

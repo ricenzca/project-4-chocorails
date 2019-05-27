@@ -10,7 +10,8 @@ class Product extends React.Component {
             isLoaded: false,
             products: []
         };
-        this.toggleClass = this.toggleClass.bind(this);
+        // this.toggleClass = this.toggleClass.bind(this);
+        // this.addChocolatesToCart = this.addChocolatesToCart.bind(this);
     }
 
     componentDidMount() {
@@ -18,6 +19,7 @@ class Product extends React.Component {
             .then(res => res.json())
             .then(
                 result => {
+                    // result here is an arr of objs[{}, {},...]
                     this.setState({
                         isLoaded: true,
                         products: result
@@ -32,9 +34,20 @@ class Product extends React.Component {
             );
     }
 
-    toggleClass(e) {
-        console.log(e.target);
-    }
+    toggleClass = e => {
+        // console.log(e.target);
+    };
+
+    addChocolatesToCart = (index, cart, updateCart) => {
+        const selectedChocolateObj = this.state.products[index];
+        // console.log(selectedChocolateObj);
+        // console.log(cart);
+        //newCart is the cart(<App />) 'plus' selectedChocolateObj
+        const newCart = [...cart, selectedChocolateObj];
+        //We call the method from <App /> to set the state of cart in <App />..
+        updateCart(newCart);
+        // console.log(`updatedCart: `, newCart);
+    };
 
     render() {
         const { error, isLoaded, products } = this.state;
@@ -53,8 +66,11 @@ class Product extends React.Component {
                                 this.toggleClass(e);
                             }}
                         >
-                            {products.map(product => (
-                                <div className="card col-md-4">
+                            {products.map((product, index) => (
+                                <div
+                                    className="card col-md-4"
+                                    key={"choc_" + index}
+                                >
                                     <img
                                         className="card-img-top"
                                         src={product.img_url}
@@ -66,6 +82,19 @@ class Product extends React.Component {
                                         <p className="card-text">
                                             ${product.price}
                                         </p>
+                                        <button
+                                            className="btn btn-light"
+                                            onClick={() =>
+                                                //Pass in the following from <App />
+                                                this.addChocolatesToCart(
+                                                    index,
+                                                    this.props.cart,
+                                                    this.props.updateCart
+                                                )
+                                            }
+                                        >
+                                            Add to Cart
+                                        </button>
                                     </div>
                                 </div>
                             ))}
