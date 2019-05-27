@@ -17,6 +17,13 @@ require 'faker'
 # 	)
 # end
 
+promo = Promo.create([
+{code:"WELCOME10%", amount:10, percentage:true},
+{code:"$5OFF", amount:5, percentage:false, expiration: Date.parse("2019-12-31")},
+{code:"$5OFFEXPIRED", amount:5, percentage:false, expiration: Date.parse("2018-12-31")},
+{code:"$5OFFPASTLIMIT", amount:5, percentage:false, limit: 1, used: 1},
+])
+
 
 product = Product.create([
   {brand: 'Krakakoa', name: 'Arenga 100% Dark', img_url: 'https://www.krakakoa.com/wp-content/uploads/2018/04/100-dark-chocolate.jpg', origin: 'Sumatra, Indonesia', ingredients: 'Cocoa beans', desc: 'This is 100% Sumatran cocoa at its purest. A complex bar with robust natural acidity of fermented cocoa and complex earthy aromas.', price: 3.6, weight: 50},

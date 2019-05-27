@@ -8,30 +8,28 @@ class Promo < ApplicationRecord
 	# returns true if the code is valid
 	# false otherwise
 	def is_valid?
-	    # Expiration date is nil, or equal to or greater than today?
-	    (self.expiration.nil? || self.expiration >= Date.current) &&
-	    # Limit is set to 0 (for unlimited) or limit is greater than the current used count.
-	    (self.limit == 0 || self.limit > self.used)
+    # Expiration date is nil, or equal to or greater than today?
+    (self.expiration.nil? || self.expiration >= Date.current) &&
+    # Limit is set to 0 (for unlimited) or limit is greater than the current used count.
+    (self.limit == 0 || self.limit > self.used)
 	end
 
-	# Calculates the discounted price
-	# Returns full price if the code is not valid
-	# PRICE is set in an initializer, 
-	# based on a environment variable.
-	def discounted_price(order)
-		puts "order"
-		p order
-		hello = order
-    price = if is_valid?
-              if percentage
-                hello - (hello * (amount/100))
-              else
-                (hello - amount)
-              end
-            else
-              hello
-            end
-    return price.floor
+	def discount
+		if is_valid?
+			puts "promo code valid"
+	    if percentage
+	      percent = true
+	    else
+	      percent = false
+	    end
+	    return {
+	    	percent: percent, amount: amount
+	    }
+	  else
+	  	puts "promo code invalid/expired/past limit"
+	  	amount = 0
+	    return amount
+	  end
 	end
 
 end
