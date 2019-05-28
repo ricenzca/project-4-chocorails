@@ -20,15 +20,16 @@ export default class App extends React.Component {
       ],
       subtotalBeforePromo: 99.918,
       subtotalAfterPromo: null
-
-    updateCart = (newCart, updatedAmount) => {
-        console.log(`What is inside cart now, price `, newCart, updatedAmount);
-        this.setState({
-            cart: newCart,
-            subtotalBeforePromo: updatedAmount
-        });
-    };
+    }
   }
+
+  updateCart = (newCart, updatedAmount) => {
+      console.log(`What is inside cart now, price `, newCart, updatedAmount);
+      this.setState({
+          cart: newCart,
+          subtotalBeforePromo: updatedAmount
+      });
+  };
 
   adjustSubtotal = newSubtotal => {
     console.log("adjustSubtotal!");

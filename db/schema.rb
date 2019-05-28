@@ -32,10 +32,11 @@ ActiveRecord::Schema.define(version: 2019_05_28_051213) do
 
   create_table "orders", force: :cascade do |t|
     t.bigint "transaction_id"
-    t.string "product_purchased"
+    t.bigint "product_id"
     t.integer "product_quantity"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["product_id"], name: "index_orders_on_product_id"
     t.index ["transaction_id"], name: "index_orders_on_transaction_id"
   end
 
