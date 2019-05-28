@@ -28,26 +28,26 @@ class AdminPromos extends React.Component {
   render(){
     return(
         <div className="col-md-3">
-            <h1 onClick = {this.visibleState}> Create Promos </h1>
+            <h2 onClick = {this.visibleState}> Create Promos </h2>
             <form action="/promos/create" method="POST" style={this.state}>
                 <label> Amount </label>
-                <input type="text" name="amount"/> <br/>
+                <input type="text" name="amount" className="form-control"/>
 
                 <label> Limit </label>
-                <input type="text" name="limit"/> <br/>
+                <input type="text" name="limit" className="form-control"/>
 
                 <label> Expiration </label>
-                <input type="text" name="expiration"/> <br/>
+                <input type="text" name="expiration" className="form-control"/>
 
                 <label> Code </label>
-                <input type="text" name="code"/> <br/>
+                <input type="text" name="code" className="form-control"/>
 
                 <label> Percentage </label>
-                <input type="text" name="percentage"/> <br/>
+                <input type="text" name="percentage" className="form-control"/>
 
                 <label> Used </label>
-                <input type="text" name="used"/> <br/>
-                <input type="submit"/>
+                <input type="text" name="used" className="form-control"/> <br/>
+                <input type="submit" className="btn-primary btn-block"/>
             </form>
         </div>
     )
