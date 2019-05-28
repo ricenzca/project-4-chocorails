@@ -10,14 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_23_100145) do
+ActiveRecord::Schema.define(version: 2019_05_28_051213) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "customers", force: :cascade do |t|
+    t.string "firstname"
+    t.string "lastname"
     t.string "email"
-    t.string "address"
+    t.string "address1"
+    t.string "address2"
+    t.string "state"
     t.integer "postal_code"
     t.string "country"
     t.string "city"
@@ -27,15 +31,12 @@ ActiveRecord::Schema.define(version: 2019_05_23_100145) do
   end
 
   create_table "orders", force: :cascade do |t|
-    t.integer "quantity"
-    t.string "delivery_address"
-    t.float "total_amount"
-    t.string "stripe_id"
-    t.string "order_number"
-    t.bigint "promo_id"
+    t.bigint "transaction_id"
+    t.string "product_purchased"
+    t.integer "product_quantity"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["promo_id"], name: "index_orders_on_promo_id"
+    t.index ["transaction_id"], name: "index_orders_on_transaction_id"
   end
 
   create_table "products", force: :cascade do |t|
@@ -68,6 +69,28 @@ ActiveRecord::Schema.define(version: 2019_05_23_100145) do
     t.string "nickname"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "transactions", force: :cascade do |t|
+    t.integer "quantity"
+    t.string "delivery_address"
+    t.float "total_amount"
+    t.string "order_number"
+    t.bigint "promo_id"
+    t.string "products_purchased"
+    t.string "firstname"
+    t.string "lastname"
+    t.string "email"
+    t.string "address1"
+    t.string "address2"
+    t.string "state"
+    t.integer "postal_code"
+    t.string "country"
+    t.string "city"
+    t.string "contact"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["promo_id"], name: "index_transactions_on_promo_id"
   end
 
 end
