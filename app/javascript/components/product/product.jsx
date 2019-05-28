@@ -38,7 +38,7 @@ class Product extends React.Component {
     // console.log(e.target);
   };
 
-  addChocolatesToCart = (index, cart, updateCart, updateTotal) => {
+  addChocolatesToCart = (index, cart, updateCart) => {
     const selectedChocolateObj = this.state.products[index];
     let currentCart;
     //if cart is not empty
@@ -52,26 +52,26 @@ class Product extends React.Component {
           }
         });
         currentCart = [...cart];
-        updateCart(currentCart);
+        // updateCart(currentCart);
       } //else choco not added before
       else {
         selectedChocolateObj.quantity = 1;
         currentCart = [...cart, selectedChocolateObj];
-        updateCart(currentCart);
+        // updateCart(currentCart);
       }
     } //else cart is empty
     else {
       selectedChocolateObj.quantity = 1;
       currentCart = [...cart, selectedChocolateObj];
-      updateCart(currentCart);
+      // updateCart(currentCart);
     }
     //currentCart gets updated [{}, {}]
-    console.log(`inside <Product /> `, currentCart);
+    // console.log(`inside <Product /> `, currentCart);
     let subtotal = 0;
     for (var i = 0; i < currentCart.length; i++) {
       subtotal = subtotal + currentCart[i].price * currentCart[i].quantity;
     }
-    updateTotal(subtotal);
+    updateCart(currentCart, subtotal);
   };
 
   render() {
@@ -105,8 +105,8 @@ class Product extends React.Component {
                           this.addChocolatesToCart(
                             index,
                             this.props.cart,
-                            this.props.updateCart,
-                            this.props.updateTotal
+                            this.props.updateCart
+                            // this.props.updateTotal
                           )
                         }
                       >

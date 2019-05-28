@@ -18,18 +18,25 @@ export default class App extends React.Component {
         };
     }
 
-    //Takes in a new arr(with selected chocolates) and 'updates' this.state.cart
-    updateCart = newCart => {
-        // console.log(`inside <App /> `, newCart);
-        this.setState({
-            cart: newCart
-            // subtotalBeforePromo: updatedTotal
-        });
-    };
+    // updateCart = newCart => {
+    //     console.log(`inside <App /> `, newCart);
+    //     this.setState({
+    //         cart: newCart
+    //         // subtotalBeforePromo: updatedTotal
+    //     });
+    // };
 
-    updateTotal = updatedAmount => {
-        console.log(updatedAmount);
+    // updateTotal = updatedAmount => {
+    //     console.log(updatedAmount);
+    //     this.setState({
+    //         subtotalBeforePromo: updatedAmount
+    //     });
+    // };
+
+    updateCart = (newCart, updatedAmount) => {
+        console.log(`What is inside cart now, price `, newCart, updatedAmount);
         this.setState({
+            cart: newCart,
             subtotalBeforePromo: updatedAmount
         });
     };
@@ -40,8 +47,6 @@ export default class App extends React.Component {
     };
 
     render() {
-        // console.log("in app component", this.state)
-
         return (
             <div>
                 <EmailSub />
@@ -61,10 +66,16 @@ export default class App extends React.Component {
                                 <Product
                                     {...props}
                                     updateCart={this.updateCart}
-                                    updateTotal={this.updateTotal}
+                                    // updateTotal={this.updateTotal}
                                     cart={this.state.cart}
                                 />
-                                <Cart {...props} cart={this.state.cart} />
+                                <Cart
+                                    {...props}
+                                    updateCart={this.updateCart}
+                                    // updateTotal={this.updateTotal}
+                                    cart={this.state.cart}
+                                    subtotal={this.state.subtotalBeforePromo}
+                                />
                             </div>
                         )}
                     />
