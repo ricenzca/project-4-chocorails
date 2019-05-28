@@ -4,7 +4,7 @@ class PromosController < ApplicationController
   # GET /promos
   # GET /promos.json
   def index
-    @promos = Promo.all
+    @promos = Promo.all.order("created_at ASC")
 
   end
 
