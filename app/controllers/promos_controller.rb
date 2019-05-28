@@ -84,14 +84,37 @@ class PromosController < ApplicationController
   def charge
     puts "charge params"
     p params
-    # Stripe::Charge.create(
-    #   amount: order_amount,
-    #   description: customer.email,
-    #   currency: DEFAULT_CURRENCY
-    #   source: 
-    # )
+    puts "request body"
+    p request.body.read
+    puts "parsed"
+    body = JSON.parse(request.body.read)
+    p body[1]["name"]
     response = "charged!"
     render json: response
+  end
+
+  def submit
+    puts "submit params"
+    p params
+    puts "submit req body"
+    p request.body.read
+    puts "submit parsed"
+    body = JSON.parse(request.body.read)
+    p body
+    puts "body.customer"
+    p body['customer']
+    @customer = Customer.new(body['customer'])
+    puts "@customer"
+    p @customer
+
+    puts "@customer.save"
+    if @customer.save
+      response = "submitted successful"
+      render json: response
+    else
+      response = "submission faild"
+      render json: response
+    end
   end
 
   def admincreate
@@ -132,4 +155,5 @@ class PromosController < ApplicationController
     def promo_params
       params.require(:promo).permit(:unique_id, :discount)
     end
+
 end

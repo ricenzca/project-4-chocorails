@@ -17,6 +17,8 @@ Rails.application.routes.draw do
 
   post '/charge' => 'promos#charge'
 
+  post '/submit' => 'promos#submit'
+
   resources :products
   root 'products#main'
 

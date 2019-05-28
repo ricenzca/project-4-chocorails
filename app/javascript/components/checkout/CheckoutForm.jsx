@@ -2,20 +2,36 @@ import React, {Component} from 'react';
 import {CardElement, injectStripe} from 'react-stripe-elements';
 
 class CheckoutForm extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {complete: false};
+  constructor() {
+    super();
+    this.state = {
+      complete: false,
+      cardholderName: ""
+    };
   }
 
-  async submit(ev) {
-    let {token} = await this.props.stripe.createToken({name: "Name"});
+  handleChangeCardholderName = (e) => {
+    this.setState({cardholderName: e.target.value});
+  }
+
+  submit = async (printState) => {
+    let {token} = await this.props.stripe.createToken({name: this.state.cardholderName});
+    let csrfToken = $('meta[name="csrf-token"]').attr('content');
     let response = await fetch("/charge", {
       method: "POST",
-      headers: {"Content-Type": "text/plain"},
-      body: token.id
+      headers: {
+        "Content-Type": "application/json",
+        'X-Requested-With': 'XMLHttpRequest',
+        'X-CSRF-Token': csrfToken,
+        'Accept': 'application/json'
+    },
+      body: JSON.stringify([token.id,{name: this.state.cardholderName, address: "home"}]),
+      credentials: 'same-origin'
     });
 
     if (response.ok) this.setState({complete: true});
+
+    printState();
   }
 
   render() {
@@ -24,8 +40,14 @@ class CheckoutForm extends Component {
     return (
       <div className="checkout">
         <p>Would you like to complete the purchase?</p>
-        <CardElement />
-        <button onClick={(ev)=>this.submit(ev)}>Send</button>
+        <label>
+        Card details</label>
+        <div>
+          <span>Cardholder's Name:</span>
+          <input type="text" name="cardholderName" placeholder="Enter your name" value={this.state.cardholderName} onChange={(e)=>this.handleChangeCardholderName(e)}/>
+        </div>
+        <CardElement style={{base: {fontSize: '18px'}}}  />
+        <button className="btn btn-sm btn-primary" onClick={()=>this.submit(this.props.printState)}>Confirm order</button>
       </div>
     );
   }
