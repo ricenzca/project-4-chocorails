@@ -10,7 +10,7 @@ class Promo extends React.Component {
 		}
 	}
 
-	async ajaxRequest (newInput,subtotal,adjustSubtotal) {
+	async ajaxRequest (newInput,subtotal,adjustSubtotal,adjustGstAndGrandTotal) {
 		const response = await fetch(`/promo/${newInput}`);
 		const data = await response.json();
 		console.log("data",data);
@@ -27,24 +27,36 @@ class Promo extends React.Component {
 				console.log("newSubtotal after $ discount",newSubtotal);
 			}
 			this.setState({
-				codeValidationMessage:"Code applied",
+				codeValidationMessage:"Code applied!",
 			});
 			adjustSubtotal(newSubtotal);
 
+			let newGst = newSubtotal*0.177;
+			console.log("newGst",newGst);
+			let newGrandTotal = Math.round((newSubtotal+newGst+5)*100)/100;
+			console.log("newGrandTotal", newGrandTotal);
+			adjustGstAndGrandTotal(newGst, newGrandTotal);
+
 		} else {
 			this.setState({codeValidationMessage:"Promo code not valid"});
+
 			adjustSubtotal(subtotal);
+			let newGst = subtotal*0.177;
+			console.log("newGst",newGst);
+			let newGrandTotal = Math.round((subtotal+newGst+5)*100)/100;
+			console.log("newGrandTotal", newGrandTotal);
+			adjustGstAndGrandTotal(newGst, newGrandTotal);
 		}
 	}
 
-	checkPromo (subtotal, adjustSubtotal, e) {
+	checkPromo (subtotal, adjustSubtotal,adjustGstAndGrandTotal, e) {
 		let newInput =  e.target.value;
 		console.log("newInput",newInput);
 		this.setState({input: newInput})
 		let data="";
 		if (newInput) {
 			clearTimeout(this.ajaxRequestTimeout);
-			this.ajaxRequestTimeout = setTimeout(()=>{this.ajaxRequest(newInput,subtotal,adjustSubtotal)},500)
+			this.ajaxRequestTimeout = setTimeout(()=>{this.ajaxRequest(newInput,subtotal,adjustSubtotal,adjustGstAndGrandTotal)},500)
 		}
 	}
 
@@ -59,8 +71,8 @@ class Promo extends React.Component {
 
 		return (
 			<div>
-				Promo&nbsp;
-				<input type="text" name="promo" value={this.state.value} onChange={e=>this.checkPromo(this.props.subtotal,this.props.adjustSubtotal,e)} />
+				<p>Promo code: &nbsp;</p>
+				<input type="text" name="promo" value={this.state.value} onChange={e=>this.checkPromo(this.props.subtotal,this.props.adjustSubtotal,this.props.adjustGstAndGrandTotal,e)} />
 				<p>{this.state.codeValidationMessage}</p>
 				<p>Subtotal: ${subtotalToDisplay}</p>
 			</div>

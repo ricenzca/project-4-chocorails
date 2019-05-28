@@ -9,54 +9,48 @@ import Promo from "./promo/promo";
 import Cart from "./cart/cart";
 
 export default class App extends React.Component {
-    constructor() {
-        super();
-        this.state = {
-            cart: [],
-            subtotalBeforePromo: 100,
-            subtotalAfterPromo: null
-        };
+  constructor() {
+    super();
+    this.state = {
+      cart: [
+        {brand: 'Krakakoa', name: 'Arenga 100% Dark', img_url: 'https://www.krakakoa.com/wp-content/uploads/2018/04/100-dark-chocolate.jpg', origin: 'Sumatra, Indonesia', ingredients: 'Cocoa beans', desc: 'This is 100% Sumatran cocoa at its purest. A complex bar with robust natural acidity of fermented cocoa and complex earthy aromas.', price: 3.6, weight: 50, quantity: 2
+        },
+        {brand: 'Krakakoa', name: 'Arenga 85% Dark', img_url: 'https://www.krakakoa.com/wp-content/uploads/2018/04/85-dark-chocolate.jpg', origin: 'Sulawesi, Indonesia', ingredients: 'Cocoa beans, Palm sugar, Sunflower lecithin', desc: 'We blend Arenga palm sugar, harvested from the rainforests of Sulawesi, with sustainably grown cocoa, creating delicious chocolate with caramel notes that is also a force for wildlife conservation.', price: 4, weight: 50, quantity: 3
+        }
+      ],
+      subtotalBeforePromo: 99.918,
+      subtotalAfterPromo: null
     }
+  }
 
-    // updateCart = newCart => {
-    //     console.log(`inside <App /> `, newCart);
-    //     this.setState({
-    //         cart: newCart
-    //         // subtotalBeforePromo: updatedTotal
-    //     });
-    // };
+  updateCart = (newCart, updatedAmount) => {
+      console.log(`What is inside cart now, price `, newCart, updatedAmount);
+      this.setState({
+          cart: newCart,
+          subtotalBeforePromo: updatedAmount
+      });
+  };
 
-    // updateTotal = updatedAmount => {
-    //     console.log(updatedAmount);
-    //     this.setState({
-    //         subtotalBeforePromo: updatedAmount
-    //     });
-    // };
-
-    updateCart = (newCart, updatedAmount) => {
-        console.log(`What is inside cart now, price `, newCart, updatedAmount);
-        this.setState({
-            cart: newCart,
-            subtotalBeforePromo: updatedAmount
-        });
-    };
-
-    adjustSubtotal = newSubtotal => {
-        console.log("adjustSubtotal!");
-        this.setState({ subtotalAfterPromo: newSubtotal });
-    };
+  adjustSubtotal = newSubtotal => {
+    console.log("adjustSubtotal!");
+    newSubtotal = Math.round(newSubtotal*100)/100;
+    this.setState({ subtotalAfterPromo: newSubtotal });
+  };
 
     render() {
         return (
             <div>
                 <EmailSub />
                 <Switch>
-                    <Route
-                        exact
-                        path="/checkout"
-                        render={props => (
-                            <Checkout {...props} cart={this.state.cart} />
-                        )}
+                    <Route exact path="/checkout"
+                    render={props => (
+                      <Checkout {...props} cart={this.state.cart} subtotal={this.state.subtotalBeforePromo}
+                        adjustSubtotal={this.adjustSubtotal}
+                        subtotalAfterPromo={
+                          this.state.subtotalAfterPromo
+                        }
+                      />
+                      )}
                     />
                     <Route
                         exact
