@@ -4,7 +4,6 @@ import {Elements, StripeProvider} from 'react-stripe-elements';
 import CheckoutForm from './CheckoutForm';
 
 class Checkout extends React.Component {
-
   constructor () {
     super();
     this.state = {
@@ -113,6 +112,7 @@ class Checkout extends React.Component {
 
 class Checkout_render extends React.Component {
     render() {
+
     // console.log("in child component", this.props.cart)
     var cartContents = this.props.cart.map((item, index) => {
       console.log("item",item);
@@ -120,7 +120,6 @@ class Checkout_render extends React.Component {
         <div key={"item"+index}>
         <p>{index+1}. {item.name} {item.quantity} ${item.price.toFixed(2)}</p>
         </div>
-
       )
     })
 

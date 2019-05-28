@@ -2,6 +2,7 @@ import React from 'react';
 import AdminProducts from './adminproducts.jsx'
 import AdminPromos from './adminpromo.jsx'
 import AdminCustomers from './admincustomers.jsx'
+import AdminOrders from './adminorders.jsx'
 
 class Admin extends React.Component {
 
@@ -11,8 +12,25 @@ class Admin extends React.Component {
         customers: [],
         orders: [],
         promos: [],
-        products: []
+        products: [],
+
+        productDisplay: {
+            display: 'none'
+        },
+
+        orderDisplay: {
+            display: 'none'
+        },
+
+        customerDisplay: {
+            display: 'none'
+        },
+
+        promoDisplay: {
+            display: 'none'
         }
+
+    }
 
     this.customerList = this.customerList.bind(this);
     this.orderList = this.orderList.bind(this);
@@ -33,7 +51,24 @@ class Admin extends React.Component {
         customers: data,
         orders: [],
         promos: [],
-        products:[]
+        products:[],
+
+        productDisplay: {
+            display: 'none'
+        },
+
+        orderDisplay: {
+            display: 'none'
+        },
+
+        customerDisplay: {
+            display: ''
+        },
+
+        promoDisplay: {
+            display: 'none'
+        }
+
       })
       // console.log(reactThis.state.customers);
       // reactThis.setState({items:data.products})
@@ -63,6 +98,23 @@ class Admin extends React.Component {
         customers: [],
         promos: [],
         products:[],
+
+        productDisplay: {
+            display: 'none'
+        },
+
+        orderDisplay: {
+            display: ''
+        },
+
+        customerDisplay: {
+            display: 'none'
+        },
+
+        promoDisplay: {
+            display: 'none'
+        }
+
       })
 
       console.log(reactThis.state.orders)
@@ -92,7 +144,23 @@ class Admin extends React.Component {
         promos: data,
         orders: [],
         customers: [],
-        products:[]
+        products:[],
+
+        productDisplay: {
+            display: 'none'
+        },
+
+        orderDisplay: {
+            display: 'none'
+        },
+
+        customerDisplay: {
+            display: 'none'
+        },
+
+        promoDisplay: {
+            display: ''
+        }
       })
       // console.log(reactThis.state.customers);
       // reactThis.setState({items:data.products})
@@ -120,7 +188,23 @@ class Admin extends React.Component {
         products: data,
         orders: [],
         customers: [],
-        promos: []
+        promos: [],
+
+        productDisplay: {
+            display: ''
+        },
+
+        customerDisplay: {
+            display: 'none'
+        },
+
+        orderDisplay: {
+            display: 'none'
+        },
+
+        promoDisplay: {
+            display: 'none'
+        },
       })
       // console.log(reactThis.state.customers);
       // reactThis.setState({items:data.products})
@@ -141,56 +225,137 @@ class Admin extends React.Component {
         let customers = this.state.customers.map((customer, index)=>{
         return (
             <tr>
-                <td key={index} onClick={this.testing}> {customer.id} </td>
+                <td key={index} > {customer.id} </td>
                 <td> {customer.email} </td>
                 <td> {customer.address} </td>
                 <td> {customer.postal_code} </td>
                 <td> {customer.country} </td>
                 <td> {customer.contact} </td>
+                <td> <a href={"/customers/" + (index+1) + "/edit"}> <button className="btn btn-warning"> Edit Customer </button> </a> </td>
             </tr>
             )
     });
 
         let orders = this.state.orders.map((order, index)=>{
-        return (<p key={index}>
-                Order Id:{order.id}
-                </p>
+        return (
+            <tr>
+            <td key={index}> Order Id:{order.id} </td>
+            <td> {order.quantity}</td>
+            <td> {order.delivery_address}</td>
+            <td> {order.total_amount}</td>
+            <td> {order.stripe_id}</td>
+            <td> {order.order_number}</td>
+            <td> {order.promo_id}</td>
+            <td> <a href={"/orders/" + (index+1) + "/edit"}> <button className="btn btn-warning"> Edit Order </button> </a> </td>
+            </tr>
             )
     });
 
         let promos = this.state.promos.map((promo, index)=>{
         return (
             <tr>
-            <td key={index}> {promo.unique_id} </td>
-            <td key> {promo.discount} </td>
+            <td key={index}> {promo.id} </td>
+            <td> {promo.amount} </td>
+            <td> {promo.limit} </td>
+            <td> {promo.expiration} </td>
+            <td> {promo.code} </td>
+            <td> {promo.percentage} </td>
+            <td> {promo.used} </td>
+            <td> <a href={"/promos/" + (index+1) + "/edit"}> <button className="btn btn-warning"> Edit Promo </button> </a> </td>
             </tr>
             )
     });
 
         let products = this.state.products.map((product, index)=>{
-        return (<p key={index}>
-                {product.price}
-                </p>
+        return (
+            <tr scope="row">
+            <td key={index}> {product.id} </td>
+            <td > {product.brand} </td>
+            <td> {product.name} </td>
+            <td> {product.origin}</td>
+            <td> {product.ingredients} </td>
+            <td> {product.desc} </td>
+            <td> {product.price} </td>
+            <td> {product.weight} </td>
+            <td> <a href={"/products/" + (index+1) + "/edit"}> <button className="btn btn-warning"> Edit Product </button> </a> </td>
+            </tr>
             )
     });
 
     return( <React.Fragment>
-        <h1> Admin Backend </h1>
-        <div className="row">
-            <h1 className="col-md-3" onClick={this.productList}> Products </h1>
-            <h1 className="col-md-3" onClick={this.orderList}> Ordersss </h1>
-            <h1 className="col-md-3" onClick={this.customerList}> Customers </h1>
-            <h1 className="col-md-3" onClick={this.promoList}> Promos </h1>
-          </div>
-          <div>
-          {customers}
-          {orders}
-          {promos}
+        <div style={{backgroundColor:'blue', color:'white', padding: 8}}>
+        <h1 style={{textAlign:'center   '}}> Admin Backend </h1>
+        <div className="row" >
+            <h2 className="col-md-3" onClick={this.productList}> Products </h2>
+            <h2 className="col-md-3" onClick={this.orderList}> Ordersss </h2>
+            <h2 className="col-md-3" onClick={this.customerList}> Customers </h2>
+            <h2 className="col-md-3" onClick={this.promoList}> Promos </h2>
+        </div>
+          <table className="table" style={{backgroundColor:'pink'}}>
+            <thead class="thead-dark" style={this.state.productDisplay}>
+                <tr>
+                  <th>id</th>
+                  <th>brand</th>
+                  <th>name</th>
+                  <th>origin</th>
+                  <th>ingredients</th>
+                  <th>desc</th>
+                  <th>price</th>
+                  <th>weight</th>
+                  <th>Edit</th>
+                </tr>
+            </thead>
+
+            <thead class="thead-dark" style={this.state.orderDisplay}>
+                <tr>
+                  <th>id</th>
+                  <th>quantity</th>
+                  <th>delivery_address</th>
+                  <th>total_amount</th>
+                  <th>stripe_id</th>
+                  <th>promo_id</th>
+                  <th>Edit</th>
+                </tr>
+            </thead>
+
+            <thead class="thead-dark" style={this.state.customerDisplay}>
+                <tr>
+                  <th>id</th>
+                  <th>email</th>
+                  <th>address</th>
+                  <th>Postal Code</th>
+                  <th>Country</th>
+                  <th>City</th>
+                  <th>Contact</th>
+                  <th>Edit</th>
+                </tr>
+            </thead>
+
+            <thead class="thead-dark" style={this.state.promoDisplay}>
+                <tr>
+                  <th>id</th>
+                  <th>amount</th>
+                  <th>limit</th>
+                  <th>expiration</th>
+                  <th>code</th>
+                  <th>percentage</th>
+                  <th>used</th>
+                  <th>Edit</th>
+                </tr>
+            </thead>
+
           {products}
-          </div>
-          <AdminProducts /> <br/>
-          <AdminPromos /> <br/>
-          <AdminCustomers />
+          {orders}
+          {customers}
+          {promos}
+          </table>
+        </div>
+              <div className="row" style={{backgroundColor: 'green', color: 'white', padding: 8}}>
+                  <AdminProducts /> <br/>
+                  <AdminOrders /> <br/>
+                  <AdminCustomers /> <br/>
+                  <AdminPromos /> <br/>
+              </div>
           </React.Fragment>
           );
   }

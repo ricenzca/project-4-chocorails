@@ -5,6 +5,7 @@ class PromosController < ApplicationController
   # GET /promos.json
   def index
     @promos = Promo.all
+
   end
 
   # GET /promos/1
@@ -68,12 +69,12 @@ class PromosController < ApplicationController
     @promo = Promo.find_by(code: params[:promo])
     if @promo.present?
       puts "promo code present"
-      response = { valid: @promo.is_valid?, 
+      response = { valid: @promo.is_valid?,
                    discount: @promo.discount
                  }
     else
       puts "promo code not present"
-      response = { valid: false, 
+      response = { valid: false,
       }
     end
     respond_to do |format|

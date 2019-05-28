@@ -5,6 +5,7 @@ class OrdersController < ApplicationController
   # GET /orders.json
   def index
     @orders = Order.all
+
   end
 
   # GET /orders/1
@@ -59,6 +60,33 @@ class OrdersController < ApplicationController
       format.html { redirect_to orders_url, notice: 'Order was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def admincreate
+
+    redirect_to '/admin'
+
+    @quantity = params[:quantity]
+    @delivery_address = params[:delivery_address]
+    @total_amount = params[:total_amount]
+    @stripe_id = params[:stripe_id]
+    @order_number = params[:order_number]
+    @promo_id = params[:promo_id]
+
+    @order = Order.new(quantity:@quantity, delivery_address:@delivery_address, total_amount:@total_amount, stripe_id:@stripe_id, order_number:@order_number, promo_id:@promo_id)
+    @order.save
+
+  end
+
+  def get_all_orders
+
+    @orders_csv = Order.all_with_order_details
+
+    respond_to do |format|
+      format.html
+      format.csv { send_data @orders_csv.as_csv }
+    end
+
   end
 
   private

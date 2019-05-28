@@ -5,6 +5,8 @@ class CustomersController < ApplicationController
   # GET /customers.json
   def index
     @customers = Customer.all
+
+
   end
 
   # GET /customers/1
@@ -69,7 +71,22 @@ class CustomersController < ApplicationController
   end
 
   def admincreate
-    render plain: params.inspect
+
+    respond_to do |format|
+      format.html  { redirect_to '/admin', notice: 'Customer was successfully created.' }
+      format.json { head :no_content }
+    end
+
+    @email = params[:email]
+    @address = params[:address]
+    @postal_code = params[:postal_code]
+    @country = params[:country]
+    @city = params[:city]
+    @contact = params[:contact]
+
+    @customer = Customer.new(email:@email, address:@address, postal_code:@postal_code, country:@country, city:@city, contact:@contact)
+    @customer.save
+
   end
 
   private
