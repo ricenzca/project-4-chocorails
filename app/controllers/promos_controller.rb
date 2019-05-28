@@ -6,13 +6,6 @@ class PromosController < ApplicationController
   def index
     @promos = Promo.all
 
-    @promos_csv = Promo.all_with_promo_details
-
-    respond_to do |format|
-      format.html
-      format.csv { send_data @promos_csv.as_csv }
-    end
-
   end
 
   # GET /promos/1

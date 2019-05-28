@@ -12,8 +12,25 @@ class Admin extends React.Component {
         customers: [],
         orders: [],
         promos: [],
-        products: []
+        products: [],
+
+        productDisplay: {
+            display: 'none'
+        },
+
+        orderDisplay: {
+            display: 'none'
+        },
+
+        customerDisplay: {
+            display: 'none'
+        },
+
+        promoDisplay: {
+            display: 'none'
         }
+
+    }
 
     this.customerList = this.customerList.bind(this);
     this.orderList = this.orderList.bind(this);
@@ -34,7 +51,24 @@ class Admin extends React.Component {
         customers: data,
         orders: [],
         promos: [],
-        products:[]
+        products:[],
+
+        productDisplay: {
+            display: 'none'
+        },
+
+        orderDisplay: {
+            display: 'none'
+        },
+
+        customerDisplay: {
+            display: ''
+        },
+
+        promoDisplay: {
+            display: 'none'
+        }
+
       })
       // console.log(reactThis.state.customers);
       // reactThis.setState({items:data.products})
@@ -64,6 +98,23 @@ class Admin extends React.Component {
         customers: [],
         promos: [],
         products:[],
+
+        productDisplay: {
+            display: 'none'
+        },
+
+        orderDisplay: {
+            display: ''
+        },
+
+        customerDisplay: {
+            display: 'none'
+        },
+
+        promoDisplay: {
+            display: 'none'
+        }
+
       })
 
       console.log(reactThis.state.orders)
@@ -93,7 +144,23 @@ class Admin extends React.Component {
         promos: data,
         orders: [],
         customers: [],
-        products:[]
+        products:[],
+
+        productDisplay: {
+            display: 'none'
+        },
+
+        orderDisplay: {
+            display: 'none'
+        },
+
+        customerDisplay: {
+            display: 'none'
+        },
+
+        promoDisplay: {
+            display: ''
+        }
       })
       // console.log(reactThis.state.customers);
       // reactThis.setState({items:data.products})
@@ -121,7 +188,23 @@ class Admin extends React.Component {
         products: data,
         orders: [],
         customers: [],
-        promos: []
+        promos: [],
+
+        productDisplay: {
+            display: ''
+        },
+
+        customerDisplay: {
+            display: 'none'
+        },
+
+        orderDisplay: {
+            display: 'none'
+        },
+
+        promoDisplay: {
+            display: 'none'
+        },
       })
       // console.log(reactThis.state.customers);
       // reactThis.setState({items:data.products})
@@ -171,15 +254,21 @@ class Admin extends React.Component {
         let promos = this.state.promos.map((promo, index)=>{
         return (
             <tr>
-            <td key={index}> {promo.unique_id} </td>
-            <td key> {promo.discount} </td>
+            <td key={index}> {promo.id} </td>
+            <td> {promo.amount} </td>
+            <td> {promo.limit} </td>
+            <td> {promo.expiration} </td>
+            <td> {promo.code} </td>
+            <td> {promo.percentage} </td>
+            <td> {promo.used} </td>
+            <td> <a href={"/promos/" + (index+1) + "/edit"}> <button className="btn btn-warning"> Edit Promo </button> </a> </td>
             </tr>
             )
     });
 
         let products = this.state.products.map((product, index)=>{
         return (
-            <tr>
+            <tr scope="row">
             <td key={index}> {product.id} </td>
             <td > {product.brand} </td>
             <td> {product.name} </td>
@@ -202,11 +291,64 @@ class Admin extends React.Component {
             <h2 className="col-md-3" onClick={this.customerList}> Customers </h2>
             <h2 className="col-md-3" onClick={this.promoList}> Promos </h2>
         </div>
+          <table className="table" style={{backgroundColor:'pink'}}>
+            <thead class="thead-dark" style={this.state.productDisplay}>
+                <tr>
+                  <th>id</th>
+                  <th>brand</th>
+                  <th>name</th>
+                  <th>origin</th>
+                  <th>ingredients</th>
+                  <th>desc</th>
+                  <th>price</th>
+                  <th>weight</th>
+                  <th>Edit</th>
+                </tr>
+            </thead>
 
-          {customers}
-          {orders}
-          {promos}
+            <thead class="thead-dark" style={this.state.orderDisplay}>
+                <tr>
+                  <th>id</th>
+                  <th>quantity</th>
+                  <th>delivery_address</th>
+                  <th>total_amount</th>
+                  <th>stripe_id</th>
+                  <th>promo_id</th>
+                  <th>Edit</th>
+                </tr>
+            </thead>
+
+            <thead class="thead-dark" style={this.state.customerDisplay}>
+                <tr>
+                  <th>id</th>
+                  <th>email</th>
+                  <th>address</th>
+                  <th>Postal Code</th>
+                  <th>Country</th>
+                  <th>City</th>
+                  <th>Contact</th>
+                  <th>Edit</th>
+                </tr>
+            </thead>
+
+            <thead class="thead-dark" style={this.state.promoDisplay}>
+                <tr>
+                  <th>id</th>
+                  <th>amount</th>
+                  <th>limit</th>
+                  <th>expiration</th>
+                  <th>code</th>
+                  <th>percentage</th>
+                  <th>used</th>
+                  <th>Edit</th>
+                </tr>
+            </thead>
+
           {products}
+          {orders}
+          {customers}
+          {promos}
+          </table>
         </div>
               <div className="row" style={{backgroundColor: 'green', color: 'white', padding: 8}}>
                   <AdminProducts /> <br/>
