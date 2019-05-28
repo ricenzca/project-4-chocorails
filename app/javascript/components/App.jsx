@@ -20,9 +20,17 @@ export default class App extends React.Component {
 
     //Takes in a new arr(with selected chocolates) and 'updates' this.state.cart
     updateCart = newCart => {
-        console.log(newCart);
+        // console.log(`inside <App /> `, newCart);
         this.setState({
             cart: newCart
+            // subtotalBeforePromo: updatedTotal
+        });
+    };
+
+    updateTotal = updatedAmount => {
+        console.log(updatedAmount);
+        this.setState({
+            subtotalBeforePromo: updatedAmount
         });
     };
 
@@ -49,11 +57,15 @@ export default class App extends React.Component {
                         exact
                         path="/"
                         render={props => (
-                            <Product
-                                {...props}
-                                updateCart={this.updateCart}
-                                cart={this.state.cart}
-                            />
+                            <div>
+                                <Product
+                                    {...props}
+                                    updateCart={this.updateCart}
+                                    updateTotal={this.updateTotal}
+                                    cart={this.state.cart}
+                                />
+                                <Cart {...props} cart={this.state.cart} />
+                            </div>
                         )}
                     />
                     <Route exact path="/admin" component={Admin} />
