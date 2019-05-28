@@ -6,13 +6,6 @@ class OrdersController < ApplicationController
   def index
     @orders = Order.all
 
-    @orders_csv = Order.all_with_order_details
-
-    respond_to do |format|
-      format.html
-      format.csv { send_data @orders_csv.as_csv }
-    end
-
   end
 
   # GET /orders/1
@@ -82,6 +75,17 @@ class OrdersController < ApplicationController
 
     @order = Order.new(quantity:@quantity, delivery_address:@delivery_address, total_amount:@total_amount, stripe_id:@stripe_id, order_number:@order_number, promo_id:@promo_id)
     @order.save
+
+  end
+
+  def get_all_orders
+
+    @orders_csv = Order.all_with_order_details
+
+    respond_to do |format|
+      format.html
+      format.csv { send_data @orders_csv.as_csv }
+    end
 
   end
 

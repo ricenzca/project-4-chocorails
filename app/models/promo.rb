@@ -1,3 +1,5 @@
+require 'csv'
+
 class Promo < ApplicationRecord
 	validates_numericality_of :amount, on: :create, message: "is not a number"
 
@@ -30,5 +32,19 @@ class Promo < ApplicationRecord
 	    return amount
 	  end
 	end
+
+    def self.all_with_promo_details
+    Promo.select("promos.*")
+    end
+
+    def self.as_csv
+      CSV.generate do |csv|
+        columns = %w(id amount limit expiration code percentage used )
+        csv << columns.map(&:humanize)
+        all_with_promo_details.each do |promo|
+          csv << promo.attributes.values_at(*columns)
+        end
+      end
+    end
 
 end

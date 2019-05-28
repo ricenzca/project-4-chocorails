@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   post '/orders/create' => 'orders#admincreate'
 
   get '/products/getall' => 'products#get_all_products', defaults: { format: 'json'}
+  get '/orders/getall' => 'orders#get_all_orders', :as => :orders_csv, defaults: { format: 'json'}
 
   get '/promo/:promo' => 'promos#validate'
 

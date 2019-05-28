@@ -1,3 +1,5 @@
+require 'csv'
+
 class Order < ApplicationRecord
 
     def self.all_with_order_details
