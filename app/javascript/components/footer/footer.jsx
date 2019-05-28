@@ -18,4 +18,5 @@ const styles = {
     color: "white",
     padding: 16,
     textAlign: "center",
+    marginTop: 24
 }
