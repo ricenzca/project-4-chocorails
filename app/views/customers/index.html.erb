@@ -5,8 +5,11 @@
 <table>
   <thead>
     <tr>
+    	<th>First Name</th>
+    	<th>Last Name</th>
       <th>Email</th>
-      <th>Address</th>
+      <th>Address Line 1</th>
+      <th>Address Line 2</th>
       <th>Postal code</th>
       <th>Country</th>
       <th>City</th>
@@ -18,8 +21,11 @@
   <tbody>
     <% @customers.each do |customer| %>
       <tr>
+      	<td><%= customer.firstname %></td>
+      	<td><%= customer.lastname %></td>
         <td><%= customer.email %></td>
-        <td><%= customer.address %></td>
+        <td><%= customer.address1 %></td>
+        <td><%= customer.address2 %></td>
         <td><%= customer.postal_code %></td>
         <td><%= customer.country %></td>
         <td><%= customer.city %></td>

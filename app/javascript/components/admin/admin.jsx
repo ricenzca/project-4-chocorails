@@ -226,10 +226,14 @@ class Admin extends React.Component {
         return (
             <tr>
                 <td key={index} > {customer.id} </td>
+                <td> {customer.firstname} </td>
+                <td> {customer.lastname} </td>
                 <td> {customer.email} </td>
-                <td> {customer.address} </td>
+                <td> {customer.address1} </td>
+                <td> {customer.address2} </td>
                 <td> {customer.postal_code} </td>
                 <td> {customer.country} </td>
+                <td> {customer.city} </td>
                 <td> {customer.contact} </td>
                 <td> <a href={"/customers/" + (index+1) + "/edit"}> <button className="btn btn-warning"> Edit Customer </button> </a> </td>
             </tr>
@@ -321,8 +325,11 @@ class Admin extends React.Component {
             <thead class="thead-dark" style={this.state.customerDisplay}>
                 <tr>
                   <th>id</th>
+                  <th>first name</th>
+                  <th>last name</th>
                   <th>email</th>
-                  <th>address</th>
+                  <th>address line 1</th>
+                  <th>address line 2</th>
                   <th>Postal Code</th>
                   <th>Country</th>
                   <th>City</th>
