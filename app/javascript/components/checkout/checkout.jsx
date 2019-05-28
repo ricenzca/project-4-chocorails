@@ -25,7 +25,7 @@ class Checkout extends React.Component {
             bill_Suburb: "",
             bill_State: "",
             bill_Postcode: "",
-            bill_Country: ""
+            bill_Country: "",
         }
         this.formInputHandler=this.formInputHandler.bind(this)
     }
@@ -57,7 +57,7 @@ class Checkout_render extends React.Component {
 
     render() {
         // console.log("in child component", this.props.cart)
-        var cartContents = this.props.cart.cart.map((item, index) => {
+        var cartContents = this.props.cart.map((item, index) => {
             return (
                 <p>{index+1}) {item}</p>
             )

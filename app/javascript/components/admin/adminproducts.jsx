@@ -2,10 +2,34 @@ import React from 'react';
 
 class AdminProducts extends React.Component {
 
+  constructor() {
+    super();
+    this.state = {
+        display:'none'
+    }
+
+    this.visibleState = this.visibleState.bind(this);
+  }
+
+  visibleState() {
+
+    if (this.state.display === 'none') {
+        this.setState({
+        display: ''
+            })
+    } else {
+        this.setState({
+            display: 'none'
+        })
+    }
+
+  }
+
   render(){
     return(
-        <div>
-            <form action="/products/create" method="POST">
+        <div className="col-md-3" onClick={this.visibleState} >
+            <h1> Create Products </h1>
+            <form action="/products/create" method="POST" style={this.state}>
                 <label> Brand  </label>
                 <input type="text" name="brand"/> <br/>
 

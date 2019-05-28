@@ -5,6 +5,14 @@ class PromosController < ApplicationController
   # GET /promos.json
   def index
     @promos = Promo.all
+
+    @promos_csv = Promo.all_with_promo_details
+
+    respond_to do |format|
+      format.html
+      format.csv { send_data @promos_csv.as_csv }
+    end
+
   end
 
   # GET /promos/1
@@ -68,12 +76,12 @@ class PromosController < ApplicationController
     @promo = Promo.find_by(code: params[:promo])
     if @promo.present?
       puts "promo code present"
-      response = { valid: @promo.is_valid?, 
+      response = { valid: @promo.is_valid?,
                    discount: @promo.discount
                  }
     else
       puts "promo code not present"
-      response = { valid: false, 
+      response = { valid: false,
       }
     end
     respond_to do |format|
