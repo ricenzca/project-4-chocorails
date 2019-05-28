@@ -5,6 +5,14 @@ class OrdersController < ApplicationController
   # GET /orders.json
   def index
     @orders = Order.all
+
+    @orders_csv = Order.all_with_order_details
+
+    respond_to do |format|
+      format.html
+      format.csv { send_data @orders_csv.as_csv }
+    end
+
   end
 
   # GET /orders/1
