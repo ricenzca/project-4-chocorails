@@ -84,7 +84,7 @@ class Product extends React.Component {
       return (
         <div>
           <div className="cartbar fixed-top">
-          <Link to="/checkout" >Cart Checkout! <span style={{color:"red", fontWeight:"bold"}}> {this.props.cart.length} </span> </Link>
+          <Link to="/checkout" > <span style={{color:'white'}}> Cart Checkout! </span> <span style={{color:"red", fontWeight:"bold"}}> {this.props.cart.length} </span> </Link>
           </div>
           <div className="container-fluid">
             <div className="row">
