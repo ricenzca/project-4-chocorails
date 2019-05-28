@@ -28,27 +28,27 @@ class AdminCustomers extends React.Component {
   render(){
     return(
         <div className="col-md-3">
-            <h1 onClick={this.visibleState}> Create Customer </h1>
+            <h2 onClick={this.visibleState}> Create Customer </h2>
             <form action="/customers/create" method="POST" style={this.state}>
                 <label> Email  </label>
-                <input type="text" name="email"/> <br/>
+                <input type="text" name="email" className="form-control"/>
 
                 <label> Address  </label>
-                <input type="text" name="address"/> <br/>
+                <input type="text" name="address" className="form-control"/>
 
                 <label> Postal Code  </label>
-                <input type="text" name="postal_code"/> <br/>
+                <input type="text" name="postal_code" className="form-control"/>
 
                 <label> Country  </label>
-                <input type="text" name="country"/> <br/>
+                <input type="text" name="country" className="form-control"/>
 
                 <label> City  </label>
-                <input type="text" name="city"/> <br/>
+                <input type="text" name="city" className="form-control"/>
 
                 <label> Contact  </label>
-                <input type="textarea" name="contact"/> <br/>
+                <input type="textarea" name="contact" className="form-control"/> <br/>
 
-                <input type="submit"/>
+                <input type="submit" className="btn-primary btn-block"/>
             </form>
         </div>
     )

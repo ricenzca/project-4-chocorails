@@ -28,27 +28,27 @@ class AdminOrders extends React.Component {
   render(){
     return(
         <div className="col-md-3">
-            <h1 onClick={this.visibleState}> Create Orders </h1>
+            <h2 onClick={this.visibleState}> Create Orders </h2>
             <form action="/orders/create" method="POST" style={this.state}>
                 <label> quantity  </label>
-                <input type="text" name="quantity"/> <br/>
+                <input type="text" name="quantity" className="form-control"/>
 
                 <label> Delivery Address  </label>
-                <input type="text" name="delivery_address"/> <br/>
+                <input type="text" name="delivery_address" className="form-control"/>
 
                 <label> Total Amount  </label>
-                <input type="text" name="total_amount"/> <br/>
+                <input type="text" name="total_amount" className="form-control"/>
 
                 <label> Stripe ID  </label>
-                <input type="text" name="stripe_id"/> <br/>
+                <input type="text" name="stripe_id" className="form-control"/>
 
                 <label> Order Number  </label>
-                <input type="text" name="order_number"/> <br/>
+                <input type="text" name="order_number" className="form-control"/>
 
                 <label> Promo ID  </label>
-                <input type="textarea" name="promo_id"/> <br/>
+                <input type="textarea" name="promo_id" className="form-control"/> <br/>
 
-                <input type="submit"/>
+                <input type="submit" className="btn-primary btn-block"/>
             </form>
         </div>
     )

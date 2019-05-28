@@ -148,7 +148,7 @@ class Admin extends React.Component {
                 <td> {customer.postal_code} </td>
                 <td> {customer.country} </td>
                 <td> {customer.contact} </td>
-                <td> <a href={"/customers/" + (index+1) + "/edit"}> <button> Edit Customer </button> </a> </td>
+                <td> <a href={"/customers/" + (index+1) + "/edit"}> <button className="btn btn-warning"> Edit Customer </button> </a> </td>
             </tr>
             )
     });
@@ -163,7 +163,7 @@ class Admin extends React.Component {
             <td> {order.stripe_id}</td>
             <td> {order.order_number}</td>
             <td> {order.promo_id}</td>
-            <td> <a href={"/orders/" + (index+1) + "/edit"}> <button> Edit Order </button> </a> </td>
+            <td> <a href={"/orders/" + (index+1) + "/edit"}> <button className="btn btn-warning"> Edit Order </button> </a> </td>
             </tr>
             )
     });
@@ -188,28 +188,31 @@ class Admin extends React.Component {
             <td> {product.desc} </td>
             <td> {product.price} </td>
             <td> {product.weight} </td>
-            <td> <a href={"/products/" + (index+1) + "/edit"}> <button> Edit Product </button> </a> </td>
+            <td> <a href={"/products/" + (index+1) + "/edit"}> <button className="btn btn-warning"> Edit Product </button> </a> </td>
             </tr>
             )
     });
 
     return( <React.Fragment>
-        <h1> Admin Backend </h1>
-        <div className="row">
-            <h1 className="col-md-3" onClick={this.productList}> Products </h1>
-            <h1 className="col-md-3" onClick={this.orderList}> Ordersss </h1>
-            <h1 className="col-md-3" onClick={this.customerList}> Customers </h1>
-            <h1 className="col-md-3" onClick={this.promoList}> Promos </h1>
-          </div>
+        <div style={{backgroundColor:'blue', color:'white', padding: 8}}>
+        <h1 style={{textAlign:'center   '}}> Admin Backend </h1>
+        <div className="row" >
+            <h2 className="col-md-3" onClick={this.productList}> Products </h2>
+            <h2 className="col-md-3" onClick={this.orderList}> Ordersss </h2>
+            <h2 className="col-md-3" onClick={this.customerList}> Customers </h2>
+            <h2 className="col-md-3" onClick={this.promoList}> Promos </h2>
+        </div>
+
           {customers}
           {orders}
           {promos}
           {products}
-              <div className="row">
+        </div>
+              <div className="row" style={{backgroundColor: 'green', color: 'white', padding: 8}}>
                   <AdminProducts /> <br/>
-                  <AdminPromos /> <br/>
-                  <AdminCustomers /> <br/>
                   <AdminOrders /> <br/>
+                  <AdminCustomers /> <br/>
+                  <AdminPromos /> <br/>
               </div>
           </React.Fragment>
           );
