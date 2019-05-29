@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 // import style from "./style.scss";
 
 class CartElement extends React.Component {
@@ -109,6 +110,10 @@ class Cart extends React.Component {
         else console.log("false");
     };
 
+    closeModal() {
+        $("#exampleModal").modal("toggle");
+    }
+
     render() {
         return (
             <div>
@@ -191,12 +196,9 @@ class Cart extends React.Component {
                                 {this.props.cart.length === 0 ? (
                                     <div />
                                 ) : (
-                                    <button
-                                        type="button"
-                                        className="btn btn-primary"
-                                    >
-                                        Checkout
-                                    </button>
+                                  <div>
+                                    <Link className={"btn btn-primary"} onClick={this.closeModal} to="/checkout">Checkout</Link>
+                                  </div>
                                 )}
                             </div>
                         </div>
