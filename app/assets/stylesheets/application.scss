@@ -15,6 +15,7 @@
  */
 @import "bootstrap";
 
+
 /* Products */
 
 .card {
@@ -63,20 +64,62 @@
 	text-align: center;
 }
 
+
+
+/* Checkout*/
+
+.formlabel {
+	font-weight: bold;
+	margin: 0;
+}
+
+.form-control {
+	margin-bottom: 1em;
+}
+
+.noMarginBottom {
+	margin-bottom: 0;
+}
+
+.StripeElement {
+  width: auto;
+}
+
+.StripeElement--focus {
+  border-color: #80bdff;
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
+}
+
+.InputElement {
+	width: auto !important;
+}
+
+table {
+	font-weight: bold;
+}
+
+th {
+	padding-bottom: 0 !important;
+}
+
+td {
+	vertical-align: middle !important;
+}
+.product-icon-container {
+	width: 50px !important;
+}
+
+.bold {
+	font-weight: bold;
+}
+
+
+
+/* Admin */
+
 .transaction-show {
 	max-width: 500px;
 	margin: 0 auto;
 }
 
-/*.btn {
-	opacity: 0;
-}*/
-
-/*.show-btn {
-	.card-body {
-		height: 127px;
-	}
-	.btn {
-		opacity: 1;
-	}
-}*/

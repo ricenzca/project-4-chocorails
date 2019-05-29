@@ -35,7 +35,8 @@ class Promo extends React.Component {
 			if (newSubtotal<0) newSubtotal=0;
 			adjustSubtotal(newSubtotal);
 
-			let newGst = newSubtotal*0.177;
+			let newGst = newSubtotal*0.07;
+			console.log("newSubtotal",newSubtotal);
 			console.log("newGst",newGst);
 			if (newSubtotal=0) newGst=0;  
 			let newGrandTotal = Math.round((newSubtotal+newGst+5)*100)/100;
@@ -46,7 +47,8 @@ class Promo extends React.Component {
 			this.setState({codeValidationMessage:"Promo code not valid"});
 
 			adjustSubtotal(subtotal);
-			let newGst = subtotal*0.177;
+			let newGst = subtotal*0.07;
+			console.log("subtotal",subtotal);
 			console.log("newGst",newGst);
 			let newGrandTotal = Math.round((subtotal+newGst+5)*100)/100;
 			console.log("newGrandTotal", newGrandTotal);
@@ -76,10 +78,10 @@ class Promo extends React.Component {
 
 		return (
 			<div>
-				<p>Promo code: &nbsp;</p>
-				<input type="text" name="promo" value={this.state.value} onChange={e=>this.checkPromo(this.props.subtotal,this.props.adjustSubtotal,this.props.adjustGstAndGrandTotal,this.props.setPromoId,e)} />
+				<p className="formlabel">Promo code:</p>
+				<input className="form-control" type="text" name="promo" value={this.state.value} onChange={e=>this.checkPromo(this.props.subtotal,this.props.adjustSubtotal,this.props.adjustGstAndGrandTotal,this.props.setPromoId,e)} />
 				<p>{this.state.codeValidationMessage}</p>
-				<p>Subtotal: ${subtotalToDisplay.toFixed(2)}</p>
+				<p className="bold text-right">Subtotal: ${subtotalToDisplay.toFixed(2)}</p>
 			</div>
 		)
 	}

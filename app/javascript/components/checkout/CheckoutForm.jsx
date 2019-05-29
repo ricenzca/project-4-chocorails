@@ -39,16 +39,15 @@ class CheckoutForm extends Component {
 
     return (
       <div className="checkout">
-        <p>Would you like to complete the purchase?</p>
-        <label>
-        Card details</label>
+        <label className="font-weight-bold">Card details</label>
         <div>
-          <span>Cardholder's Name:</span>
-          <input type="text" name="cardholderName" placeholder="Enter your name" value={this.state.cardholderName} onChange={(e)=>this.handleChangeCardholderName(e)}/>
+          <p className="formlabel">Cardholder's Name:</p>
+          <input className="form-control noMarginBottom" type="text" name="cardholderName" placeholder="Enter your name" value={this.state.cardholderName} onChange={(e)=>this.handleChangeCardholderName(e)}/>
         </div>
         <br/>
-        <CardElement style={{base: {fontSize: '18px'}}}  />
-        <button className="btn btn-sm btn-primary" onClick={()=>this.submit(this.props.submitUserInfo)}>Confirm order</button>
+        <CardElement style={{base: {fontSize: '16px'}}}  />
+        <br/>
+        <button className="btn btn-sm btn-primary" onClick={()=>this.submit(this.props.submitUserInfo)}>Confirm payment</button>
       </div>
     );
   }
