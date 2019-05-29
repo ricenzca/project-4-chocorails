@@ -22,7 +22,7 @@ class TransactionsController < ApplicationController
 
   # GET /products/1/edit
   def edit
-
+      @transaction = Transaction.find(params[:id])
   end
 
   def create

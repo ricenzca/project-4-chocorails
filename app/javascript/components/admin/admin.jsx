@@ -354,8 +354,6 @@ class Admin extends React.Component {
         </div>
               <div className="row" style={{backgroundColor: '', color: '', padding: 8}}>
                   <AdminProducts /> <br/>
-                  <AdminOrders /> <br/>
-                  <AdminCustomers /> <br/>
                   <AdminPromos /> <br/>
               </div>
           </React.Fragment>
@@ -365,3 +363,6 @@ class Admin extends React.Component {
 
 
 export default Admin;
+
+                  // <AdminOrders /> <br/>
+                  // <AdminCustomers /> <br/>

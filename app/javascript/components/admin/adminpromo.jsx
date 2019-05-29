@@ -27,7 +27,7 @@ class AdminPromos extends React.Component {
 
   render(){
     return(
-        <div className="col-md-3">
+        <div className="col-md-6">
             <h2 onClick = {this.visibleState}> Create Promos </h2>
             <form action="/promos/create" method="POST" style={this.state}>
                 <label> Amount </label>
