@@ -7,7 +7,7 @@ class CreateCustomers < ActiveRecord::Migration[5.2]
       t.string :address1
       t.string :address2
       t.string :state
-      t.integer :postal_code
+      t.string :postal_code
       t.string :country
       t.string :city
       t.string :contact

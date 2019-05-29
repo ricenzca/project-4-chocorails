@@ -34,8 +34,12 @@ class Checkout extends React.Component {
   }
 
   formInputHandler = (e1, e2) => {
+    console.log(e1,e2.length);
+    if (e1 === "del_Postcode" && e2.length<11) {
       this.setState({[e1]: e2});
-      console.log("el",e1,"e2",e2);
+    } else if (e1 !== "del_Postcode" && e2.length<40) {
+      this.setState({[e1]: e2});
+    }
   }
 
   // formInputHandler = (e1, e2) => {
@@ -47,7 +51,7 @@ class Checkout extends React.Component {
   componentDidMount () {
     let newSubtotal = this.props.subtotal;
     // console.log("newSubtotal",newSubtotal)
-    let newGst = newSubtotal*0.177;
+    let newGst = newSubtotal*0.07;
     let newGrandTotal = Math.round((newSubtotal+newGst+5)*100)/100;
     this.setState({
       gst: newGst,
@@ -119,6 +123,16 @@ class Checkout extends React.Component {
           <div className="col-md-7">
             <Checkout_details
               formInputHandler={this.formInputHandler}
+              del_FirstName={this.state["del_FirstName"]}
+              del_LastName={this.state["del_LastName"]}
+              del_Email={this.state["del_Email"]}
+              del_Telephone={this.state["del_Telephone"]}
+              del_DeliveryAdd1={this.state["del_DeliveryAdd1"]}
+              del_DeliveryAdd2={this.state["del_DeliveryAdd2"]}
+              del_City={this.state["del_City"]}
+              del_State={this.state["del_State"]}
+              del_Postcode={this.state["del_Postcode"]}
+              del_Country={this.state["del_Country"]}
               // bill_FirstName={this.state.bill_FirstName}
             />
           </div>
@@ -133,7 +147,6 @@ class Checkout extends React.Component {
               adjustGstAndGrandTotal={this.adjustGstAndGrandTotal}
               setPromoId={this.setPromoId}
             />
-
             <Checkout_payments submitUserInfo={this.submitUserInfo}/>
           </div>
           </div>
@@ -150,9 +163,13 @@ class Checkout_render extends React.Component {
     var cartContents = this.props.cart.map((item, index) => {
       // console.log("item",item);
       return (
-        <div key={"item"+index}>
-        <p>{index+1}. {item.name} {item.quantity} ${item.price.toFixed(2)}</p>
-        </div>
+        <tr key={"item"+index}>
+          <td>{index+1}.</td>
+          <td className="product-icon-container pr-0"><img src={item["img_url"]} width="50px" height="50px" style={{borderRadius: "50%"}}/></td>
+          <td>{item.name}</td>
+          <td className="text-center">{item.quantity}</td>
+          <td className="text-center">${(item.quantity*item.price).toFixed(2)}</td>
+        </tr>
       )
     })
 
@@ -161,8 +178,21 @@ class Checkout_render extends React.Component {
     return (
       <div style={styles}>
         <br/>
-        <h3>Cart Contents</h3>
-        <div>{cartContents}</div>
+        <h3>Cart</h3>
+        <table className="table table-borderless">
+          <thead>
+            <tr>
+              <th></th>
+              <th></th>
+              <th></th>
+              <th className="text-center">Qty</th>
+              <th className="text-center">Price</th>
+            </tr>
+          </thead>
+          <tbody>
+            {cartContents}
+          </tbody>
+        </table>
         <Promo
           subtotal={this.props.subtotal}
           adjustSubtotal={this.props.adjustSubtotal}
@@ -172,9 +202,11 @@ class Checkout_render extends React.Component {
           adjustGstAndGrandTotal={this.props.adjustGstAndGrandTotal}
           setPromoId={this.props.setPromoId}
         />
-        <p>GST: ${this.props.gst.toFixed(2)}</p>
-        <p>Shipping fee: $5.00</p>
-        <p>Grand Total: ${this.props.grandTotal.toFixed(2)}</p>
+        <div className="text-right">
+          <p className="bold">GST: ${this.props.gst.toFixed(2)}</p>
+          <p className="bold">Shipping fee: $5.00</p>
+          <p className="bold">Grand Total: ${this.props.grandTotal.toFixed(2)}</p>
+        </div>
       </div>
     );
   }
@@ -203,33 +235,61 @@ class Checkout_details extends React.Component {
       <h3>Delivery address</h3>
       <p className="font-weight-bold">* fields are mandatory</p>
       <form >
-        <label htmlFor="FirstName">First Name*</label>
-        <input type="text" className="form-control" name="del_FirstName" onChange={(e)=> {this.props.formInputHandler(e.target.name, e.target.value);}}/>
+        <p className="formlabel">First Name*</p>
+        <input type="text" className="form-control" name="del_FirstName" value={this.props["del_FirstName"]} onChange={(e)=> {this.props.formInputHandler(e.target.name, e.target.value);}}
+        />
 
-        <label htmlFor="LastName">Last Name*</label>
-        <input type="text" className="form-control" name="del_LastName" onChange={(e)=> {this.props.formInputHandler(e.target.name, e.target.value);}}/>
+        <p className="formlabel">Last Name*</p>
+        <input type="text" className="form-control" name="del_LastName"
+          value={this.props["del_LastName"]}
+          onChange={(e)=> {this.props.formInputHandler(e.target.name, e.target.value);}}
+        />
 
-        <label htmlFor="Email">Email Address*</label>
-        <input type="text" className="form-control" name="del_Email" onChange={(e)=> {this.props.formInputHandler(e.target.name, e.target.value);}}/>
+        <p className="formlabel">Email Address*</p>
+        <input type="text" className="form-control" name="del_Email" 
+          value={this.props["del_Email"]}
+          onChange={(e)=> {this.props.formInputHandler(e.target.name, e.target.value);}}
+        />
 
-        <label htmlFor="Phone">Telephone*</label>
-        <input type="text" className="form-control" name="del_Telephone" onChange={(e)=> {this.props.formInputHandler(e.target.name, e.target.value);}}/>
+        <p className="formlabel">Telephone*</p>
+        <input type="text" className="form-control" name="del_Telephone" 
+          value={this.props["del_Telephone"]}
+          onChange={(e)=> {this.props.formInputHandler(e.target.name, e.target.value);}}
+        />
 
-        <label htmlFor="DeliveryAddress">Delivery Address*</label>
-        <input type="text" className="form-control" name="del_DeliveryAdd1" onChange={(e)=> {this.props.formInputHandler(e.target.name, e.target.value);}}/>
-        <input type="text" className="form-control" name="del_DeliveryAdd2" onChange={(e)=> {this.props.formInputHandler(e.target.name, e.target.value);}}/>
+        <p className="formlabel">Delivery Address*</p>
+        <input type="text" className="form-control noMarginBottom" name="del_DeliveryAdd1" 
+          value={this.props["del_DeliveryAdd1"]}
+          onChange={(e)=> {this.props.formInputHandler(e.target.name, e.target.value);}}
+        />
+        <input type="text" className="form-control" name="del_DeliveryAdd2"
+          value={this.props["del_DeliveryAdd2"]}
+          onChange={(e)=> {this.props.formInputHandler(e.target.name, e.target.value);}}
+        />
 
-        <label htmlFor="Town">City/Town*</label>
-        <input type="text" className="form-control" name="del_City" onChange={(e)=> {this.props.formInputHandler(e.target.name, e.target.value);}}/>
+        <p className="formlabel">City/Town*</p>
+        <input type="text" className="form-control" name="del_City" 
+          value={this.props["del_City"]}
+          onChange={(e)=> {this.props.formInputHandler(e.target.name, e.target.value);}}
+        />
 
-        <label htmlFor="State">State/Territory</label>
-        <input type="text" className="form-control" name="del_State" onChange={(e)=> {this.props.formInputHandler(e.target.name, e.target.value);}}/>
+        <p className="formlabel">State/Territory</p>
+        <input type="text" className="form-control" name="del_State" 
+          value={this.props["del_State"]}
+          onChange={(e)=> {this.props.formInputHandler(e.target.name, e.target.value);}}
+        />
 
-        <label htmlFor="Postal">Postal Code*</label>
-        <input type="text" className="form-control" name="del_Postcode" onChange={(e)=> {this.props.formInputHandler(e.target.name, e.target.value);}}/>
+        <p className="formlabel">Postal Code*</p>
+        <input type="text" className="form-control" name="del_Postcode"
+          value={this.props["del_Postcode"]}
+          onChange={(e)=> {this.props.formInputHandler(e.target.name, e.target.value);}}
+        />
 
-        <label htmlFor="Country">Country*</label>
-        <input type="text" className="form-control" name="del_Country" onChange={(e)=> {this.props.formInputHandler(e.target.name, e.target.value);}}/>
+        <p className="formlabel">Country*</p>
+        <input type="text" className="form-control noMarginBottom" name="del_Country" 
+          value={this.props["del_Country"]}
+          onChange={(e)=> {this.props.formInputHandler(e.target.name, e.target.value);}}
+        />
 
         {/*<input type="checkbox" onClick={(e)=>{this.handleCheckChange();}} defaultChecked/> <b>Same Billing Address</b>*/}
 
@@ -263,7 +323,7 @@ class Checkout_payments extends React.Component {
     return (
       <div style={styles}>
         <br/>
-        <h3>Payments component</h3>
+        <h3>Payment</h3>
         <StripeProvider apiKey="pk_test_uVhVvUx1HCpcDK0OY2FyWFHc00p54aslpX">
           <div>
             <Elements>
@@ -280,8 +340,9 @@ class Checkout_payments extends React.Component {
 
 const styles = {
   boxSizing: "border-box",
-  backgroundColor : "pink",
-  padding: 20
+  backgroundColor : "rgb(243, 243, 243)",
+  padding: 20,
+  borderBottom: '2px solid white'
 }
 
 export default Checkout;
