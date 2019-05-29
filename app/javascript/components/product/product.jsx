@@ -83,7 +83,9 @@ class Product extends React.Component {
     } else {
       return (
         <div>
-          <Link to="/checkout">Checkout LINK!</Link>
+          <div className="cartbar fixed-top">
+          <Link to="/checkout" > <span style={{color:'white'}}> Cart Checkout! </span> <span style={{color:"red", fontWeight:"bold"}}> {this.props.cart.length} </span> </Link>
+          </div>
           <div className="container-fluid">
             <div className="row">
               {products.map((product, index) => (
@@ -96,10 +98,10 @@ class Product extends React.Component {
                   />
                   <div className="card-body">
                     <h4 className="card-title">{product.name}</h4>
-                    <p className="card-text">${product.price}</p>
+                    <p className="card-text" >${product.price}</p>
                     <div className="collapse" id={"choco" + (index + 1)}>
                       <button
-                        className="btn btn-light"
+                        className="btn-block btn-success"
                         onClick={() =>
                           //Pass in the following from <App />
                           this.addChocolatesToCart(

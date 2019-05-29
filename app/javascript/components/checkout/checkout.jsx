@@ -115,10 +115,17 @@ class Checkout extends React.Component {
       <div>
         <div className="container">
           <div className="row">
-            <Checkout_render 
-              cart={this.props.cart} 
+
+          <div className="col-md-7">
+            <Checkout_details formInputHandler={this.formInputHandler}
+              bill_FirstName={this.state.bill_FirstName}
+            />
+          </div>
+          <div className="col-md-5">
+            <Checkout_render
+              cart={this.props.cart}
               subtotal={this.props.subtotal}
-              adjustSubtotal={this.props.adjustSubtotal} 
+              adjustSubtotal={this.props.adjustSubtotal}
               subtotalAfterPromo={this.props.subtotalAfterPromo}
               gst={this.state.gst}
               grandTotal={this.state.grandTotal}
@@ -130,6 +137,7 @@ class Checkout extends React.Component {
               // bill_FirstName={this.state.bill_FirstName}
             />
             <Checkout_payments submitUserInfo={this.submitUserInfo}/>
+          </div>
           </div>
         </div>
       </div>
@@ -153,7 +161,7 @@ class Checkout_render extends React.Component {
 
 
     return (
-      <div className="col-md-4" style={styles}>
+      <div style={styles}>
         <br/>
         <h3>Cart Contents</h3>
         <div>{cartContents}</div>
@@ -192,7 +200,7 @@ class Checkout_details extends React.Component {
 
   render() {
     return (
-      <div className="col-md-4" style={styles}>
+      <div style={styles}>
       <br/>
       <h3>Delivery address</h3>
       <p className="font-weight-bold">* fields are mandatory</p>
@@ -243,6 +251,7 @@ class Checkout_details extends React.Component {
           </div> 
         */}
           </form>
+          <br/><br/>
         </div>
         );
   }
@@ -254,7 +263,7 @@ class Checkout_payments extends React.Component {
 
   render() {
     return (
-      <div className="col-md-4" style={styles}>
+      <div style={styles}>
         <br/>
         <h3>Payments component</h3>
         <StripeProvider apiKey="pk_test_uVhVvUx1HCpcDK0OY2FyWFHc00p54aslpX">
@@ -274,6 +283,7 @@ class Checkout_payments extends React.Component {
 const styles = {
   boxSizing: "border-box",
   backgroundColor : "pink",
+  padding: 20
 }
 
 export default Checkout;

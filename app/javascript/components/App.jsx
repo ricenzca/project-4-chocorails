@@ -7,6 +7,7 @@ import Admin from "./admin/admin";
 import EmailSub from "./emailsub/emailsub";
 import Promo from "./promo/promo";
 import Cart from "./cart/cart";
+import Footer from "./footer/footer";
 
 export default class App extends React.Component {
   constructor() {
@@ -74,15 +75,6 @@ export default class App extends React.Component {
             )}
           />
           <Route exact path="/admin" component={Admin} />
-          <Route exact path="/promo"
-            render={props => (
-              <Promo {...props}
-                subtotal={this.state.subtotalBeforePromo}
-                adjustSubtotal={this.adjustSubtotal}
-                subtotalAfterPromo={
-                    this.state.subtotalAfterPromo
-                }
-              />
             )}
           />
         </Switch>

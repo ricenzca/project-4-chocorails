@@ -39,14 +39,44 @@ class AdminOrders extends React.Component {
                 <label> Total Amount  </label>
                 <input type="text" name="total_amount" className="form-control"/>
 
-                <label> Stripe ID  </label>
-                <input type="text" name="stripe_id" className="form-control"/>
-
                 <label> Order Number  </label>
                 <input type="text" name="order_number" className="form-control"/>
 
                 <label> Promo ID  </label>
-                <input type="textarea" name="promo_id" className="form-control"/> <br/>
+                <input type="text" name="promo_id" className="form-control"/> <br/>
+
+                <label> Products Purchased  </label>
+                <input type="text" name="products_purchased" className="form-control"/> <br/>
+
+                <label> First Name </label>
+                <input type="text" name="firstname" className="form-control"/> <br/>
+
+                <label> Last Name  </label>
+                <input type="text" name="lastname" className="form-control"/> <br/>
+
+                <label> Email  </label>
+                <input type="text" name="email" className="form-control"/> <br/>
+
+                <label> Address Line 1  </label>
+                <input type="text" name="address1" className="form-control"/> <br/>
+
+                <label> Address Line 2  </label>
+                <input type="text" name="address2" className="form-control"/> <br/>
+
+                <label> State  </label>
+                <input type="text" name="state" className="form-control"/> <br/>
+
+                <label> Postal Code  </label>
+                <input type="text" name="postal_code" className="form-control"/> <br/>
+
+                <label> Country  </label>
+                <input type="text" name="country" className="form-control"/> <br/>
+
+                <label> City </label>
+                <input type="text" name="city" className="form-control"/> <br/>
+
+                <label> Contact </label>
+                <input type="text" name="contact" className="form-control"/> <br/>
 
                 <input type="submit" className="btn-primary btn-block"/>
             </form>
@@ -54,6 +84,5 @@ class AdminOrders extends React.Component {
     )
   }
 }
-
 
 export default AdminOrders;

@@ -4,7 +4,7 @@ class PromosController < ApplicationController
   # GET /promos
   # GET /promos.json
   def index
-    @promos = Promo.all
+    @promos = Promo.all.order("created_at ASC")
 
   end
 
@@ -43,7 +43,7 @@ class PromosController < ApplicationController
   def update
     respond_to do |format|
       if @promo.update(promo_params)
-        format.html { redirect_to @promo, notice: 'Promo was successfully updated.' }
+        format.html { redirect_to '/admin', notice: 'Promo was successfully updated.' }
         format.json { render :show, status: :ok, location: @promo }
       else
         format.html { render :edit }
@@ -156,7 +156,8 @@ class PromosController < ApplicationController
   end
 
   def admincreate
-    render plain: params.inspect
+
+    redirect_to '/admin'
 
     @amount = params[:amount]
     @limit = params[:limit]
@@ -191,7 +192,7 @@ class PromosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def promo_params
-      params.require(:promo).permit(:unique_id, :discount)
+      params.require(:promo).permit(:amount, :limit, :expiration, :code, :percentage, :used)
     end
 
 end

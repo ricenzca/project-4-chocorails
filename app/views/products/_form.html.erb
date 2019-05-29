@@ -12,31 +12,47 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
+    <%= form.label :brand, :style => "font-weight: bold" %>
+    <%= form.text_field :brand, :class => "form-control"%>
   </div>
 
   <div class="field">
-    <%= form.label :price %>
-    <%= form.text_field :price %>
+    <%= form.label :name, :style => "font-weight: bold" %>
+    <%= form.text_field :name, :class => "form-control" %>
+  </div>
+
+   <div class="field">
+    <%= form.label :img_url, :style => "font-weight: bold" %>
+    <%= form.text_field :img_url, :class => "form-control" %>
+  </div>
+
+
+  <div class="field">
+    <%= form.label :origin, :style => "font-weight: bold" %>
+    <%= form.text_field :origin, :class => "form-control" %>
   </div>
 
   <div class="field">
-    <%= form.label :description %>
-    <%= form.text_area :description %>
+    <%= form.label :ingredients, :style => "font-weight: bold" %>
+    <%= form.text_area :ingredients, :class => "form-control" %>
   </div>
 
   <div class="field">
-    <%= form.label :image_url %>
-    <%= form.text_field :image_url %>
+    <%= form.label :desc, :style => "font-weight: bold" %>
+    <%= form.text_area :desc, :class => "form-control" %>
   </div>
 
   <div class="field">
-    <%= form.label :string %>
-    <%= form.text_field :string %>
+    <%= form.label :price, :style => "font-weight: bold" %>
+    <%= form.text_field :price, :class => "form-control" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :weight, :style => "font-weight: bold" %>
+    <%= form.text_field :weight, :class => "form-control" %>
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit :class => "btn-success btn-block" %>
   </div>
 <% end %>
