@@ -84,7 +84,7 @@ class Product extends React.Component {
                         <div className="row">
                             {products.map((product, index) => (
                                 <div
-                                    className="card col-md-4"
+                                    className="card col-md-4 product-card"
                                     key={"choc_" + index}
                                 >
                                     <img
@@ -106,7 +106,7 @@ class Product extends React.Component {
                                             id={"choco" + (index + 1)}
                                         >
                                             <button
-                                                className="btn-block btn-success"
+                                                className="btn-block product-btn"
                                                 onClick={() =>
                                                     //Pass in the following from <App />
                                                     this.addChocolatesToCart(
