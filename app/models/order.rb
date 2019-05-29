@@ -2,7 +2,7 @@ require 'csv'
 
 class Order < ApplicationRecord
 	belongs_to :tranxaction, foreign_key: "tranxaction_id", class_name: "Transaction"
-  has_many :product
+  belongs_to :product
 
   def self.all_with_order_details
   Order.select("orders.*")

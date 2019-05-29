@@ -76,6 +76,16 @@ body h1, body h4 {
 
 /* Checkout*/
 
+a:hover {
+	text-decoration: none !important;
+	background: none;
+}
+
+.link:visited {
+	color: white !important;
+}
+
+
 .formlabel {
 	font-weight: bold;
 	margin: 0;
@@ -121,7 +131,6 @@ td {
 .bold {
 	font-weight: bold;
 }
-
 
 
 /* Admin */

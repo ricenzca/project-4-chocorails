@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   resources :promos
   resources :reviews
+
+  get '/orders/:order_number' => 'orders#show'
   resources :orders
   resources :customers
   resources :transactions

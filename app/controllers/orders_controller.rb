@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-  before_action :set_order, only: [:show, :edit, :update, :destroy]
+  before_action :set_order, only: [:edit, :update, :destroy]
 
   # GET /orders
   # GET /orders.json
@@ -11,6 +11,22 @@ class OrdersController < ApplicationController
   # GET /orders/1
   # GET /orders/1.json
   def show
+    puts "show order params"
+    p params[:order_number]
+    # @order = Order.where(order_number: params[:order_number]).map {
+    #   |item|
+    #   {"product_id": item["product_id"]}
+    # }
+    @order = Order.where(order_number: params[:order_number]).map {
+      |item|
+      item["product_id"]
+    }
+    puts "@order"
+    p @order
+    @product = Product.joins(:order).select("products.*, orders.*").where(id: @order)
+    puts "@product"
+    p @product
+    render json: @product
   end
 
   # GET /orders/new
