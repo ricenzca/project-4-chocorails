@@ -93,7 +93,7 @@ class ProductsController < ApplicationController
 
       respond_to do |format|
 
-        @products = Product.all
+        @products = Product.all.order("created_at ASC")
 
         format.json {
           render json: @products

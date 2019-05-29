@@ -12,16 +12,37 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :unique_id %>
-    <%= form.text_field :unique_id %>
+    <%= form.label :amount, :style => "font-weight: bold" %>
+    <%= form.text_field :amount, :class => "form-control" %>
   </div>
 
   <div class="field">
-    <%= form.label :discount %>
-    <%= form.number_field :discount %>
+    <%= form.label :limit, :style => "font-weight: bold" %>
+    <%= form.text_field :limit, :class => "form-control" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :expiration, :style => "font-weight: bold" %>
+    <%= form.date_field :expiration, :class => "form-control" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :code, :style => "font-weight: bold" %>
+    <%= form.text_field :code, :class => "form-control" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :percentage, :style => "font-weight: bold" %>
+    <%= form.text_field :percentage, :class => "form-control" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :used, :style => "font-weight: bold" %>
+    <%= form.number_field :used, :class => "form-control" %>
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit :class => "btn-success btn-block" %>
   </div>
+
 <% end %>

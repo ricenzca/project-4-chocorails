@@ -4,7 +4,7 @@ class PromosController < ApplicationController
   # GET /promos
   # GET /promos.json
   def index
-    @promos = Promo.all
+    @promos = Promo.all.order("created_at ASC")
 
   end
 
@@ -43,7 +43,7 @@ class PromosController < ApplicationController
   def update
     respond_to do |format|
       if @promo.update(promo_params)
-        format.html { redirect_to @promo, notice: 'Promo was successfully updated.' }
+        format.html { redirect_to '/admin', notice: 'Promo was successfully updated.' }
         format.json { render :show, status: :ok, location: @promo }
       else
         format.html { render :edit }
@@ -64,13 +64,16 @@ class PromosController < ApplicationController
 
   #validates promo code
   def validate
-    puts "params"
+    puts "validate params"
     p params[:promo]
     @promo = Promo.find_by(code: params[:promo])
+    puts "@promo"
+    p @promo
     if @promo.present?
       puts "promo code present"
       response = { valid: @promo.is_valid?,
-                   discount: @promo.discount
+                   discount: @promo.discount,
+                   promoId: @promo["id"]
                  }
     else
       puts "promo code not present"
@@ -82,8 +85,79 @@ class PromosController < ApplicationController
     end
   end
 
+  def charge
+    puts "charge params"
+    p params
+    puts "request body"
+    p request.body.read
+    puts "parsed"
+    body = JSON.parse(request.body.read)
+    p body[1]["name"]
+    response = "charged!"
+    render json: response
+  end
+
+  def submit
+    puts "submit params"
+    p params
+    puts "submit req body"
+    p request.body.read
+    puts "submit parsed"
+    body = JSON.parse(request.body.read)
+    p body
+    puts "body.customer"
+    p body['customer']
+    puts "body.transaction"
+    p body['transaction']
+    puts "body.order"
+    p body['order']
+    @customer = Customer.new(body['customer'])
+    puts "@customer"
+    p @customer
+
+    puts "@customer.save"
+    if @customer.save
+      puts "customer id"
+      p @customer.id
+      transaction = {customer_id: @customer.id}.merge(body['transaction'])
+      puts "transaction"
+      p transaction
+      transaction = transaction.merge(body['customer'])
+      puts "transaction 2"
+      p transaction
+      @transaction = Transaction.new(transaction)
+      @transaction.save
+      puts "transaction id"
+      @transaction.id
+      orderArray = body['order']['cart'].map {
+        |item|
+        {
+          tranxaction_id: @transaction.id,
+          product_id: item['id'],
+          product_quantity: item['quantity']
+        }
+      }
+      puts "orderArray"
+      p orderArray
+      orderArray.each {
+        |item| 
+        @order = Order.new(item)
+        puts "@order"
+        p @order
+        @order.save
+        puts "saved"
+      }
+      response = "all submissions successful"
+      render json: response
+    else
+      response = "customer info submission failed"
+      render json: response
+    end
+  end
+
   def admincreate
-    render plain: params.inspect
+
+    redirect_to '/admin'
 
     @amount = params[:amount]
     @limit = params[:limit]
@@ -118,6 +192,7 @@ class PromosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def promo_params
-      params.require(:promo).permit(:unique_id, :discount)
+      params.require(:promo).permit(:amount, :limit, :expiration, :code, :percentage, :used)
     end
+
 end

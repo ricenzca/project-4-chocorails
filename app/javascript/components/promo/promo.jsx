@@ -10,7 +10,7 @@ class Promo extends React.Component {
 		}
 	}
 
-	async ajaxRequest (newInput,subtotal,adjustSubtotal) {
+	async ajaxRequest (newInput,subtotal,adjustSubtotal,adjustGstAndGrandTotal,setPromoId) {
 		const response = await fetch(`/promo/${newInput}`);
 		const data = await response.json();
 		console.log("data",data);
@@ -18,7 +18,6 @@ class Promo extends React.Component {
 		if (data.valid) {
 			let newSubtotal;
 			console.log("data.discount",data.discount);
-			console.log("TYPEOF",typeof(data.discount.amount));
 			if (data.discount.percent) {
 				newSubtotal = (100-data.discount.amount)/100*subtotal;
 				console.log("newSubtotal after % discount",newSubtotal);
@@ -27,24 +26,42 @@ class Promo extends React.Component {
 				console.log("newSubtotal after $ discount",newSubtotal);
 			}
 			this.setState({
-				codeValidationMessage:"Code applied",
+				codeValidationMessage:"Code applied!",
 			});
+
+			let newPromoId = data.promoId;
+			setPromoId(newPromoId);
+			
+			if (newSubtotal<0) newSubtotal=0;
 			adjustSubtotal(newSubtotal);
+
+			let newGst = newSubtotal*0.177;
+			console.log("newGst",newGst);
+			if (newSubtotal=0) newGst=0;  
+			let newGrandTotal = Math.round((newSubtotal+newGst+5)*100)/100;
+			console.log("newGrandTotal", newGrandTotal);
+			adjustGstAndGrandTotal(newGst, newGrandTotal);
 
 		} else {
 			this.setState({codeValidationMessage:"Promo code not valid"});
+
 			adjustSubtotal(subtotal);
+			let newGst = subtotal*0.177;
+			console.log("newGst",newGst);
+			let newGrandTotal = Math.round((subtotal+newGst+5)*100)/100;
+			console.log("newGrandTotal", newGrandTotal);
+			adjustGstAndGrandTotal(newGst, newGrandTotal);
 		}
 	}
 
-	checkPromo (subtotal, adjustSubtotal, e) {
+	checkPromo (subtotal, adjustSubtotal,adjustGstAndGrandTotal, setPromoId, e) {
 		let newInput =  e.target.value;
 		console.log("newInput",newInput);
 		this.setState({input: newInput})
 		let data="";
 		if (newInput) {
 			clearTimeout(this.ajaxRequestTimeout);
-			this.ajaxRequestTimeout = setTimeout(()=>{this.ajaxRequest(newInput,subtotal,adjustSubtotal)},500)
+			this.ajaxRequestTimeout = setTimeout(()=>{this.ajaxRequest(newInput,subtotal,adjustSubtotal,adjustGstAndGrandTotal,setPromoId)},500)
 		}
 	}
 
@@ -59,10 +76,10 @@ class Promo extends React.Component {
 
 		return (
 			<div>
-				Promo&nbsp;
-				<input type="text" name="promo" value={this.state.value} onChange={e=>this.checkPromo(this.props.subtotal,this.props.adjustSubtotal,e)} />
+				<p>Promo code: &nbsp;</p>
+				<input type="text" name="promo" value={this.state.value} onChange={e=>this.checkPromo(this.props.subtotal,this.props.adjustSubtotal,this.props.adjustGstAndGrandTotal,this.props.setPromoId,e)} />
 				<p>{this.state.codeValidationMessage}</p>
-				<p>Subtotal: ${subtotalToDisplay}</p>
+				<p>Subtotal: ${subtotalToDisplay.toFixed(2)}</p>
 			</div>
 		)
 	}

@@ -31,22 +31,14 @@ class AdminOrders extends React.Component {
             <h2 onClick={this.visibleState}> Create Orders </h2>
             <form action="/orders/create" method="POST" style={this.state}>
                 <label> quantity  </label>
-                <input type="text" name="quantity" className="form-control"/>
+                <label> Transaction ID  </label>
+                <input type="number" name="tranxaction_id" className="form-control"/>
 
-                <label> Delivery Address  </label>
-                <input type="text" name="delivery_address" className="form-control"/>
+                <label> Product ID  </label>
+                <input type="text" name="product_id" className="form-control"/>
 
-                <label> Total Amount  </label>
-                <input type="text" name="total_amount" className="form-control"/>
-
-                <label> Stripe ID  </label>
-                <input type="text" name="stripe_id" className="form-control"/>
-
-                <label> Order Number  </label>
-                <input type="text" name="order_number" className="form-control"/>
-
-                <label> Promo ID  </label>
-                <input type="textarea" name="promo_id" className="form-control"/> <br/>
+                <label> Product Qty  </label>
+                <input type="text" name="product_quantity" className="form-control"/>
 
                 <input type="submit" className="btn-primary btn-block"/>
             </form>
@@ -54,6 +46,5 @@ class AdminOrders extends React.Component {
     )
   }
 }
-
 
 export default AdminOrders;

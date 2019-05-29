@@ -5,8 +5,6 @@ class Promo < ApplicationRecord
 
 	validates_uniqueness_of :code, on: :create, message: "must be unique", case_sensitive: false
 
-	has_many :orders
-
 	# returns true if the code is valid, otherwise returns false
 	def is_valid?
     # Expiration date is nil, or equal to or greater than today?

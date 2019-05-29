@@ -4,7 +4,7 @@ class OrdersController < ApplicationController
   # GET /orders
   # GET /orders.json
   def index
-    @orders = Order.all
+    @orders = Order.all.order("created_at ASC")
 
   end
 
@@ -63,30 +63,25 @@ class OrdersController < ApplicationController
   end
 
   def admincreate
+    @tranxaction_id = params[:tranxaction_id]
+    @product_id = params[:product_id]
+    @product_quantity = params[:product_quantity]
 
-    redirect_to '/admin'
-
-    @quantity = params[:quantity]
-    @delivery_address = params[:delivery_address]
-    @total_amount = params[:total_amount]
-    @stripe_id = params[:stripe_id]
-    @order_number = params[:order_number]
-    @promo_id = params[:promo_id]
-
-    @order = Order.new(quantity:@quantity, delivery_address:@delivery_address, total_amount:@total_amount, stripe_id:@stripe_id, order_number:@order_number, promo_id:@promo_id)
+    @order = Order.new(tranxaction_id:@tranxaction_id, product_id:@promo_id, product_quantity:@product_qty)
     @order.save
-
   end
 
   def get_all_orders
-
     @orders_csv = Order.all_with_order_details
 
     respond_to do |format|
       format.html
       format.csv { send_data @orders_csv.as_csv }
     end
+  end
 
+  def transactions
+    @transactions = Transaction.all.order("created_at ASC")
   end
 
   private
@@ -97,6 +92,6 @@ class OrdersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def order_params
-      params.require(:order).permit(:quantity, :delivery_address, :total_amount, :stripe_id)
+      params.require(:order).permit(:tranxaction_id, :product_id, :product_quantity, :order_number, :promo_id)
     end
 end

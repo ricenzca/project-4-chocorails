@@ -12,36 +12,51 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :email %>
-    <%= form.text_field :email %>
+    <%= form.label :firstname, :style => "font-weight: bold"%>
+    <%= form.text_field :firstname, :class => "form-control"%>
+  </div>
+
+   <div class="field">
+    <%= form.label :lastname, :style => "font-weight: bold" %>
+    <%= form.text_field :lastname, :class => "form-control" %>
   </div>
 
   <div class="field">
-    <%= form.label :address %>
-    <%= form.text_field :address %>
+    <%= form.label :email, :style => "font-weight: bold" %>
+    <%= form.text_field :email, :class => "form-control" %>
   </div>
 
   <div class="field">
-    <%= form.label :postal_code %>
-    <%= form.number_field :postal_code %>
+    <%= form.label :address1, :style => "font-weight: bold" %>
+    <%= form.text_field :address1, :class => "form-control" %>
   </div>
 
   <div class="field">
-    <%= form.label :country %>
-    <%= form.text_field :country %>
+    <%= form.label :address2, :style => "font-weight: bold" %>
+    <%= form.text_field :address2, :class => "form-control" %>
   </div>
 
   <div class="field">
-    <%= form.label :city %>
-    <%= form.text_field :city %>
+    <%= form.label :postal_code, :style => "font-weight: bold" %>
+    <%= form.number_field :postal_code, :class => "form-control" %>
   </div>
 
   <div class="field">
-    <%= form.label :contact %>
-    <%= form.text_field :contact %>
+    <%= form.label :country, :style => "font-weight: bold" %>
+    <%= form.text_field :country, :class => "form-control" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :city, :style => "font-weight: bold" %>
+    <%= form.text_field :city, :class => "form-control" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :contact, :style => "font-weight: bold" %>
+    <%= form.text_field :contact, :class => "form-control" %>
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit :class => "btn-success btn-block"%>
   </div>
 <% end %>

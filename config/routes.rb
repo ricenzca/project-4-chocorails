@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   resources :reviews
   resources :orders
   resources :customers
+  resources :transactions
 
   get '/admin' => 'admin#index', :as => 'admin'
   post '/customers/subscribe' => 'customers#subscribe'
@@ -16,6 +17,10 @@ Rails.application.routes.draw do
   get '/orders/getall' => 'orders#get_all_orders', :as => :orders_csv, defaults: { format: 'json'}
 
   get '/promo/:promo' => 'promos#validate'
+
+  post '/charge' => 'promos#charge'
+
+  post '/submit' => 'promos#submit'
 
   resources :products
   root 'products#main'

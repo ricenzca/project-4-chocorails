@@ -32,7 +32,7 @@ class EmailSub extends React.Component {
             console.log('email',this.state.email);
 
             this.setState ({
-                 promo: ' your promo code is CHOCOBALL',
+                 promo: ' your promo code is WELCOME10%',
                     style: {
                     display: "none"
                 }
@@ -46,7 +46,7 @@ class EmailSub extends React.Component {
     }
 
   render(){
-    return(<div style={{backgroundColor:'black', color: 'white', padding:2, textAlign:'center'}}>
+    return(<div style={{backgroundColor:'black', color: 'white', padding:6, textAlign:'center'}}>
             <form action="/customers/subscribe" method="POST">
                 <input type="email" value={this.state.email} onChange={this.onChangeHandler} style={this.state.style} name="email" placeholder="Subscribe to get 10% Off!" noValidate required/>
                 <button type="submit" style={this.state.style} onClick={this.onClickHandler} className="btn-primary"> Submit </button>
