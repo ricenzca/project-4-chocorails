@@ -235,7 +235,7 @@ class Admin extends React.Component {
                 <td> {customer.country} </td>
                 <td> {customer.city} </td>
                 <td> {customer.contact} </td>
-                <td> <a href={"/customers/" + (index+1) + "/edit"}> <button className="btn btn-warning"> Edit Customer </button> </a> </td>
+                <td> <a href={"/customers/" + (customer.id) + "/edit"}> <button className="btn btn-warning"> Edit Customer </button> </a> </td>
             </tr>
             )
     });
@@ -247,7 +247,7 @@ class Admin extends React.Component {
             <td> {order.tranxaction_id}</td>
             <td> {order.product_id}</td>
             <td> {order.product_quantity}</td>
-            <td> <a href={"/orders/" + (index+1) + "/edit"}> <button className="btn btn-warning"> Edit Order </button> </a> </td>
+            <td> <a href={"/transactions/" + (order.tranxaction_id)}> <button className="btn btn-warning"> Show Order </button> </a> </td>
             </tr>
             )
     });
@@ -262,7 +262,7 @@ class Admin extends React.Component {
             <td> {promo.code} </td>
             <td> {promo.percentage} </td>
             <td> {promo.used} </td>
-            <td> <a href={"/promos/" + (index+1) + "/edit"}> <button className="btn btn-warning"> Edit Promo </button> </a> </td>
+            <td> <a href={"/promos/" + (promo.id) + "/edit"}> <button className="btn btn-warning"> Edit Promo </button> </a> </td>
             </tr>
             )
     });

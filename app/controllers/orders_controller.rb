@@ -63,26 +63,25 @@ class OrdersController < ApplicationController
   end
 
   def admincreate
-
-
     @tranxaction_id = params[:tranxaction_id]
     @product_id = params[:product_id]
     @product_quantity = params[:product_quantity]
 
     @order = Order.new(tranxaction_id:@tranxaction_id, product_id:@promo_id, product_quantity:@product_qty)
     @order.save
-
   end
 
   def get_all_orders
-
     @orders_csv = Order.all_with_order_details
 
     respond_to do |format|
       format.html
       format.csv { send_data @orders_csv.as_csv }
     end
+  end
 
+  def transactions
+    @transactions = Transaction.all.order("created_at ASC")
   end
 
   private
