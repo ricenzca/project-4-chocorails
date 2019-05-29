@@ -117,8 +117,9 @@ class Checkout extends React.Component {
           <div className="row">
 
           <div className="col-md-7">
-            <Checkout_details formInputHandler={this.formInputHandler}
-              bill_FirstName={this.state.bill_FirstName}
+            <Checkout_details
+              formInputHandler={this.formInputHandler}
+              // bill_FirstName={this.state.bill_FirstName}
             />
           </div>
           <div className="col-md-5">
@@ -132,10 +133,7 @@ class Checkout extends React.Component {
               adjustGstAndGrandTotal={this.adjustGstAndGrandTotal}
               setPromoId={this.setPromoId}
             />
-            <Checkout_details
-              formInputHandler={this.formInputHandler}
-              // bill_FirstName={this.state.bill_FirstName}
-            />
+
             <Checkout_payments submitUserInfo={this.submitUserInfo}/>
           </div>
           </div>
