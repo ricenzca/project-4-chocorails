@@ -18,21 +18,6 @@ export default class App extends React.Component {
         };
     }
 
-    // updateCart = newCart => {
-    //     console.log(`inside <App /> `, newCart);
-    //     this.setState({
-    //         cart: newCart
-    //         // subtotalBeforePromo: updatedTotal
-    //     });
-    // };
-
-    // updateTotal = updatedAmount => {
-    //     console.log(updatedAmount);
-    //     this.setState({
-    //         subtotalBeforePromo: updatedAmount
-    //     });
-    // };
-
     updateCart = (newCart, updatedAmount) => {
         console.log(`What is inside cart now, price `, newCart, updatedAmount);
         this.setState({
@@ -47,6 +32,12 @@ export default class App extends React.Component {
     };
 
     render() {
+        const buttonStyle = {
+            position: "absolute",
+            right: "0",
+            top: "160px"
+        };
+
         return (
             <div>
                 <EmailSub />
@@ -63,6 +54,17 @@ export default class App extends React.Component {
                         path="/"
                         render={props => (
                             <div>
+                                <header>
+                                    <h1 className="d-inline">Choco on Rails</h1>
+                                    <button
+                                        className="btn btn-primary"
+                                        data-toggle="modal"
+                                        data-target="#exampleModal"
+                                        style={buttonStyle}
+                                    >
+                                        Cart ({this.state.cart.length})
+                                    </button>
+                                </header>
                                 <Product
                                     {...props}
                                     updateCart={this.updateCart}
