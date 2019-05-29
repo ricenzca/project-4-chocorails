@@ -2,6 +2,8 @@ require 'csv'
 
 class Product < ApplicationRecord
 
+  has_many :order
+
   def self.all_with_product_details
     Product.select("products.*")
   end

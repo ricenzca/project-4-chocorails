@@ -4,6 +4,7 @@ class CreateOrders < ActiveRecord::Migration[5.2]
     	t.references :tranxaction
     	t.references :product
     	t.integer :product_quantity
+    	t.string :order_number
     	t.timestamps
     end
   end

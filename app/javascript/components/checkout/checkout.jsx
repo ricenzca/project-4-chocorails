@@ -1,7 +1,9 @@
 import React from 'react';
+import { Link } from "react-router-dom";
 import Promo from "../promo/promo";
 import {Elements, StripeProvider} from 'react-stripe-elements';
 import CheckoutForm from './CheckoutForm';
+import EmailSub from "../emailsub/emailsub";
 
 class Checkout extends React.Component {
   constructor () {
@@ -30,6 +32,7 @@ class Checkout extends React.Component {
       gst: 0,
       grandTotal: 0,
       promoId: null,
+      orderNumber: null,
     }
   }
 
@@ -108,51 +111,86 @@ class Checkout extends React.Component {
       }),
       credentials: 'same-origin'
     });
-
-    if (response.ok) console.log("submission ok!")
+    if (response.ok) console.log("submission ok!", response);
+    let data = await response.json();
+    console.log("data",data);
+    this.setState({orderNumber: data})
   }
 
   render() {
-    // console.log("in checkout component", this.props.cart)
-    // console.log("checkout state", this.state)
-    return (
-      <div>
-        <div className="container">
-          <div className="row">
 
-          <div className="col-md-7">
-            <Checkout_details
-              formInputHandler={this.formInputHandler}
-              del_FirstName={this.state["del_FirstName"]}
-              del_LastName={this.state["del_LastName"]}
-              del_Email={this.state["del_Email"]}
-              del_Telephone={this.state["del_Telephone"]}
-              del_DeliveryAdd1={this.state["del_DeliveryAdd1"]}
-              del_DeliveryAdd2={this.state["del_DeliveryAdd2"]}
-              del_City={this.state["del_City"]}
-              del_State={this.state["del_State"]}
-              del_Postcode={this.state["del_Postcode"]}
-              del_Country={this.state["del_Country"]}
-              // bill_FirstName={this.state.bill_FirstName}
-            />
+    if (this.state.orderNumber) {
+      
+      return (
+        <div style={{height: "80vh"}}>
+          <div className="sticky-top">
+              <nav
+                  style={{
+                      backgroundColor: "rgb(63, 62, 58)",
+                  }}
+              >
+                  <a href="/" >
+                    <h1 className="d-inline" style={{color: "white"}}>
+                        Choco on Rails
+                    </h1>
+                  </a>
+              </nav>
           </div>
-          <div className="col-md-5">
-            <Checkout_render
-              cart={this.props.cart}
-              subtotal={this.props.subtotal}
-              adjustSubtotal={this.props.adjustSubtotal}
-              subtotalAfterPromo={this.props.subtotalAfterPromo}
-              gst={this.state.gst}
-              grandTotal={this.state.grandTotal}
-              adjustGstAndGrandTotal={this.adjustGstAndGrandTotal}
-              setPromoId={this.setPromoId}
-            />
-            <Checkout_payments submitUserInfo={this.submitUserInfo}/>
-          </div>
+          <div className="text-center mt-3">
+            <h5>Thank you for placing your order with us!<br/>
+            Your order number is {this.state.orderNumber}<br/>
+            </h5>
+            <a href="/" >
+              <h5 className="bold">
+                  Return to home
+              </h5>
+            </a>
           </div>
         </div>
-      </div>
-      );
+      )
+    
+    } else {
+
+      return (
+        <div>
+          <div className="container">
+            <div className="row">
+
+            <div className="col-md-6">
+              <Checkout_details
+                formInputHandler={this.formInputHandler}
+                del_FirstName={this.state["del_FirstName"]}
+                del_LastName={this.state["del_LastName"]}
+                del_Email={this.state["del_Email"]}
+                del_Telephone={this.state["del_Telephone"]}
+                del_DeliveryAdd1={this.state["del_DeliveryAdd1"]}
+                del_DeliveryAdd2={this.state["del_DeliveryAdd2"]}
+                del_City={this.state["del_City"]}
+                del_State={this.state["del_State"]}
+                del_Postcode={this.state["del_Postcode"]}
+                del_Country={this.state["del_Country"]}
+                // bill_FirstName={this.state.bill_FirstName}
+              />
+            </div>
+            <div className="col-md-6">
+              <Checkout_render
+                cart={this.props.cart}
+                subtotal={this.props.subtotal}
+                adjustSubtotal={this.props.adjustSubtotal}
+                subtotalAfterPromo={this.props.subtotalAfterPromo}
+                gst={this.state.gst}
+                grandTotal={this.state.grandTotal}
+                adjustGstAndGrandTotal={this.adjustGstAndGrandTotal}
+                setPromoId={this.setPromoId}
+              />
+              <Checkout_payments submitUserInfo={this.submitUserInfo}/>
+            </div>
+            </div>
+          </div>
+        </div>
+        );
+
+    }
   }
 }
 
@@ -207,6 +245,7 @@ class Checkout_render extends React.Component {
           <p className="bold">Shipping fee: $5.00</p>
           <p className="bold">Grand Total: ${this.props.grandTotal.toFixed(2)}</p>
         </div>
+        <Link className={"btn btn-primary btn-sm link"} to="/">Back to Main</Link>
       </div>
     );
   }

@@ -34,6 +34,7 @@ ActiveRecord::Schema.define(version: 2019_05_28_051213) do
     t.bigint "tranxaction_id"
     t.bigint "product_id"
     t.integer "product_quantity"
+    t.string "order_number"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["product_id"], name: "index_orders_on_product_id"

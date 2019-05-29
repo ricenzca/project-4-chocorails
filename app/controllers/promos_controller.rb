@@ -97,6 +97,7 @@ class PromosController < ApplicationController
     render json: response
   end
 
+  # save customer,transaction, order and promo details if payment goes through
   def submit
     puts "submit params"
     p params
@@ -114,7 +115,6 @@ class PromosController < ApplicationController
     @customer = Customer.new(body['customer'])
     puts "@customer"
     p @customer
-
     puts "@customer.save"
     if @customer.save
       puts "customer id"
@@ -127,14 +127,20 @@ class PromosController < ApplicationController
       p transaction
       @transaction = Transaction.new(transaction)
       @transaction.save
+
+      #update the products ordered in the order table
       puts "transaction id"
       @transaction.id
+      puts "orderNumber"
+      orderNumber = 381531518191219 + @transaction.id*14
+      p orderNumber
       orderArray = body['order']['cart'].map {
         |item|
         {
           tranxaction_id: @transaction.id,
           product_id: item['id'],
-          product_quantity: item['quantity']
+          product_quantity: item['quantity'],
+          order_number: orderNumber.to_s
         }
       }
       puts "orderArray"
@@ -147,7 +153,19 @@ class PromosController < ApplicationController
         @order.save
         puts "saved"
       }
-      response = "all submissions successful"
+
+      # update "used" column of promo if promo code is used
+      puts "promo id"
+      promoId = @transaction["promo_id"]
+      p promoId
+      if (promoId) 
+        @promo = Promo.find(promoId)
+        puts "@promo before"
+        @promo.used = @promo.used + 1
+        @promo.save
+      end
+
+      response = orderNumber
       render json: response
     else
       response = "customer info submission failed"
