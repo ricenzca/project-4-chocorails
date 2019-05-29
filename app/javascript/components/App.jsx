@@ -39,6 +39,11 @@ export default class App extends React.Component {
   };
 
   render() {
+      const buttonStyle = {
+            position: "absolute",
+            right: "0",
+            top: "160px"
+        };
     return (
       <div>
         <EmailSub />
@@ -58,20 +63,29 @@ export default class App extends React.Component {
           <Route exact path="/"
             render={props => (
               <div>
+                <header>
+                    <h1 className="d-inline">Choco on Rails</h1>
+                    <button
+                        className="btn btn-primary"
+                        data-toggle="modal"
+                        data-target="#exampleModal"
+                        style={buttonStyle}
+                    >
+                        Cart ({this.state.cart.length})
+                    </button>
+                </header>
                 <Product
-                  {...props}
-                  updateCart={this.updateCart}
-                  // updateTotal={this.updateTotal}
-                  cart={this.state.cart}
+                    {...props}
+                    updateCart={this.updateCart}
+                    cart={this.state.cart}
                 />
                 <Cart
-                  {...props}
-                  updateCart={this.updateCart}
-                  // updateTotal={this.updateTotal}
-                  cart={this.state.cart}
-                  subtotal={this.state.subtotalBeforePromo}
+                    {...props}
+                    updateCart={this.updateCart}
+                    cart={this.state.cart}
+                    subtotal={this.state.subtotalBeforePromo}
                 />
-              </div>
+            </div>
             )}
           />
           <Route exact path="/admin" component={Admin} />

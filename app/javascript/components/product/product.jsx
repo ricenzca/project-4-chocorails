@@ -3,76 +3,73 @@ import { Link } from "react-router-dom";
 // import style from "./style.scss";
 
 class Product extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      error: null,
-      isLoaded: false,
-      products: []
-    };
-    // this.toggleClass = this.toggleClass.bind(this);
-    // this.addChocolatesToCart = this.addChocolatesToCart.bind(this);
-  }
+    constructor(props) {
+        super(props);
+        this.state = {
+            error: null,
+            isLoaded: false,
+            products: []
+        };
+        // this.toggleClass = this.toggleClass.bind(this);
+        // this.addChocolatesToCart = this.addChocolatesToCart.bind(this);
+    }
 
-  componentDidMount() {
-    fetch("http://localhost:3000/products/getall")
-      .then(res => res.json())
-      .then(
-        result => {
-          // result here is an arr of objs[{}, {},...]
-          this.setState({
-            isLoaded: true,
-            products: result
-          });
-        },
-        error => {
-          this.setState({
-            isLoaded: true,
-            error
-          });
+    componentDidMount() {
+        fetch("http://localhost:3000/products/getall")
+            .then(res => res.json())
+            .then(
+                result => {
+                    // result here is an arr of objs[{}, {},...]
+                    this.setState({
+                        isLoaded: true,
+                        products: result
+                    });
+                },
+                error => {
+                    this.setState({
+                        isLoaded: true,
+                        error
+                    });
+                }
+            );
+    }
+
+    addChocolatesToCart = (index, cart, updateCart) => {
+        const selectedChocolateObj = this.state.products[index];
+        let currentCart;
+        //if cart is not empty
+        if (cart.length > 0) {
+            //if choco added before
+            if (cart.some(choco => choco.id === selectedChocolateObj.id)) {
+                let selectedId = selectedChocolateObj.id;
+                cart.forEach(chocoInCart => {
+                    if (chocoInCart.id === selectedId) {
+                        chocoInCart.quantity++;
+                    }
+                });
+                currentCart = [...cart];
+                // updateCart(currentCart);
+            } //else choco not added before
+            else {
+                selectedChocolateObj.quantity = 1;
+                currentCart = [...cart, selectedChocolateObj];
+                // updateCart(currentCart);
+            }
+        } //else cart is empty
+        else {
+            selectedChocolateObj.quantity = 1;
+            currentCart = [...cart, selectedChocolateObj];
+            // updateCart(currentCart);
         }
-      );
-  }
-
-  toggleClass = e => {
-    // console.log(e.target);
-  };
-
-  addChocolatesToCart = (index, cart, updateCart) => {
-    const selectedChocolateObj = this.state.products[index];
-    let currentCart;
-    //if cart is not empty
-    if (cart.length > 0) {
-      //if choco added before
-      if (cart.some(choco => choco.id === selectedChocolateObj.id)) {
-        let selectedId = selectedChocolateObj.id;
-        cart.forEach(chocoInCart => {
-          if (chocoInCart.id === selectedId) {
-            chocoInCart.quantity++;
-          }
-        });
-        currentCart = [...cart];
-        // updateCart(currentCart);
-      } //else choco not added before
-      else {
-        selectedChocolateObj.quantity = 1;
-        currentCart = [...cart, selectedChocolateObj];
-        // updateCart(currentCart);
-      }
-    } //else cart is empty
-    else {
-      selectedChocolateObj.quantity = 1;
-      currentCart = [...cart, selectedChocolateObj];
-      // updateCart(currentCart);
-    }
-    //currentCart gets updated [{}, {}]
-    // console.log(`inside <Product /> `, currentCart);
-    let subtotal = 0;
-    for (var i = 0; i < currentCart.length; i++) {
-      subtotal = subtotal + currentCart[i].price * currentCart[i].quantity;
-    }
-    updateCart(currentCart, subtotal);
-  };
+        //currentCart gets updated [{}, {}]
+        // console.log(`inside <Product /> `, currentCart);
+        let subtotal = 0;
+        for (var i = 0; i < currentCart.length; i++) {
+            subtotal =
+                subtotal + currentCart[i].price * currentCart[i].quantity;
+        }
+        updateCart(currentCart, subtotal);
+    };
 
   render() {
     const { error, isLoaded, products } = this.state;
@@ -116,17 +113,11 @@ class Product extends React.Component {
                         Add to Cart
                       </button>
                     </div>
-                  </div>
+                    <Link to="/checkout">Checkout LINK!</Link>
                 </div>
-              ))}
-            </div>
-          </div>
-          <Link to="/checkout">Checkout LINK!</Link>
-          <h1>Product!!!</h1>
-        </div>
-      );
+            );
+        }
     }
-  }
 }
 
 export default Product;
