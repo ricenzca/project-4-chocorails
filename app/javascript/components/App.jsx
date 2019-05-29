@@ -39,7 +39,7 @@ export default class App extends React.Component {
             float: "right"
         };
         return (
-            <div>
+            <div className="bg-main">
                 <Switch>
                     <Route
                         exact
@@ -65,7 +65,7 @@ export default class App extends React.Component {
                                     <EmailSub />
                                     <nav
                                         style={{
-                                            backgroundColor: "rgb(63, 62, 58)",
+                                            backgroundColor: "#822E81",
                                             color: "white"
                                         }}
                                     >
@@ -73,7 +73,7 @@ export default class App extends React.Component {
                                             Choco on Rails
                                         </h1>
                                         <button
-                                            className="btn btn-primary"
+                                            className="btn cart-btn"
                                             data-toggle="modal"
                                             data-target="#exampleModal"
                                             style={buttonStyle}

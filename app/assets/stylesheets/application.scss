@@ -18,6 +18,14 @@
 
 /* Products */
 
+body {
+	font-family: 'Lora', serif;
+}
+
+body h1, body h4 {
+	font-family: 'Abril Fatface', cursive;
+}
+
 .card {
 	padding: 20px;
 	align-items: center;
@@ -132,3 +140,24 @@ td {
 	margin: 0 auto;
 }
 
+.bg-main {
+	background-color: #F9E0D9;
+}
+
+.product-btn, .cart-btn, .cart-checkout {
+	background-color: #EE8434;
+	color: white;
+}
+
+.product-btn:hover, .cart-btn:hover {
+	background-color: #D97830;
+}
+
+.product-card h4, .product-card p {
+	color: #822E81;
+}
+
+.close-btn {
+	background-color: #C95D63;
+	color: white;
+}
