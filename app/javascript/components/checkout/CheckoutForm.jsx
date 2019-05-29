@@ -14,7 +14,7 @@ class CheckoutForm extends Component {
     this.setState({cardholderName: e.target.value});
   }
 
-  submit = async (printState) => {
+  submit = async (submitUserInfo) => {
     let {token} = await this.props.stripe.createToken({name: this.state.cardholderName});
     let csrfToken = $('meta[name="csrf-token"]').attr('content');
     let response = await fetch("/charge", {
@@ -31,7 +31,7 @@ class CheckoutForm extends Component {
 
     if (response.ok) this.setState({complete: true});
 
-    printState();
+    submitUserInfo();
   }
 
   render() {
@@ -46,8 +46,9 @@ class CheckoutForm extends Component {
           <span>Cardholder's Name:</span>
           <input type="text" name="cardholderName" placeholder="Enter your name" value={this.state.cardholderName} onChange={(e)=>this.handleChangeCardholderName(e)}/>
         </div>
+        <br/>
         <CardElement style={{base: {fontSize: '18px'}}}  />
-        <button className="btn btn-sm btn-primary" onClick={()=>this.submit(this.props.printState)}>Confirm order</button>
+        <button className="btn btn-sm btn-primary" onClick={()=>this.submit(this.props.submitUserInfo)}>Confirm order</button>
       </div>
     );
   }

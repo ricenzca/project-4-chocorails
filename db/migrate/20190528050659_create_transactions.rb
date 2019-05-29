@@ -1,12 +1,9 @@
 class CreateTransactions < ActiveRecord::Migration[5.2]
   def change
     create_table :transactions do |t|
-    	t.integer :quantity
-    	t.string :delivery_address
-    	t.float :total_amount
-    	t.string :order_number
+    	t.references :customer
+        t.float :total_amount
     	t.references :promo
-    	t.string :products_purchased
     	t.string :firstname
     	t.string :lastname
     	t.string :email
