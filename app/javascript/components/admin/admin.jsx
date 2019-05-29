@@ -313,11 +313,9 @@ class Admin extends React.Component {
             <thead class="thead-dark" style={this.state.orderDisplay}>
                 <tr>
                   <th>id</th>
-                  <th>quantity</th>
-                  <th>delivery_address</th>
-                  <th>total_amount</th>
-                  <th>stripe_id</th>
-                  <th>promo_id</th>
+                  <th>Transaction ID</th>
+                  <th>Product ID</th>
+                  <th>Product Qty</th>
                   <th>Edit</th>
                 </tr>
             </thead>
