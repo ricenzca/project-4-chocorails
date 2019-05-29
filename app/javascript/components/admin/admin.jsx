@@ -244,12 +244,9 @@ class Admin extends React.Component {
         return (
             <tr>
             <td key={index}> Order Id:{order.id} </td>
-            <td> {order.quantity}</td>
-            <td> {order.delivery_address}</td>
-            <td> {order.total_amount}</td>
-            <td> {order.stripe_id}</td>
-            <td> {order.order_number}</td>
-            <td> {order.promo_id}</td>
+            <td> {order.transaction_id}</td>
+            <td> {order.product_id}</td>
+            <td> {order.product_qty}</td>
             <td> <a href={"/orders/" + (index+1) + "/edit"}> <button className="btn btn-warning"> Edit Order </button> </a> </td>
             </tr>
             )
