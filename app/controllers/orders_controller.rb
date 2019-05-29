@@ -66,15 +66,15 @@ class OrdersController < ApplicationController
 
     redirect_to '/admin'
 
-    @quantity = params[:quantity]
-    @delivery_address = params[:delivery_address]
-    @total_amount = params[:total_amount]
-    @stripe_id = params[:stripe_id]
+    @tranxaction_id = params[:tranxaction_id]
+    @product_id = params[:product_id]
+    @product_qty = params[:product_quantity]
     @order_number = params[:order_number]
     @promo_id = params[:promo_id]
 
-    @order = Order.new(quantity:@quantity, delivery_address:@delivery_address, total_amount:@total_amount, stripe_id:@stripe_id, order_number:@order_number, promo_id:@promo_id)
+    @order = Order.new(tranxaction_id:@tranxaction_id, product_id:@promo_id, product_quantity:@product_qty, order_number:@order_number, promo_id:@promo_id)
     @order.save
+
 
   end
 
@@ -89,6 +89,11 @@ class OrdersController < ApplicationController
 
   end
 
+  def transactions
+    @transactions = Transaction.all
+
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_order
@@ -97,6 +102,6 @@ class OrdersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def order_params
-      params.require(:order).permit(:quantity, :delivery_address, :total_amount, :stripe_id)
+      params.require(:order).permit(:tranxaction_id, :product_id, :product_quantity, :order_number, :promo_id)
     end
 end

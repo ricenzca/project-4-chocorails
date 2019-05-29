@@ -90,6 +90,7 @@ export default class App extends React.Component {
                         )}
                     />
                 </Switch>
+                <br/> <br/> <br/>
                 <Footer />
             </div>
         );

@@ -15,6 +15,8 @@ Rails.application.routes.draw do
   get '/products/getall' => 'products#get_all_products', defaults: { format: 'json'}
   get '/orders/getall' => 'orders#get_all_orders', :as => :orders_csv, defaults: { format: 'json'}
 
+  get '/transactions' => 'orders#transactions', defaults: { format: 'json'}
+
   get '/promo/:promo' => 'promos#validate'
 
   post '/charge' => 'promos#charge'
