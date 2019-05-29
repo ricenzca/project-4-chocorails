@@ -235,7 +235,7 @@ class Admin extends React.Component {
                 <td> {customer.country} </td>
                 <td> {customer.city} </td>
                 <td> {customer.contact} </td>
-                <td> <a href={"/customers/" + (index+1) + "/edit"}> <button className="btn btn-warning"> Edit Customer </button> </a> </td>
+                <td> <a href={"/customers/" + (customer.id) + "/edit"}> <button className="btn btn-warning"> Edit Customer </button> </a> </td>
             </tr>
             )
     });
@@ -244,13 +244,10 @@ class Admin extends React.Component {
         return (
             <tr>
             <td key={index}> Order Id:{order.id} </td>
-            <td> {order.quantity}</td>
-            <td> {order.delivery_address}</td>
-            <td> {order.total_amount}</td>
-            <td> {order.stripe_id}</td>
-            <td> {order.order_number}</td>
-            <td> {order.promo_id}</td>
-            <td> <a href={"/orders/" + (index+1) + "/edit"}> <button className="btn btn-warning"> Edit Order </button> </a> </td>
+            <td> {order.tranxaction_id}</td>
+            <td> {order.product_id}</td>
+            <td> {order.product_quantity}</td>
+            <td> <a href={"/transactions/" + (order.tranxaction_id)}> <button className="btn btn-warning"> Show Order </button> </a> </td>
             </tr>
             )
     });
@@ -265,7 +262,7 @@ class Admin extends React.Component {
             <td> {promo.code} </td>
             <td> {promo.percentage} </td>
             <td> {promo.used} </td>
-            <td> <a href={"/promos/" + (index+1) + "/edit"}> <button className="btn btn-warning"> Edit Promo </button> </a> </td>
+            <td> <a href={"/promos/" + (promo.id) + "/edit"}> <button className="btn btn-warning"> Edit Promo </button> </a> </td>
             </tr>
             )
     });
@@ -287,7 +284,7 @@ class Admin extends React.Component {
     });
 
     return( <React.Fragment>
-        <div style={{backgroundColor:'blue', color:'white', padding: 8}}>
+        <div style={{backgroundColor:'', color:'', padding: 8}}>
         <h1 style={{textAlign:'center   '}}> Admin Backend </h1>
         <div className="row" >
             <h2 className="col-md-3" onClick={this.productList}> Products </h2>
@@ -295,7 +292,7 @@ class Admin extends React.Component {
             <h2 className="col-md-3" onClick={this.customerList}> Customers </h2>
             <h2 className="col-md-3" onClick={this.promoList}> Promos </h2>
         </div>
-          <table className="table" style={{backgroundColor:'pink'}}>
+          <table className="table" style={{backgroundColor:''}}>
             <thead class="thead-dark" style={this.state.productDisplay}>
                 <tr>
                   <th>id</th>
@@ -313,11 +310,9 @@ class Admin extends React.Component {
             <thead class="thead-dark" style={this.state.orderDisplay}>
                 <tr>
                   <th>id</th>
-                  <th>quantity</th>
-                  <th>delivery_address</th>
-                  <th>total_amount</th>
-                  <th>stripe_id</th>
-                  <th>promo_id</th>
+                  <th>Transaction ID</th>
+                  <th>Product ID</th>
+                  <th>Product Qty</th>
                   <th>Edit</th>
                 </tr>
             </thead>
@@ -357,10 +352,8 @@ class Admin extends React.Component {
           {promos}
           </table>
         </div>
-              <div className="row" style={{backgroundColor: 'green', color: 'white', padding: 8}}>
+              <div className="row" style={{backgroundColor: '', color: '', padding: 8}}>
                   <AdminProducts /> <br/>
-                  <AdminOrders /> <br/>
-                  <AdminCustomers /> <br/>
                   <AdminPromos /> <br/>
               </div>
           </React.Fragment>
@@ -370,3 +363,6 @@ class Admin extends React.Component {
 
 
 export default Admin;
+
+                  // <AdminOrders /> <br/>
+                  // <AdminCustomers /> <br/>

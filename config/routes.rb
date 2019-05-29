@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   resources :reviews
   resources :orders
   resources :customers
+  resources :transactions
 
   get '/admin' => 'admin#index', :as => 'admin'
   post '/customers/subscribe' => 'customers#subscribe'

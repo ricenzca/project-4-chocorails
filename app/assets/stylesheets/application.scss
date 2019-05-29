@@ -15,6 +15,7 @@
  */
 @import "bootstrap";
 
+
 /* Products */
 
 .card {
@@ -63,7 +64,10 @@
 	text-align: center;
 }
 
+
+
 /* Checkout*/
+
 .formlabel {
 	font-weight: bold;
 	margin: 0;
@@ -109,3 +113,13 @@ td {
 .bold {
 	font-weight: bold;
 }
+
+
+
+/* Admin */
+
+.transaction-show {
+	max-width: 500px;
+	margin: 0 auto;
+}
+

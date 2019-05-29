@@ -1,14 +1,13 @@
-import React from 'react';
+import React from "react";
 
 class Footer extends React.Component {
-
-  render(){
-    return(
-        <div style={styles} className="fixed-bottom">
-            <footer> CHOCORAILS 2019 © Contact Us at choco@choco.com </footer>
-        </div>
-    );
-  }
+    render() {
+        return (
+            <div style={styles}>
+                <footer> CHOCORAILS 2019 © All Rights Reserved </footer>
+            </div>
+        );
+    }
 }
 
 export default Footer;
@@ -19,4 +18,4 @@ const styles = {
     padding: 16,
     textAlign: "center",
     marginTop: 24
-}
+};

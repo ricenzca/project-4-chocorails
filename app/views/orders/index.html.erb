@@ -16,10 +16,9 @@
   <tbody>
     <% @orders.each do |order| %>
       <tr>
-        <td><%= order.quantity %></td>
-        <td><%= order.delivery_address %></td>
-        <td><%= order.total_amount %></td>
-        <td><%= order.stripe_id %></td>
+        <td><%= order.tranxaction_id %></td>
+        <td><%= order.product_id %></td>
+        <td><%= order.product_quantity %></td>
         <td><%= link_to 'Show', order %></td>
         <td><%= link_to 'Edit', edit_order_path(order) %></td>
         <td><%= link_to 'Destroy', order, method: :delete, data: { confirm: 'Are you sure?' } %></td>
