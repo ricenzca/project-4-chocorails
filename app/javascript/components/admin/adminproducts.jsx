@@ -28,7 +28,7 @@ class AdminProducts extends React.Component {
   render(){
     return(
         <div className="col-md-6"  >
-            <h2 onClick={this.visibleState}> Create Products </h2>
+            <h2 onClick={this.visibleState} style={{textAlign: "center"}}> Create Products  </h2>
             <form action="/products/create" method="POST" style={this.state}>
                 <label> Brand  </label>
                 <input type="text" name="brand" className="form-control"/>
