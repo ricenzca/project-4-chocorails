@@ -12,23 +12,18 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :quantity %>
-    <%= form.number_field :quantity %>
+    <%= form.label :tranxaction_id %>
+    <%= form.number_field :tranxaction_id %>
   </div>
 
   <div class="field">
-    <%= form.label :delivery_address %>
-    <%= form.text_field :delivery_address %>
+    <%= form.label :product_id %>
+    <%= form.text_field :product_id %>
   </div>
 
   <div class="field">
-    <%= form.label :total_amount %>
-    <%= form.text_field :total_amount %>
-  </div>
-
-  <div class="field">
-    <%= form.label :stripe_id %>
-    <%= form.text_field :stripe_id %>
+    <%= form.label :product_quantity %>
+    <%= form.text_field :product_quantity %>
   </div>
 
   <div class="actions">
