@@ -14,12 +14,12 @@ export default class App extends React.Component {
     super();
     this.state = {
       cart: [
-        {brand: 'Krakakoa', name: 'Arenga 100% Dark', img_url: 'https://www.krakakoa.com/wp-content/uploads/2018/04/100-dark-chocolate.jpg', origin: 'Sumatra, Indonesia', ingredients: 'Cocoa beans', desc: 'This is 100% Sumatran cocoa at its purest. A complex bar with robust natural acidity of fermented cocoa and complex earthy aromas.', price: 3.6, weight: 50, quantity: 2
+        {id: 1, brand: 'Krakakoa', name: 'Arenga 100% Dark', img_url: 'https://www.krakakoa.com/wp-content/uploads/2018/04/100-dark-chocolate.jpg', origin: 'Sumatra, Indonesia', ingredients: 'Cocoa beans', desc: 'This is 100% Sumatran cocoa at its purest. A complex bar with robust natural acidity of fermented cocoa and complex earthy aromas.', price: 3.6, weight: 50, quantity: 2
         },
-        {brand: 'Krakakoa', name: 'Arenga 85% Dark', img_url: 'https://www.krakakoa.com/wp-content/uploads/2018/04/85-dark-chocolate.jpg', origin: 'Sulawesi, Indonesia', ingredients: 'Cocoa beans, Palm sugar, Sunflower lecithin', desc: 'We blend Arenga palm sugar, harvested from the rainforests of Sulawesi, with sustainably grown cocoa, creating delicious chocolate with caramel notes that is also a force for wildlife conservation.', price: 4, weight: 50, quantity: 3
+        {id: 2, brand: 'Krakakoa', name: 'Arenga 85% Dark', img_url: 'https://www.krakakoa.com/wp-content/uploads/2018/04/85-dark-chocolate.jpg', origin: 'Sulawesi, Indonesia', ingredients: 'Cocoa beans, Palm sugar, Sunflower lecithin', desc: 'We blend Arenga palm sugar, harvested from the rainforests of Sulawesi, with sustainably grown cocoa, creating delicious chocolate with caramel notes that is also a force for wildlife conservation.', price: 4, weight: 50, quantity: 3
         }
       ],
-      subtotalBeforePromo: 99.918,
+      subtotalBeforePromo: 0,
       subtotalAfterPromo: null
     }
   }
@@ -38,61 +38,50 @@ export default class App extends React.Component {
     this.setState({ subtotalAfterPromo: newSubtotal });
   };
 
-    render() {
-        return (
-            <div>
-                <EmailSub />
-                <Switch>
-                    <Route exact path="/checkout"
-                    render={props => (
-                      <Checkout {...props} cart={this.state.cart} subtotal={this.state.subtotalBeforePromo}
-                        adjustSubtotal={this.adjustSubtotal}
-                        subtotalAfterPromo={
-                          this.state.subtotalAfterPromo
-                        }
-                      />
-                      )}
-                    />
-                    <Route
-                        exact
-                        path="/"
-                        render={props => (
-                            <div>
-                                <Product
-                                    {...props}
-                                    updateCart={this.updateCart}
-                                    // updateTotal={this.updateTotal}
-                                    cart={this.state.cart}
-                                />
-                                <Cart
-                                    {...props}
-                                    updateCart={this.updateCart}
-                                    // updateTotal={this.updateTotal}
-                                    cart={this.state.cart}
-                                    subtotal={this.state.subtotalBeforePromo}
-                                />
-                            </div>
-                        )}
-                    />
-                    <Route exact path="/admin" component={Admin} />
-                    <Route
-                        exact
-                        path="/promo"
-                        render={props => (
-                            <Promo
-                                {...props}
-                                subtotal={this.state.subtotalBeforePromo}
-                                adjustSubtotal={this.adjustSubtotal}
-                                subtotalAfterPromo={
-                                    this.state.subtotalAfterPromo
-                                }
-                            />
-                        )}
-                    />
-                </Switch>
-                <br/> <br/> <br/>
-                <Footer />
-            </div>
-        );
-    }
+
+  render() {
+    return (
+      <div>
+        <EmailSub />
+        <Switch>
+          <Route exact path="/checkout"
+            render={props => (
+              <Checkout {...props} 
+              cart={this.state.cart} 
+              subtotal={this.state.subtotalBeforePromo}
+              adjustSubtotal={this.adjustSubtotal}
+              subtotalAfterPromo={
+                this.state.subtotalAfterPromo
+              }
+              />
+            )}
+          />
+          <Route exact path="/"
+            render={props => (
+              <div>
+                <Product
+                  {...props}
+                  updateCart={this.updateCart}
+                  // updateTotal={this.updateTotal}
+                  cart={this.state.cart}
+                />
+                <Cart
+                  {...props}
+                  updateCart={this.updateCart}
+                  // updateTotal={this.updateTotal}
+                  cart={this.state.cart}
+                  subtotal={this.state.subtotalBeforePromo}
+                />
+              </div>
+            )}
+          />
+          <Route exact path="/admin" component={Admin} />
+            )}
+          />
+        </Switch>
+        <br/> <br/> <br/>
+        <Footer />
+      </div>
+    );
+  }
 }

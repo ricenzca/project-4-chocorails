@@ -17,37 +17,61 @@ class Checkout extends React.Component {
       del_State: "delstate",
       del_Postcode: 123123,
       del_Country: "delcountry",
-      bill_FirstName: "billfirst",
-      bill_LastName: "billlast",
-      bill_Email: "billemail",
-      bill_Telephone: "billphone",
-      bill_DeliveryAdd1: "billadd1",
-      bill_DeliveryAdd2: "billadd2",
-      bill_City: "billcity",
-      bill_State: "billstate",
-      bill_Postcode: "billpostcode",
-      bill_Country: "billcountry",
+      // bill_FirstName: "billfirst",
+      // bill_LastName: "billlast",
+      // bill_Email: "billemail",
+      // bill_Telephone: "billphone",
+      // bill_DeliveryAdd1: "billadd1",
+      // bill_DeliveryAdd2: "billadd2",
+      // bill_City: "billcity",
+      // bill_State: "billstate",
+      // bill_Postcode: "billpostcode",
+      // bill_Country: "billcountry",
       gst: 0,
       grandTotal: 0,
+      promoId: null,
     }
   }
 
   formInputHandler = (e1, e2) => {
-      console.log("this", e1, e2);
-      console.log("e1 split", "bill_"+e1.split("_")[1])
-      this.setState({["bill_"+e1.split("_")[1]]: e2});
+      this.setState({[e1]: e2});
+      console.log("el",e1,"e2",e2);
   }
 
-  adjustGstAndGrandTotal = (newGST, newGrandTotal) => {
-    console.log("adjustGstAndGrandTotal", newGST, newGrandTotal)
+  // formInputHandler = (e1, e2) => {
+  //     console.log("this", e1, e2);
+  //     console.log("e1 split", "bill_"+e1.split("_")[1])
+  //     this.setState({["bill_"+e1.split("_")[1]]: e2});
+  // }
+
+  componentDidMount () {
+    let newSubtotal = this.props.subtotal;
+    // console.log("newSubtotal",newSubtotal)
+    let newGst = newSubtotal*0.177;
+    let newGrandTotal = Math.round((newSubtotal+newGst+5)*100)/100;
     this.setState({
-      gst: newGST,
+      gst: newGst,
       grandTotal: newGrandTotal,
     })
   }
 
-  printState = async () => {
+  adjustGstAndGrandTotal = (newGst, newGrandTotal) => {
+    console.log("adjustGstAndGrandTotal", newGst, newGrandTotal)
+    this.setState({
+      gst: newGst,
+      grandTotal: newGrandTotal,
+    })
+  }
+
+  setPromoId = (newPromoId) => {
+    this.setState({
+      promoId: newPromoId
+    })
+  }
+
+  submitUserInfo = async () => {
     console.log("del_FirstName", this.state["del_FirstName"]);
+    console.log("promoId",this.state.promoId);
     let csrfToken = $('meta[name="csrf-token"]').attr('content');
     let response = await fetch("/submit", {
       method: "POST",
@@ -70,11 +94,12 @@ class Checkout extends React.Component {
           city: this.state["del_City"],
           contact: this.state["del_Telephone"],
         },
-        order: {
-
-        },
         transaction: {
-
+          ["total_amount"]: this.state.grandTotal,
+          ["promo_id"]: this.state.promoId,
+        },
+        order: {
+          cart: this.props.cart,
         },
       }),
       credentials: 'same-origin'
@@ -85,15 +110,16 @@ class Checkout extends React.Component {
 
   render() {
     // console.log("in checkout component", this.props.cart)
-    console.log("checkout state", this.state)
+    // console.log("checkout state", this.state)
     return (
       <div>
         <div className="container">
           <div className="row">
 
           <div className="col-md-7">
-            <Checkout_details formInputHandler={this.formInputHandler}
-              bill_FirstName={this.state.bill_FirstName}
+            <Checkout_details
+              formInputHandler={this.formInputHandler}
+              // bill_FirstName={this.state.bill_FirstName}
             />
           </div>
           <div className="col-md-5">
@@ -105,8 +131,10 @@ class Checkout extends React.Component {
               gst={this.state.gst}
               grandTotal={this.state.grandTotal}
               adjustGstAndGrandTotal={this.adjustGstAndGrandTotal}
+              setPromoId={this.setPromoId}
             />
-            <Checkout_payments printState={this.printState}/>
+
+            <Checkout_payments submitUserInfo={this.submitUserInfo}/>
           </div>
           </div>
         </div>
@@ -120,7 +148,7 @@ class Checkout_render extends React.Component {
 
     // console.log("in child component", this.props.cart)
     var cartContents = this.props.cart.map((item, index) => {
-      console.log("item",item);
+      // console.log("item",item);
       return (
         <div key={"item"+index}>
         <p>{index+1}. {item.name} {item.quantity} ${item.price.toFixed(2)}</p>
@@ -142,6 +170,7 @@ class Checkout_render extends React.Component {
             this.props.subtotalAfterPromo
           }
           adjustGstAndGrandTotal={this.props.adjustGstAndGrandTotal}
+          setPromoId={this.props.setPromoId}
         />
         <p>GST: ${this.props.gst.toFixed(2)}</p>
         <p>Shipping fee: $5.00</p>
@@ -157,19 +186,17 @@ class Checkout_details extends React.Component {
   constructor () {
     super();
     this.state = {
-      checked: true
+      // checked: true
     }
   }
 
-  handleCheckChange() {
-    {// console.log("checked", this.state.checked)
-      this.setState({ checked: !this.state.checked });
-      //add logic for set billing and delivery details
-    }
-    }
+  // handleCheckChange() {
+  //   {// console.log("checked", this.state.checked)
+  //     this.setState({ checked: !this.state.checked });
+  //   }
+  // }
 
   render() {
-    // console.log("deets", this.props)
     return (
       <div style={styles}>
       <br/>
@@ -203,9 +230,10 @@ class Checkout_details extends React.Component {
 
         <label htmlFor="Country">Country*</label>
         <input type="text" className="form-control" name="del_Country" onChange={(e)=> {this.props.formInputHandler(e.target.name, e.target.value);}}/>
-        <input type="checkbox" onClick={(e)=>{this.handleCheckChange();}} defaultChecked/> <b>Same Billing Address</b>
 
-        { !this.state.checked &&
+        {/*<input type="checkbox" onClick={(e)=>{this.handleCheckChange();}} defaultChecked/> <b>Same Billing Address</b>*/}
+
+        {/* !this.state.checked && 
           <div>
             First name* <input type="text" className="form-control" name="bill_FirstName" value={this.props.bill_FirstName} onChange={(e)=> {this.props.formInputHandler(e.target.name, e.target.value);}}/>
             Last name* <input type="text" className="form-control" name="bill_LastName" onChange={(e)=> {this.props.formInputHandler(e.target.name, e.target.value);}}/>
@@ -218,8 +246,8 @@ class Checkout_details extends React.Component {
             Postcode* <input type="text" className="form-control" name="bill_Postcode" onChange={(e)=> {this.props.formInputHandler(e.target.name, e.target.value);}}/>
 
             Country* <input type="text" className="form-control" name="bill_Country" onChange={(e)=> {this.props.formInputHandler(e.target.name, e.target.value);}}/>
-          </div>
-        }
+          </div> 
+        */}
           </form>
           <br/><br/>
         </div>
@@ -240,7 +268,7 @@ class Checkout_payments extends React.Component {
           <div>
             <Elements>
               <CheckoutForm
-                printState={this.props.printState}
+                submitUserInfo={this.props.submitUserInfo}
               />
             </Elements>
           </div>

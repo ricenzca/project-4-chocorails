@@ -67,10 +67,13 @@ class PromosController < ApplicationController
     puts "validate params"
     p params[:promo]
     @promo = Promo.find_by(code: params[:promo])
+    puts "@promo"
+    p @promo
     if @promo.present?
       puts "promo code present"
       response = { valid: @promo.is_valid?,
-                   discount: @promo.discount
+                   discount: @promo.discount,
+                   promoId: @promo["id"]
                  }
     else
       puts "promo code not present"
@@ -104,16 +107,50 @@ class PromosController < ApplicationController
     p body
     puts "body.customer"
     p body['customer']
+    puts "body.transaction"
+    p body['transaction']
+    puts "body.order"
+    p body['order']
     @customer = Customer.new(body['customer'])
     puts "@customer"
     p @customer
 
     puts "@customer.save"
     if @customer.save
-      response = "submitted successful"
+      puts "customer id"
+      p @customer.id
+      transaction = {customer_id: @customer.id}.merge(body['transaction'])
+      puts "transaction"
+      p transaction
+      transaction = transaction.merge(body['customer'])
+      puts "transaction 2"
+      p transaction
+      @transaction = Transaction.new(transaction)
+      @transaction.save
+      puts "transaction id"
+      @transaction.id
+      orderArray = body['order']['cart'].map {
+        |item|
+        {
+          tranxaction_id: @transaction.id,
+          product_id: item['id'],
+          product_quantity: item['quantity']
+        }
+      }
+      puts "orderArray"
+      p orderArray
+      orderArray.each {
+        |item| 
+        @order = Order.new(item)
+        puts "@order"
+        p @order
+        @order.save
+        puts "saved"
+      }
+      response = "all submissions successful"
       render json: response
     else
-      response = "submission faild"
+      response = "customer info submission failed"
       render json: response
     end
   end

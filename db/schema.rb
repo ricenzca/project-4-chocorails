@@ -31,13 +31,13 @@ ActiveRecord::Schema.define(version: 2019_05_28_051213) do
   end
 
   create_table "orders", force: :cascade do |t|
-    t.bigint "transaction_id"
+    t.bigint "tranxaction_id"
     t.bigint "product_id"
     t.integer "product_quantity"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["product_id"], name: "index_orders_on_product_id"
-    t.index ["transaction_id"], name: "index_orders_on_transaction_id"
+    t.index ["tranxaction_id"], name: "index_orders_on_tranxaction_id"
   end
 
   create_table "products", force: :cascade do |t|
@@ -73,12 +73,9 @@ ActiveRecord::Schema.define(version: 2019_05_28_051213) do
   end
 
   create_table "transactions", force: :cascade do |t|
-    t.integer "quantity"
-    t.string "delivery_address"
+    t.bigint "customer_id"
     t.float "total_amount"
-    t.string "order_number"
     t.bigint "promo_id"
-    t.string "products_purchased"
     t.string "firstname"
     t.string "lastname"
     t.string "email"
@@ -91,6 +88,7 @@ ActiveRecord::Schema.define(version: 2019_05_28_051213) do
     t.string "contact"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["customer_id"], name: "index_transactions_on_customer_id"
     t.index ["promo_id"], name: "index_transactions_on_promo_id"
   end
 
