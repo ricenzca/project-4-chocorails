@@ -32,19 +32,13 @@ class AdminOrders extends React.Component {
             <form action="/orders/create" method="POST" style={this.state}>
                 <label> quantity  </label>
                 <label> Transaction ID  </label>
-                <input type="number" name="transaction_id" className="form-control"/>
+                <input type="number" name="tranxaction_id" className="form-control"/>
 
                 <label> Product ID  </label>
                 <input type="text" name="product_id" className="form-control"/>
 
                 <label> Product Qty  </label>
-                <input type="text" name="product_qty" className="form-control"/>
-
-                <label> Order Number  </label>
-                <input type="text" name="order_number" className="form-control"/>
-
-                <label> Promo ID  </label>
-                <input type="text" name="promo_id" className="form-control"/> <br/>
+                <input type="text" name="product_quantity" className="form-control"/>
 
                 <input type="submit" className="btn-primary btn-block"/>
             </form>

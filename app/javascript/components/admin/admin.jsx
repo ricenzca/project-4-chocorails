@@ -244,9 +244,9 @@ class Admin extends React.Component {
         return (
             <tr>
             <td key={index}> Order Id:{order.id} </td>
-            <td> {order.transaction_id}</td>
+            <td> {order.tranxaction_id}</td>
             <td> {order.product_id}</td>
-            <td> {order.product_qty}</td>
+            <td> {order.product_quantity}</td>
             <td> <a href={"/orders/" + (index+1) + "/edit"}> <button className="btn btn-warning"> Edit Order </button> </a> </td>
             </tr>
             )
@@ -284,7 +284,7 @@ class Admin extends React.Component {
     });
 
     return( <React.Fragment>
-        <div style={{backgroundColor:'blue', color:'white', padding: 8}}>
+        <div style={{backgroundColor:'', color:'', padding: 8}}>
         <h1 style={{textAlign:'center   '}}> Admin Backend </h1>
         <div className="row" >
             <h2 className="col-md-3" onClick={this.productList}> Products </h2>
@@ -292,7 +292,7 @@ class Admin extends React.Component {
             <h2 className="col-md-3" onClick={this.customerList}> Customers </h2>
             <h2 className="col-md-3" onClick={this.promoList}> Promos </h2>
         </div>
-          <table className="table" style={{backgroundColor:'pink'}}>
+          <table className="table" style={{backgroundColor:''}}>
             <thead class="thead-dark" style={this.state.productDisplay}>
                 <tr>
                   <th>id</th>
@@ -352,7 +352,7 @@ class Admin extends React.Component {
           {promos}
           </table>
         </div>
-              <div className="row" style={{backgroundColor: 'green', color: 'white', padding: 8}}>
+              <div className="row" style={{backgroundColor: '', color: '', padding: 8}}>
                   <AdminProducts /> <br/>
                   <AdminOrders /> <br/>
                   <AdminCustomers /> <br/>

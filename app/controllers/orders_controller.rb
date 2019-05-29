@@ -64,15 +64,12 @@ class OrdersController < ApplicationController
 
   def admincreate
 
-    redirect_to '/admin'
 
     @tranxaction_id = params[:tranxaction_id]
     @product_id = params[:product_id]
-    @product_qty = params[:product_quantity]
-    @order_number = params[:order_number]
-    @promo_id = params[:promo_id]
+    @product_quantity = params[:product_quantity]
 
-    @order = Order.new(tranxaction_id:@tranxaction_id, product_id:@promo_id, product_quantity:@product_qty, order_number:@order_number, promo_id:@promo_id)
+    @order = Order.new(tranxaction_id:@tranxaction_id, product_id:@promo_id, product_quantity:@product_qty)
     @order.save
 
   end
