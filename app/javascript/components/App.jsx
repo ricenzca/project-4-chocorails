@@ -7,6 +7,7 @@ import Admin from "./admin/admin";
 import EmailSub from "./emailsub/emailsub";
 import Promo from "./promo/promo";
 import Cart from "./cart/cart";
+import Footer from "./footer/footer";
 
 export default class App extends React.Component {
   constructor() {
@@ -89,6 +90,7 @@ export default class App extends React.Component {
                         )}
                     />
                 </Switch>
+                <Footer />
             </div>
         );
     }

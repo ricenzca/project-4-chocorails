@@ -32,7 +32,7 @@ class EmailSub extends React.Component {
             console.log('email',this.state.email);
 
             this.setState ({
-                 promo: ' your promo code is CHOCOBALL',
+                 promo: ' your promo code is WELCOME10%',
                     style: {
                     display: "none"
                 }

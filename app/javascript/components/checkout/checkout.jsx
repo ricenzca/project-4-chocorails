@@ -90,19 +90,24 @@ class Checkout extends React.Component {
       <div>
         <div className="container">
           <div className="row">
-            <Checkout_render 
-              cart={this.props.cart} 
+
+          <div className="col-md-7">
+            <Checkout_details formInputHandler={this.formInputHandler}
+              bill_FirstName={this.state.bill_FirstName}
+            />
+          </div>
+          <div className="col-md-5">
+            <Checkout_render
+              cart={this.props.cart}
               subtotal={this.props.subtotal}
-              adjustSubtotal={this.props.adjustSubtotal} 
+              adjustSubtotal={this.props.adjustSubtotal}
               subtotalAfterPromo={this.props.subtotalAfterPromo}
               gst={this.state.gst}
               grandTotal={this.state.grandTotal}
               adjustGstAndGrandTotal={this.adjustGstAndGrandTotal}
             />
-            <Checkout_details formInputHandler={this.formInputHandler}
-              bill_FirstName={this.state.bill_FirstName}
-            />
             <Checkout_payments printState={this.printState}/>
+          </div>
           </div>
         </div>
       </div>
@@ -126,7 +131,7 @@ class Checkout_render extends React.Component {
 
 
     return (
-      <div className="col-md-4" style={styles}>
+      <div style={styles}>
         <br/>
         <h3>Cart Contents</h3>
         <div>{cartContents}</div>
@@ -166,7 +171,7 @@ class Checkout_details extends React.Component {
   render() {
     // console.log("deets", this.props)
     return (
-      <div className="col-md-4" style={styles}>
+      <div style={styles}>
       <br/>
       <h3>Delivery address</h3>
       <p className="font-weight-bold">* fields are mandatory</p>
@@ -200,7 +205,7 @@ class Checkout_details extends React.Component {
         <input type="text" className="form-control" name="del_Country" onChange={(e)=> {this.props.formInputHandler(e.target.name, e.target.value);}}/>
         <input type="checkbox" onClick={(e)=>{this.handleCheckChange();}} defaultChecked/> <b>Same Billing Address</b>
 
-        { !this.state.checked && 
+        { !this.state.checked &&
           <div>
             First name* <input type="text" className="form-control" name="bill_FirstName" value={this.props.bill_FirstName} onChange={(e)=> {this.props.formInputHandler(e.target.name, e.target.value);}}/>
             Last name* <input type="text" className="form-control" name="bill_LastName" onChange={(e)=> {this.props.formInputHandler(e.target.name, e.target.value);}}/>
@@ -213,9 +218,10 @@ class Checkout_details extends React.Component {
             Postcode* <input type="text" className="form-control" name="bill_Postcode" onChange={(e)=> {this.props.formInputHandler(e.target.name, e.target.value);}}/>
 
             Country* <input type="text" className="form-control" name="bill_Country" onChange={(e)=> {this.props.formInputHandler(e.target.name, e.target.value);}}/>
-          </div> 
+          </div>
         }
           </form>
+          <br/><br/>
         </div>
         );
   }
@@ -227,7 +233,7 @@ class Checkout_payments extends React.Component {
 
   render() {
     return (
-      <div className="col-md-4" style={styles}>
+      <div style={styles}>
         <br/>
         <h3>Payments component</h3>
         <StripeProvider apiKey="pk_test_uVhVvUx1HCpcDK0OY2FyWFHc00p54aslpX">
@@ -247,6 +253,7 @@ class Checkout_payments extends React.Component {
 const styles = {
   boxSizing: "border-box",
   backgroundColor : "pink",
+  padding: 20
 }
 
 export default Checkout;

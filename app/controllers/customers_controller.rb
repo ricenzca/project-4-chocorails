@@ -43,7 +43,7 @@ class CustomersController < ApplicationController
   def update
     respond_to do |format|
       if @customer.update(customer_params)
-        format.html { redirect_to @customer, notice: 'Customer was successfully updated.' }
+        format.html { redirect_to '/admin', notice: 'Customer was successfully updated.' }
         format.json { render :show, status: :ok, location: @customer }
       else
         format.html { render :edit }
@@ -76,15 +76,19 @@ class CustomersController < ApplicationController
       format.json { head :no_content }
     end
 
+    @firstname = params[:firstname]
+    @lastname = params[:lastname]
     @email = params[:email]
-    @address = params[:address]
+    @address1 = params[:address1]
+    @address2 = params[:address2]
     @postal_code = params[:postal_code]
     @country = params[:country]
     @city = params[:city]
     @contact = params[:contact]
 
-    @customer = Customer.new(email:@email, address:@address, postal_code:@postal_code, country:@country, city:@city, contact:@contact)
+    @customer = Customer.new(firstname:@firstname, lastname:@lastname, email:@email, address1:@address1, address2:@address2, postal_code:@postal_code, country:@country, city:@city, contact:@contact)
     @customer.save
+
 
   end
 
@@ -96,7 +100,7 @@ class CustomersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def customer_params
-      params.require(:customer).permit(:email, :address, :postal_code, :country, :city, :contact)
+      params.require(:customer).permit(:firstname, :lastname, :email, :address1, :address2, :postal_code, :country, :city, :contact)
     end
 
     def subscribe_params
