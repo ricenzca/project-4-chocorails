@@ -84,7 +84,6 @@ test:
 production:
   <<: *default
   database: chocorails_production
-  username: chocorails
-  password: <%= ENV['CHOCORAILS_DATABASE_PASSWORD'] %>
-
   username: postgres
+  # username: chocorails
+  password: <%= ENV['CHOCORAILS_DATABASE_PASSWORD'] %>
