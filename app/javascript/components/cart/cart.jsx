@@ -198,7 +198,7 @@ class Cart extends React.Component {
                                 ) : (
                                   <div>
                                     {/*<Link className={"btn btn-primary link"} onClick={this.closeModal} to="/checkout">Checkout</Link>*/}
-                                    <Link className={"btn cart-checkout"} onClick={this.closeModal} to="/checkout">Checkout</Link>
+                                    <Link className={"btn cart-checkout link"} onClick={this.closeModal} to="/checkout">Checkout</Link>
                                   </div>
                                 )}
                             </div>
