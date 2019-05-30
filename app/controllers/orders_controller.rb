@@ -23,7 +23,7 @@ class OrdersController < ApplicationController
     }
     puts "@order"
     p @order
-    @product = Product.joins(:order).select("products.*, orders.*").where(id: @order)
+    @product = Product.joins(:order).select("products.*, orders.*").where(order_number: @order)
     puts "@product"
     p @product
     render json: @product

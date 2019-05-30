@@ -36,10 +36,12 @@ class Promo extends React.Component {
 			adjustSubtotal(newSubtotal);
 
 			let newGst = newSubtotal*0.07;
-			console.log("newSubtotal",newSubtotal);
+			if (newSubtotal===0) newGst=0;
 			console.log("newGst",newGst);
-			if (newSubtotal=0) newGst=0;  
-			let newGrandTotal = Math.round((newSubtotal+newGst+5)*100)/100;
+			console.log("newGst",typeof(newGst));
+			console.log("newSubtotal",newSubtotal);
+			console.log("typeof newSubtotal",typeof(newSubtotal));
+			let newGrandTotal = Math.floor((newSubtotal+newGst+5)*100)/100;
 			console.log("newGrandTotal", newGrandTotal);
 			adjustGstAndGrandTotal(newGst, newGrandTotal);
 
