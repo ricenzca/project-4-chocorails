@@ -77,12 +77,17 @@ body h1, body h4 {
 /* Checkout*/
 
 a:hover {
-	text-decoration: none !important;
-	background: none;
+	/*text-decoration: none !important;*/
+	/*background: none;*/
+	background-color: rgb(238, 132, 52) !important;
 }
 
 .link:visited {
-	color: white !important;
+	color: white;
+}
+
+.link:hover {
+	color: #212529;
 }
 
 

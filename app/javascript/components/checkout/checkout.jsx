@@ -245,7 +245,7 @@ class Checkout_render extends React.Component {
           <p className="bold">Shipping fee: $5.00</p>
           <p className="bold">Grand Total: ${this.props.grandTotal.toFixed(2)}</p>
         </div>
-        <Link className={"btn btn-primary btn-sm link"} to="/">Back to Main</Link>
+        <Link className={"btn cart-checkout btn-sm link"} to="/">Back to Main</Link>
       </div>
     );
   }
@@ -378,10 +378,10 @@ class Checkout_payments extends React.Component {
 }
 
 const styles = {
-  boxSizing: "border-box",
-  backgroundColor : "rgb(243, 243, 243)",
+  // boxSizing: "border-box",
+  backgroundColor : "#f8f8f8",
   padding: 20,
-  borderBottom: '2px solid white'
+  marginBottom: '1rem'
 }
 
 export default Checkout;
