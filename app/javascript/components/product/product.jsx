@@ -86,19 +86,27 @@ class Product extends React.Component {
                                 <div
                                     className="card col-md-4 product-card"
                                     key={"choc_" + index}
-                                    style={{backgroundColor:'#f6f0e9', padding: 10}}
-                                    // data-toggle="collapse"
+                                    style={{backgroundColor:'#f6f0e9', paddingTop:15}}
+                                    data-toggle="collapse"
+                                    data-target={"#choco" + (index + 1)}
                                 >
                                     <img
                                         className="card-img-top"
                                         src={product.img_url}
                                         href={"#choco" + (index + 1)}
-                                        data-toggle="collapse"
+                                        // data-toggle="collapse"
+                                        // data-target={"#choco" + (index + 1)}
                                         style={{borderRadius: 8}}
                                     />
+                                    <div className="overlay">
+                                        <div className="text">
+                                            {product.desc}
+                                        </div>
+                                    </div>
+
 
                                     <div className="card-body">
-                                        <h5 className="card-title" style={{color:'#62aaa7'}}>
+                                        <h5 className="card-title" style={{color:'#62aaa7', fontSize:'1.4rem'}}>
                                             {product.name} {product.weight}g
                                         </h5>
                                         <p className="card-text" style={{color:'#62aaa7'}}>
