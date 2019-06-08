@@ -120,39 +120,40 @@ class Checkout extends React.Component {
   render() {
 
     if (this.state.orderNumber) {
-      
+
       return (
-        <div style={{height: "80vh"}}>
+        <div style={{backgroundColor:'#f6f6f6'}}>
           <div className="sticky-top">
               <nav
                   style={{
-                      backgroundColor: "rgb(63, 62, 58)",
+                      backgroundColor: "rgb(54, 54, 54)",
+                      padding: 10
                   }}
               >
                   <a href="/" >
-                    <h1 className="d-inline" style={{color: "white"}}>
-                        Choco on Rails
+                    <h1 className="d-inline" style={{color: "#62aaa7"}}>
+                        Choco React
                     </h1>
                   </a>
               </nav>
           </div>
-          <div className="text-center mt-3">
-            <h5>Thank you for placing your order with us!<br/>
+          <div className="d-flex flex-column justify-content-center align-items-center" style={{height:'100vh'}}>
+            <h5 className="text-center">Thank you for placing your order with us!<br/>
             Your order number is {this.state.orderNumber}<br/>
             </h5>
             <a href="/" >
-              <h5 className="bold">
+              <h5 className="bold" style={{color: "#62aaa7"}}>
                   Return to home
               </h5>
             </a>
           </div>
         </div>
       )
-    
+
     } else {
 
       return (
-        <div>
+        <div style={{backgroundColor:'#f6f6f6'}}>
           <div className="container">
             <div className="row">
 
@@ -245,7 +246,7 @@ class Checkout_render extends React.Component {
           <p className="bold">Shipping fee: $5.00</p>
           <p className="bold">Grand Total: ${this.props.grandTotal.toFixed(2)}</p>
         </div>
-        <Link className={"btn cart-checkout btn-sm link"} to="/">Back to Main</Link>
+        <Link className={"btn btn-success btn-sm link"} to="/">Back to Main</Link>
       </div>
     );
   }
@@ -285,19 +286,19 @@ class Checkout_details extends React.Component {
         />
 
         <p className="formlabel">Email Address*</p>
-        <input type="text" className="form-control" name="del_Email" 
+        <input type="text" className="form-control" name="del_Email"
           value={this.props["del_Email"]}
           onChange={(e)=> {this.props.formInputHandler(e.target.name, e.target.value);}}
         />
 
         <p className="formlabel">Telephone*</p>
-        <input type="text" className="form-control" name="del_Telephone" 
+        <input type="text" className="form-control" name="del_Telephone"
           value={this.props["del_Telephone"]}
           onChange={(e)=> {this.props.formInputHandler(e.target.name, e.target.value);}}
         />
 
         <p className="formlabel">Delivery Address*</p>
-        <input type="text" className="form-control noMarginBottom" name="del_DeliveryAdd1" 
+        <input type="text" className="form-control noMarginBottom" name="del_DeliveryAdd1"
           value={this.props["del_DeliveryAdd1"]}
           onChange={(e)=> {this.props.formInputHandler(e.target.name, e.target.value);}}
         />
@@ -307,13 +308,13 @@ class Checkout_details extends React.Component {
         />
 
         <p className="formlabel">City/Town*</p>
-        <input type="text" className="form-control" name="del_City" 
+        <input type="text" className="form-control" name="del_City"
           value={this.props["del_City"]}
           onChange={(e)=> {this.props.formInputHandler(e.target.name, e.target.value);}}
         />
 
         <p className="formlabel">State/Territory</p>
-        <input type="text" className="form-control" name="del_State" 
+        <input type="text" className="form-control" name="del_State"
           value={this.props["del_State"]}
           onChange={(e)=> {this.props.formInputHandler(e.target.name, e.target.value);}}
         />
@@ -325,14 +326,14 @@ class Checkout_details extends React.Component {
         />
 
         <p className="formlabel">Country*</p>
-        <input type="text" className="form-control noMarginBottom" name="del_Country" 
+        <input type="text" className="form-control noMarginBottom" name="del_Country"
           value={this.props["del_Country"]}
           onChange={(e)=> {this.props.formInputHandler(e.target.name, e.target.value);}}
         />
 
         {/*<input type="checkbox" onClick={(e)=>{this.handleCheckChange();}} defaultChecked/> <b>Same Billing Address</b>*/}
 
-        {/* !this.state.checked && 
+        {/* !this.state.checked &&
           <div>
             First name* <input type="text" className="form-control" name="bill_FirstName" value={this.props.bill_FirstName} onChange={(e)=> {this.props.formInputHandler(e.target.name, e.target.value);}}/>
             Last name* <input type="text" className="form-control" name="bill_LastName" onChange={(e)=> {this.props.formInputHandler(e.target.name, e.target.value);}}/>
@@ -345,7 +346,7 @@ class Checkout_details extends React.Component {
             Postcode* <input type="text" className="form-control" name="bill_Postcode" onChange={(e)=> {this.props.formInputHandler(e.target.name, e.target.value);}}/>
 
             Country* <input type="text" className="form-control" name="bill_Country" onChange={(e)=> {this.props.formInputHandler(e.target.name, e.target.value);}}/>
-          </div> 
+          </div>
         */}
           </form>
           <br/><br/>
@@ -379,7 +380,7 @@ class Checkout_payments extends React.Component {
 
 const styles = {
   // boxSizing: "border-box",
-  backgroundColor : "#f8f8f8",
+  backgroundColor : "#f6f0e9",
   padding: 20,
   marginBottom: '1rem'
 }

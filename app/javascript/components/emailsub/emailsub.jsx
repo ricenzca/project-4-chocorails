@@ -7,8 +7,7 @@ class EmailSub extends React.Component {
             email: "",
             promo: "",
             style: {
-                display: "",
-                width: 300
+                display: ""
             }
         };
 
@@ -28,7 +27,7 @@ class EmailSub extends React.Component {
             console.log("email", this.state.email);
 
             this.setState({
-                promo: " your promo code is WELCOME10%",
+                promo: " Your Promo Code is WELCOME10%",
                 style: {
                     display: "none"
                 }
@@ -42,12 +41,21 @@ class EmailSub extends React.Component {
     }
 
     render() {
+        const inputStyle = {
+            width:270,
+            borderRadius:4,
+            border:'none',
+            padding:5,
+            backgroundColor: '#f6f6f6',
+            color:'black',
+            outline:'none'
+        }
         return (
             <div
                 style={{
-                    backgroundColor: "black",
+                    backgroundColor: "rgb(54,54,54)",
                     color: "white",
-                    paddingTop: 6,
+                    paddingTop: 15,
                     paddingBottom: 2,
                     textAlign: "center"
                 }}
@@ -57,7 +65,7 @@ class EmailSub extends React.Component {
                         type="email"
                         value={this.state.email}
                         onChange={this.onChangeHandler}
-                        style={this.state.style}
+                        style={{...this.state.style, ...inputStyle}}
                         name="email"
                         placeholder="Subscribe to get 10% Off!"
                         noValidate
@@ -65,9 +73,9 @@ class EmailSub extends React.Component {
                     />
                     <button
                         type="submit"
-                        style={this.state.style}
+                        style={{...this.state.style, ...{marginLeft:3}}}
                         onClick={this.onClickHandler}
-                        className="btn-primary"
+                        className="btn btn-outline-danger btn-sm"
                     >
                         {" "}
                         Submit{" "}
