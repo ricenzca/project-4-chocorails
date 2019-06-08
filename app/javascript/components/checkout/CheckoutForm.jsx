@@ -47,7 +47,7 @@ class CheckoutForm extends Component {
         <br/>
         <CardElement style={{base: {fontSize: '16px'}}}  />
         <br/>
-        <button className="btn btn-sm cart-checkout" onClick={()=>this.submit(this.props.submitUserInfo)}>Confirm payment</button>
+        <button className="btn btn-sm btn-success" onClick={()=>this.submit(this.props.submitUserInfo)}>Confirm payment</button>
       </div>
     );
   }
