@@ -440,7 +440,7 @@ class Admin extends React.Component {
           </table>
           <div className="d-flex flex-column" style={{position: "fixed", top: 0, right: 0,zIndex: 1}}>
           <Link className={"btn btn-warning border"} style={{}}  to="/add-product">Add Product</Link>
-          <Link className={"btn btn-warning border"} to="/add-promo">Add</Link>
+          <Link className={"btn btn-warning border"} to="/add-promo">Add Promo</Link>
           </div>
       </div>
           );

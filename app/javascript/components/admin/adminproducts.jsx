@@ -27,6 +27,7 @@ class AdminProducts extends React.Component {
 
   render(){
     return(
+      <div className="d-flex justify-content-center">
         <div className="mx-5 p-5 w-50">
             <h3 className="mb-3 font-weight-bold" onClick={this.visibleState}> Add Product  </h3>
             <form action="/products/create" method="POST" style={this.state}>
@@ -54,11 +55,13 @@ class AdminProducts extends React.Component {
                 <label> Weight  </label>
                 <input type="text" name="weight" className="form-control"/> <br/>
                 
-                <div className="text-right">
-                    <input type="submit" className="btn btn-primary"/>
+                <div className="text-center">
+                    <a class="btn btn-warning mr-4" href="/admin">Back</a>
+                    <input type="submit" className="btn btn-success"/>
                 </div>
             </form>
         </div>
+      </div>
     )
   }
 }
