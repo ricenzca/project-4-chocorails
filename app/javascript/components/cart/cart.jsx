@@ -188,7 +188,7 @@ class Cart extends React.Component {
                             <div className="modal-footer">
                                 <button
                                     type="button"
-                                    className="btn close-btn"
+                                    className="btn btn-danger"
                                     data-dismiss="modal"
                                 >
                                     Close
@@ -198,7 +198,7 @@ class Cart extends React.Component {
                                 ) : (
                                   <div>
                                     {/*<Link className={"btn btn-primary link"} onClick={this.closeModal} to="/checkout">Checkout</Link>*/}
-                                    <Link className={"btn cart-checkout link"} onClick={this.closeModal} to="/checkout">Checkout</Link>
+                                    <Link className={"btn btn-success"} onClick={this.closeModal} to="/checkout" style={{color:'white'}}>Checkout</Link>
                                   </div>
                                 )}
                             </div>

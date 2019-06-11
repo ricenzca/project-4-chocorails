@@ -37,7 +37,10 @@ export default class App extends React.Component {
 
     render() {
         const buttonStyle = {
-            float: "right"
+            float: "right",
+            marginTop: 5,
+            backgroundColor: '#b82b21',
+            color: '#f6f6f6'
         };
         return (
             <div className="bg-main">
@@ -61,20 +64,22 @@ export default class App extends React.Component {
                         exact
                         path="/"
                         render={props => (
-                            <div>
+                            <div >
                                 <div className="sticky-top">
                                     <EmailSub />
                                     <nav
                                         style={{
-                                            backgroundColor: "#822E81",
-                                            color: "white"
+                                            backgroundColor: "#f6f6f6",
+                                            color: "#b82b21",
+                                            paddingLeft: 7,
+                                            paddingRight: 7
                                         }}
                                     >
-                                        <h1 className="d-inline">
-                                            Choco on Rails
+                                        <h1 className="d-inline" style={{color:'#62aaa7'}}>
+                                            Choco React
                                         </h1>
                                         <button
-                                            className="btn cart-btn"
+                                            className="btn"
                                             data-toggle="modal"
                                             data-target="#exampleModal"
                                             style={buttonStyle}
@@ -100,7 +105,7 @@ export default class App extends React.Component {
                     <Route exact path="/admin" component={Admin} />
                     )} />
                 </Switch>
-                <br /> <br /> <br />
+
                 <Footer />
             </div>
         );

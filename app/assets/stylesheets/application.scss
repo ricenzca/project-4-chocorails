@@ -19,15 +19,14 @@
 /* Products */
 
 body {
-	font-family: 'Lora', serif;
+	font-family: 'Josefin Sans', sans-serif;
 }
 
 body h1, body h4 {
-	font-family: 'Abril Fatface', cursive;
+	font-family: 'Josefin Sans', sans-serif;
 }
 
 .card {
-	padding: 20px;
 	align-items: center;
 	background-color: rgb(248, 248, 248);
 	height: 400px;
@@ -39,17 +38,8 @@ body h1, body h4 {
 }
 
 .card-body {
-	position: absolute;
-	bottom: 0;
-	background: -webkit-linear-gradient(
-		bottom,
-		rgba(255, 255, 255, 0.7),
-		rgba(255, 255, 255, 0.2)
-	);
-	color: black;
-	padding: 0;
-	height: 120px;
-	width: 95%;
+	padding: 15px 0 0 0;
+	width: 300px;
 	text-align: center;
 }
 
@@ -72,14 +62,43 @@ body h1, body h4 {
 	text-align: center;
 }
 
+.overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 67%;
+  width: 100%;
+  opacity: 0;
+  transition: 0.8s ease;
+  background-color: #62aaa7;
+  overflow: auto;
+}
 
+.card:hover .overlay {
+  opacity: 0.7;
+}
+
+.text {
+  color: black;
+  font-size: 1rem;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  width: 300px;
+  padding-top: 25px;
+  padding-bottom: 10px;
+}
 
 /* Checkout*/
 
 a:hover {
 	/*text-decoration: none !important;*/
 	/*background: none;*/
-	background-color: rgb(238, 132, 52) !important;
+	/*background-color: rgb(238, 132, 52) !important;*/
 }
 
 .link:visited {
@@ -87,7 +106,7 @@ a:hover {
 }
 
 .link:hover {
-	color: #212529;
+	/*color: #212529;*/
 }
 
 

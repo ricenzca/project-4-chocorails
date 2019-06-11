@@ -81,24 +81,35 @@ class Product extends React.Component {
             return (
                 <div>
                     <div className="container-fluid">
-                        <div className="row">
+                        <div className="row" style={{backgroundColor:'#f6f6f6'}}>
                             {products.map((product, index) => (
                                 <div
                                     className="card col-md-4 product-card"
                                     key={"choc_" + index}
+                                    style={{backgroundColor:'#f6f0e9', paddingTop:15}}
+                                    data-toggle="collapse"
+                                    data-target={"#choco" + (index + 1)}
                                 >
                                     <img
                                         className="card-img-top"
                                         src={product.img_url}
-                                        data-toggle="collapse"
                                         href={"#choco" + (index + 1)}
+                                        // data-toggle="collapse"
+                                        // data-target={"#choco" + (index + 1)}
+                                        style={{borderRadius: 8}}
                                     />
+                                    <div className="overlay">
+                                        <div className="text">
+                                            {product.desc}
+                                        </div>
+                                    </div>
+
 
                                     <div className="card-body">
-                                        <h4 className="card-title">
-                                            {product.name}
-                                        </h4>
-                                        <p className="card-text">
+                                        <h5 className="card-title" style={{color:'#62aaa7', fontSize:'1.4rem'}}>
+                                            {product.name} {product.weight}g
+                                        </h5>
+                                        <p className="card-text" style={{color:'#62aaa7'}}>
                                             ${product.price.toFixed(2)}
                                         </p>
                                         <div
@@ -107,6 +118,7 @@ class Product extends React.Component {
                                         >
                                             <button
                                                 className="btn-block product-btn"
+                                                style={{backgroundColor: '#b82b21'}}
                                                 onClick={() =>
                                                     //Pass in the following from <App />
                                                     this.addChocolatesToCart(

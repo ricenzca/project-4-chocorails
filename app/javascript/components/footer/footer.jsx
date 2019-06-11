@@ -13,9 +13,8 @@ class Footer extends React.Component {
 export default Footer;
 
 const styles = {
-    backgroundColor: "black",
+    backgroundColor: "#363636",
     color: "white",
     padding: 16,
-    textAlign: "center",
-    marginTop: 24
+    textAlign: "center"
 };
