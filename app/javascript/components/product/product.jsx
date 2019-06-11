@@ -119,6 +119,7 @@ class Product extends React.Component {
                                             <button
                                                 className="btn-block product-btn"
                                                 style={{backgroundColor: '#b82b21', position: "absolute", bottom: 10, left: 0}}
+
                                                 onClick={() =>
                                                     //Pass in the following from <App />
                                                     this.addChocolatesToCart(

@@ -121,7 +121,9 @@ class Checkout extends React.Component {
   render() {
 
     if (this.state.orderNumber) {
+
       let orderSummaryUrl = `/orders/${this.state.orderNumber}`
+
       return (
         <div style={{backgroundColor:'#f6f6f6'}}>
           <div className="sticky-top">
