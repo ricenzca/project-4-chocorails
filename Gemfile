@@ -44,7 +44,7 @@ gem 'jquery-rails'
 
 gem 'rack-cors'
 
-gem 'stripe-rails'
+# gem 'stripe-rails'
 
 
 group :development, :test do

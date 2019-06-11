@@ -141,7 +141,6 @@ td {
 /* Admin */
 
 .transaction-show {
-	max-width: 500px;
 	margin: 0 auto;
 }
 
@@ -165,4 +164,10 @@ td {
 .close-btn {
 	background-color: #C95D63;
 	color: white;
+}
+
+.back-btn {
+	position: fixed;
+	bottom: 0;
+	right: 0;
 }

@@ -14,12 +14,12 @@ class Promo extends React.Component {
 		const response = await fetch(`/promo/${newInput}`);
 		const data = await response.json();
 		console.log("data",data);
-
+		console.log("subtotal",subtotal);
 		if (data.valid) {
 			let newSubtotal;
 			console.log("data.discount",data.discount);
 			if (data.discount.percent) {
-				newSubtotal = (100-data.discount.amount)/100*subtotal;
+				newSubtotal = Math.round((100-data.discount.amount)/100*subtotal*100)/100;
 				console.log("newSubtotal after % discount",newSubtotal);
 			} else {
 				newSubtotal = subtotal-data.discount.amount;
@@ -33,15 +33,16 @@ class Promo extends React.Component {
 			setPromoId(newPromoId);
 			
 			if (newSubtotal<0) newSubtotal=0;
+			console.log("newSubtotal",newSubtotal);
 			adjustSubtotal(newSubtotal);
 
-			let newGst = newSubtotal*0.07;
+			let newGst = Math.round((newSubtotal*0.07)*100)/100;
 			if (newSubtotal===0) newGst=0;
 			console.log("newGst",newGst);
 			console.log("newGst",typeof(newGst));
 			console.log("newSubtotal",newSubtotal);
 			console.log("typeof newSubtotal",typeof(newSubtotal));
-			let newGrandTotal = Math.floor((newSubtotal+newGst+5)*100)/100;
+			let newGrandTotal = newSubtotal+newGst+5;
 			console.log("newGrandTotal", newGrandTotal);
 			adjustGstAndGrandTotal(newGst, newGrandTotal);
 
@@ -49,10 +50,10 @@ class Promo extends React.Component {
 			this.setState({codeValidationMessage:"Promo code not valid"});
 
 			adjustSubtotal(subtotal);
-			let newGst = subtotal*0.07;
+			let newGst = Math.round((subtotal*0.07)*100)/100;
 			console.log("subtotal",subtotal);
 			console.log("newGst",newGst);
-			let newGrandTotal = Math.round((subtotal+newGst+5)*100)/100;
+			let newGrandTotal = subtotal+newGst+5;
 			console.log("newGrandTotal", newGrandTotal);
 			adjustGstAndGrandTotal(newGst, newGrandTotal);
 		}
@@ -72,7 +73,7 @@ class Promo extends React.Component {
 	render () {
 
 		let subtotalToDisplay;
-		if (this.props.subtotalAfterPromo) {
+		if (this.props.subtotalAfterPromo !== null) {
 			subtotalToDisplay = this.props.subtotalAfterPromo;
 		} else {
 			subtotalToDisplay = this.props.subtotal;

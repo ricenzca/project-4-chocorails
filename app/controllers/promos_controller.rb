@@ -41,6 +41,10 @@ class PromosController < ApplicationController
   # PATCH/PUT /promos/1
   # PATCH/PUT /promos/1.json
   def update
+
+    puts "update params"
+    p promo_params
+    
     respond_to do |format|
       if @promo.update(promo_params)
         format.html { redirect_to '/admin', notice: 'Promo was successfully updated.' }
@@ -119,13 +123,13 @@ class PromosController < ApplicationController
     if @customer.save
       puts "customer id"
       p @customer.id
-      transaction = {customer_id: @customer.id}.merge(body['transaction'])
+      tranxaction = {customer_id: @customer.id}.merge(body['transaction'])
       puts "transaction"
-      p transaction
-      transaction = transaction.merge(body['customer'])
-      puts "transaction 2"
-      p transaction
-      @transaction = Transaction.new(transaction)
+      p tranxaction
+      tranxaction = tranxaction.merge(body['customer'])
+      puts "tranxaction 2"
+      p tranxaction
+      @transaction = Tranxaction.new(tranxaction)
       @transaction.save
 
       #update the products ordered in the order table

@@ -1,6 +1,6 @@
-class CreateTransactions < ActiveRecord::Migration[5.2]
+class CreateTranxactions < ActiveRecord::Migration[5.2]
   def change
-    create_table :transactions do |t|
+    create_table :tranxactions do |t|
     	t.references :customer
         t.float :total_amount
     	t.references :promo
@@ -14,6 +14,7 @@ class CreateTransactions < ActiveRecord::Migration[5.2]
     	t.string :country
     	t.string :city
     	t.string :contact
+        t.string :status, default: "pending"
     	t.timestamps
     end
   end
