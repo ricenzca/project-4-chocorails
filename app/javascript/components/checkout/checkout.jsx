@@ -53,9 +53,9 @@ class Checkout extends React.Component {
 
   componentDidMount () {
     let newSubtotal = this.props.subtotal;
-    // console.log("newSubtotal",newSubtotal)
-    let newGst = newSubtotal*0.07;
-    let newGrandTotal = Math.round((newSubtotal+newGst+5)*100)/100;
+    console.log("newSubtotal",newSubtotal)
+    let newGst = Math.round((newSubtotal*0.07)*100)/100;
+    let newGrandTotal = newSubtotal+newGst+5;
     this.setState({
       gst: newGst,
       grandTotal: newGrandTotal,

@@ -73,7 +73,7 @@ ActiveRecord::Schema.define(version: 2019_05_28_051213) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "transactions", force: :cascade do |t|
+  create_table "tranxactions", force: :cascade do |t|
     t.bigint "customer_id"
     t.float "total_amount"
     t.bigint "promo_id"
@@ -87,10 +87,11 @@ ActiveRecord::Schema.define(version: 2019_05_28_051213) do
     t.string "country"
     t.string "city"
     t.string "contact"
+    t.string "status", default: "pending"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["customer_id"], name: "index_transactions_on_customer_id"
-    t.index ["promo_id"], name: "index_transactions_on_promo_id"
+    t.index ["customer_id"], name: "index_tranxactions_on_customer_id"
+    t.index ["promo_id"], name: "index_tranxactions_on_promo_id"
   end
 
 end

@@ -8,8 +8,8 @@ class CartElement extends React.Component {
     render() {
         var cartElements = this.props.cart.map((element, index) => {
             return (
-                <div>
-                    <div key={index} className="row">
+                <div key={index} >
+                    <div className="row">
                         <div className="col-md-2">
                             <img
                                 src={element.img_url}

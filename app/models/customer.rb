@@ -3,7 +3,7 @@ require 'csv'
 class Customer < ApplicationRecord
 
   #has_many :transaction
-  has_many :tranxaction, foreign_key: "tranxaction_id", class_name: "Transaction"
+  has_many :tranxaction, foreign_key: "tranxaction_id", class_name: "Tranxaction"
 
     def self.all_with_customer_details
     customer.select("customers.*")

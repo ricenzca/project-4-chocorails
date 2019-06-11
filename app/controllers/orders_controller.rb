@@ -4,8 +4,19 @@ class OrdersController < ApplicationController
   # GET /orders
   # GET /orders.json
   def index
-    @orders = Order.all.order("created_at ASC")
-
+    # @orders = Order.all.order("created_at ASC")
+    # puts "orders"
+    # p @orders
+    # @orders2 = Order.joins(:tranxaction).select("orders.*,tranxactions.*")
+    # puts "orders2"
+    # p @orders2
+    # @tranxactions = Tranxaction.select("orders.*,tranxactions.*, products.*").joins(:order, :product)
+    # puts "tranxactions"
+    # p @tranxactions[0].product_quantity
+    @tranxactions = Tranxaction.select("orders.order_number, tranxactions.total_amount,  tranxactions.status, tranxactions.id").joins(:order)
+    puts "tranxactions[0]"
+    puts @tranxactions[0].inspect
+    render json: @tranxactions
   end
 
   # GET /orders/1
@@ -17,13 +28,10 @@ class OrdersController < ApplicationController
     #   |item|
     #   {"product_id": item["product_id"]}
     # }
-    @order = Order.where(order_number: params[:order_number]).map {
-      |item|
-      item["product_id"]
-    }
+    @order = Tranxaction.select("orders.*,tranxactions.*").joins(:order).where("orders.order_number= ?", params[:order_number])
     puts "@order"
     p @order
-    @product = Product.joins(:order).select("products.*, orders.*").where(order_number: @order)
+    @product = Product.select("products.*, orders.*").joins(:order).where("orders.order_number= ?", params[:order_number])
     puts "@product"
     p @product
     render json: @product
@@ -97,7 +105,7 @@ class OrdersController < ApplicationController
   end
 
   def transactions
-    @transactions = Transaction.all.order("created_at ASC")
+    @transactions = Tranxaction.all.order("created_at ASC")
   end
 
   private

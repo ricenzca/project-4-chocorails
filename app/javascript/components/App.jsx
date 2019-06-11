@@ -31,6 +31,7 @@ export default class App extends React.Component {
     adjustSubtotal = newSubtotal => {
         console.log("adjustSubtotal!");
         newSubtotal = Math.round(newSubtotal * 100) / 100;
+        console.log("newSubtotal!",newSubtotal);
         this.setState({ subtotalAfterPromo: newSubtotal });
     };
 

@@ -1,28 +1,42 @@
 class TransactionsController < ApplicationController
 
   def index
-    @transactions = Transaction.all
+    @tranxactions = Tranxaction.all
     # respond_to do |format|
 
-    #     @transactions = Transaction.all
+    #     @tranxactions = Tranxaction.all
 
     #     format.json {
-    #       render json: @transactions
+    #       render json: @tranxactions
     #     }
     # end
  end
 
  def show
-  @transaction = Transaction.find(params[:id])
+  puts "show"
+  p params
+  @tranxaction = Tranxaction.select("tranxactions.*,promos.*").joins(:promo).where("tranxactions.id=?",params[:id])
+  puts "@tranxaction"
+  p @tranxaction[0]
+  unless @tranxaction[0]
+    @tranxaction = []
+    @tranxaction[0] = Tranxaction.find(params[:id])
+    puts "@tranxaction2"
+    p @tranxaction
+  end
+  @order = Order.select("orders.*,products.*").joins(:product).where("tranxaction_id=?", params[:id]);
+  puts "@order"
+  p @order[0]
  end
 
   def new
-    @transaction = Transaction.new
+    @tranxaction = Tranxaction.new
   end
 
   # GET /products/1/edit
   def edit
-      @transaction = Transaction.find(params[:id])
+    puts "edit"
+    @tranxaction = Tranxaction.find(params[:id])
   end
 
   def create
@@ -39,17 +53,22 @@ class TransactionsController < ApplicationController
     end
   end
 
-   def update
+  def status
+    @product.update(product_params)
+  end
 
-    respond_to do |format|
-      if @product.update(product_params)
-        format.html { redirect_to '/admin', notice: 'Product was successfully updated.' }
-        format.json { render :show, status: :ok, location: @product }
-      else
-        format.html { render :edit }
-        format.json { render json: @product.errors, status: :unprocessable_entity }
-      end
+  def update
+
+    puts "tranxanction_params"
+    p tranxanction_params
+    @tranxaction = Tranxaction.find(params[:id])
+    
+    if @tranxaction.update(tranxanction_params)
+      response = {response: "success"}
+    else
+      response = {response: @tranxaction.error}
     end
+    render json: response
   end
 
   # DELETE /products/1
@@ -62,6 +81,11 @@ class TransactionsController < ApplicationController
     end
   end
 
+  private
+
+  def tranxanction_params
+    params.require(:transaction).permit(:id, :status)
+  end
 
 
 end
