@@ -3,6 +3,7 @@ import AdminProducts from './adminproducts.jsx'
 import AdminPromos from './adminpromo.jsx'
 import AdminCustomers from './admincustomers.jsx'
 import AdminOrders from './adminorders.jsx'
+import { Link } from "react-router-dom";
 
 class Admin extends React.Component {
 
@@ -284,7 +285,7 @@ class Admin extends React.Component {
                 <td> {customer.country} </td>
                 <td> {customer.city} </td>
                 <td> {customer.contact} </td>
-                <td> <a href={"/customers/" + (customer.id) + "/edit"}> <button className="btn btn-warning"> Edit Customer </button> </a> </td>
+                <td className="text-center"> <a href={"/customers/" + (customer.id) + "/edit"}> <button className="btn btn-warning"> Edit Customer </button> </a> </td>
             </tr>
             )
     });
@@ -306,7 +307,7 @@ class Admin extends React.Component {
             <td className="text-center"> {order.order_number}</td>
             <td className="text-center"> ${order.total_amount.toFixed(2)}</td>
             <td className="text-center"> {order.status}</td>
-            <td>
+            <td className="">
               <select className="form-control form-control-sm" name={order.id} onChange={(e)=>this.handleChange(e)}
               >
                 <option name="status" value="pending" selected={select1}>Pending</option>
@@ -329,7 +330,7 @@ class Admin extends React.Component {
             <td> {promo.code} </td>
             <td> {promo.percentage.toString()} </td>
             <td> {promo.used} </td>
-            <td> <a href={"/promos/" + (promo.id) + "/edit"}> <button className="btn btn-warning"> Edit Promo </button> </a> </td>
+            <td className="text-center"> <a href={"/promos/" + (promo.id) + "/edit"}> <button className="btn btn-warning"> Edit Promo </button> </a> </td>
             </tr>
             )
     });
@@ -350,16 +351,34 @@ class Admin extends React.Component {
             )
     });
 
-    return( <React.Fragment>
-        <div style={{backgroundColor:'', color:'', padding: 8}}>
-        <h1 style={{textAlign:'center   '}}> Admin Backend </h1>
-        <div className="row" >
-            <h2 className="col-md-3" onClick={this.productList}> Products </h2>
-            <h2 className="col-md-3" onClick={this.orderList}> Orders </h2>
-            <h2 className="col-md-3" onClick={this.customerList}> Customers </h2>
-            <h2 className="col-md-3" onClick={this.promoList}> Promos </h2>
-        </div>
-          <table className="table" style={{backgroundColor:''}}>
+    return( 
+      <div className="admin-container" style={{minHeight:'90vh', paddingTop: 80}}>
+        <nav className="navbar navbar-expand-lg navbar-light bg-light pr-5 w-100" style={{position: "fixed", top: 0}}>
+          <a className="navbar-brand mr-5" href="/admin"><h2>Admin Overview</h2></a>
+
+          <button className="navbar-toggler" style={{marginRight: 80}} type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span className="navbar-toggler-icon"></span>
+          </button>
+
+          <div className="collapse navbar-collapse"id="navbarSupportedContent">
+            <ul className="navbar-nav d-flex flex-grow-1 justify-content-around" style={{marginRight: 120}} >
+              <li className="nav-item">
+                <h4 className="nav-link" onClick={this.productList}> Products </h4>
+              </li>
+              <li className="nav-item">
+                <h4 className="nav-link" onClick={this.orderList}> Orders </h4>
+              </li>
+              <li className="nav-item">
+                <h4 className="nav-link" onClick={this.customerList}> Customers </h4>
+              </li>
+              <li className="nav-item">
+                <h4 className="nav-link" onClick={this.promoList}> Promos </h4>
+              </li>
+            </ul>
+          </div>
+        </nav>
+
+          <table className="table table-hover" style={{}}>
             <thead className="thead-dark" style={this.state.productDisplay}>
                 <tr>
                   <th>ID</th>
@@ -367,10 +386,10 @@ class Admin extends React.Component {
                   <th>Name</th>
                   <th>Origin</th>
                   <th>Ingredients</th>
-                  <th>Desc</th>
+                  <th>Description</th>
                   <th>Price</th>
                   <th>Weight</th>
-                  <th>Edit</th>
+                  <th className="text-center">Edit</th>
                 </tr>
             </thead>
 
@@ -396,7 +415,7 @@ class Admin extends React.Component {
                   <th>Country</th>
                   <th>City</th>
                   <th>Contact</th>
-                  <th>Edit</th>
+                  <th className="text-center">Edit</th>
                 </tr>
             </thead>
 
@@ -409,7 +428,7 @@ class Admin extends React.Component {
                   <th>Code</th>
                   <th>Percentage</th>
                   <th>Used</th>
-                  <th>Edit</th>
+                  <th className="text-center">Edit</th>
                 </tr>
             </thead>
           <tbody>
@@ -419,18 +438,14 @@ class Admin extends React.Component {
           {promos}
           </tbody>
           </table>
-        </div>
-              <div className="row" style={{backgroundColor: '', color: '', padding: 8}}>
-                  <AdminProducts /> <br/>
-                  <AdminPromos /> <br/>
-              </div>
-          </React.Fragment>
+          <div className="d-flex flex-column" style={{position: "fixed", top: 0, right: 0,zIndex: 1}}>
+          <Link className={"btn btn-warning border"} style={{}}  to="/add-product">Add Product</Link>
+          <Link className={"btn btn-warning border"} to="/add-promo">Add</Link>
+          </div>
+      </div>
           );
   }
 }
 
 
 export default Admin;
-
-                  // <AdminOrders /> <br/>
-                  // <AdminCustomers /> <br/>

@@ -22,19 +22,34 @@ class OrdersController < ApplicationController
   # GET /orders/1
   # GET /orders/1.json
   def show
-    puts "show order params"
-    p params[:order_number]
-    # @order = Order.where(order_number: params[:order_number]).map {
-    #   |item|
-    #   {"product_id": item["product_id"]}
-    # }
-    @order = Tranxaction.select("orders.*,tranxactions.*").joins(:order).where("orders.order_number= ?", params[:order_number])
+    # puts "show order params"
+    # p params[:order_number]
+    # # @order = Order.where(order_number: params[:order_number]).map {
+    # #   |item|
+    # #   {"product_id": item["product_id"]}
+    # # }
+    # @order = Tranxaction.select("orders.*,tranxactions.*").joins(:order).where("orders.order_number= ?", params[:order_number])
+    # puts "@order"
+    # p @order
+    # @product = Product.select("products.*, orders.*").joins(:order).where("orders.order_number= ?", params[:order_number])
+    # puts "@product"
+    # p @product
+    # render json: @product
+    transactions_id = Order.select("orders.tranxaction_id").where("orders.order_number= ?", params[:order_number])
+    puts "transactions_id"
+    p transactions_id[0].tranxaction_id
+    @tranxaction = Tranxaction.select("tranxactions.*,promos.*").joins(:promo).where("tranxactions.id=?",transactions_id[0].tranxaction_id)
+    puts "@tranxaction"
+    p @tranxaction[0]
+    unless @tranxaction[0]
+      @tranxaction = []
+      @tranxaction[0] = Tranxaction.find(transactions_id[0].tranxaction_id)
+      puts "@tranxaction2"
+      p @tranxaction
+    end
+    @order = Order.select("orders.*,products.*").joins(:product).where("tranxaction_id=?",transactions_id[0].tranxaction_id);
     puts "@order"
-    p @order
-    @product = Product.select("products.*, orders.*").joins(:order).where("orders.order_number= ?", params[:order_number])
-    puts "@product"
-    p @product
-    render json: @product
+    p @order[0]
   end
 
   # GET /orders/new

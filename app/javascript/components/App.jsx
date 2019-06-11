@@ -4,6 +4,8 @@ import { Route, Switch } from "react-router-dom";
 import Product from "./product/product";
 import Checkout from "./checkout/checkout";
 import Admin from "./admin/admin";
+import AdminProducts from "./admin/adminproducts";
+import AdminPromo from "./admin/adminpromo";
 import EmailSub from "./emailsub/emailsub";
 import Promo from "./promo/promo";
 import Cart from "./cart/cart";
@@ -24,7 +26,8 @@ export default class App extends React.Component {
         console.log(`What is inside cart now, price `, newCart, updatedAmount);
         this.setState({
             cart: newCart,
-            subtotalBeforePromo: updatedAmount
+            subtotalBeforePromo: updatedAmount,
+            subtotalAfterPromo: updatedAmount
         });
     };
 
@@ -71,8 +74,7 @@ export default class App extends React.Component {
                                         style={{
                                             backgroundColor: "#f6f6f6",
                                             color: "#b82b21",
-                                            paddingLeft: 7,
-                                            paddingRight: 7
+                                            padding: 7
                                         }}
                                     >
                                         <h1 className="d-inline" style={{color:'#62aaa7'}}>
@@ -103,6 +105,10 @@ export default class App extends React.Component {
                         )}
                     />
                     <Route exact path="/admin" component={Admin} />
+                    )} />
+                    <Route exact path="/add-product" component={AdminProducts} />
+                    )} />
+                    <Route exact path="/add-promo" component={AdminPromo} />
                     )} />
                 </Switch>
 

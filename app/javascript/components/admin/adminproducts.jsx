@@ -4,31 +4,31 @@ class AdminProducts extends React.Component {
 
   constructor() {
     super();
-    this.state = {
-        display:'none'
-    }
+    // this.state = {
+    //     display:'none'
+    // }
 
-    this.visibleState = this.visibleState.bind(this);
+    // this.visibleState = this.visibleState.bind(this);
   }
 
-  visibleState() {
+  // visibleState() {
 
-    if (this.state.display === 'none') {
-        this.setState({
-        display: ''
-            })
-    } else {
-        this.setState({
-            display: 'none'
-        })
-    }
+  //   if (this.state.display === 'none') {
+  //       this.setState({
+  //       display: ''
+  //           })
+  //   } else {
+  //       this.setState({
+  //           display: 'none'
+  //       })
+  //   }
 
-  }
+  // }
 
   render(){
     return(
-        <div className="col-md-6"  >
-            <h2 onClick={this.visibleState} style={{textAlign: "center"}}> Create Products  </h2>
+        <div className="mx-5 p-5 w-50">
+            <h3 className="mb-3 font-weight-bold" onClick={this.visibleState}> Add Product  </h3>
             <form action="/products/create" method="POST" style={this.state}>
                 <label> Brand  </label>
                 <input type="text" name="brand" className="form-control"/>
@@ -53,8 +53,10 @@ class AdminProducts extends React.Component {
 
                 <label> Weight  </label>
                 <input type="text" name="weight" className="form-control"/> <br/>
-
-                <input type="submit" className="btn-primary btn-block"/>
+                
+                <div className="text-right">
+                    <input type="submit" className="btn btn-primary"/>
+                </div>
             </form>
         </div>
     )
