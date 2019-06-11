@@ -20,6 +20,7 @@
 
 body {
 	font-family: 'Josefin Sans', sans-serif;
+	background-color: #F9E0D9;
 }
 
 body h1, body h4 {
@@ -77,19 +78,19 @@ body h1, body h4 {
 }
 
 .card:hover .overlay {
-  opacity: 0.7;
+  opacity: 0.9;
 }
 
 .text {
   color: black;
-  font-size: 1rem;
+  font-size: .9rem;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   -ms-transform: translate(-50%, -50%);
   width: 300px;
-  padding-top: 25px;
+  padding-top: 20px;
   padding-bottom: 10px;
 }
 
@@ -189,4 +190,13 @@ td {
 	position: fixed;
 	bottom: 0;
 	right: 0;
+}
+
+.border {
+	border-width: 1px !important;
+}
+
+a:hover {
+	background-color: transparent;
+	text-decoration: none;
 }

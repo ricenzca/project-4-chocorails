@@ -1,4 +1,4 @@
-<%= form_with(model: promo, local: true) do |form| %>
+<%= form_with(model: promo, local: true, class: "mb-5") do |form| %>
   <% if promo.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(promo.errors.count, "error") %> prohibited this promo from being saved:</h2>
@@ -11,32 +11,32 @@
     </div>
   <% end %>
 
-  <div class="field">
+  <div class="field text-left">
     <%= form.label :amount, :style => "font-weight: bold" %>
     <%= form.text_field :amount, :class => "form-control" %>
   </div>
 
-  <div class="field">
+  <div class="field text-left">
     <%= form.label :limit, :style => "font-weight: bold" %>
     <%= form.text_field :limit, :class => "form-control" %>
   </div>
 
-  <div class="field">
+  <div class="field text-left">
     <%= form.label :expiration, :style => "font-weight: bold" %>
     <%= form.date_field :expiration, :class => "form-control" %>
   </div>
 
-  <div class="field">
+  <div class="field text-left">
     <%= form.label :code, :style => "font-weight: bold" %>
     <%= form.text_field :code, :class => "form-control" %>
   </div>
 
-  <div class="field">
+  <div class="field text-left">
     <%= form.label :percentage, :style => "font-weight: bold" %>
     <%= form.text_field :percentage, :class => "form-control" %>
   </div>
 
-  <div class="field">
+  <div class="field text-left">
     <%= form.label :used, :style => "font-weight: bold" %>
     <%= form.number_field :used, :class => "form-control" %>
   </div>

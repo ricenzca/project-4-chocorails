@@ -52,6 +52,7 @@ class Checkout extends React.Component {
   // }
 
   componentDidMount () {
+    console.log("mount!");
     let newSubtotal = this.props.subtotal;
     console.log("newSubtotal",newSubtotal)
     let newGst = Math.round((newSubtotal*0.07)*100)/100;
@@ -121,6 +122,8 @@ class Checkout extends React.Component {
 
     if (this.state.orderNumber) {
 
+      let orderSummaryUrl = `/orders/${this.state.orderNumber}`
+
       return (
         <div style={{backgroundColor:'#f6f6f6'}}>
           <div className="sticky-top">
@@ -141,6 +144,11 @@ class Checkout extends React.Component {
             <h5 className="text-center">Thank you for placing your order with us!<br/>
             Your order number is {this.state.orderNumber}<br/>
             </h5>
+            <a href={orderSummaryUrl} >
+              <h5 className="bold" style={{color: "#62aaa7"}}>
+                  View order summary
+              </h5>
+            </a>
             <a href="/" >
               <h5 className="bold" style={{color: "#62aaa7"}}>
                   Return to home

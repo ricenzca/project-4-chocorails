@@ -4,31 +4,31 @@ class AdminPromos extends React.Component {
 
   constructor() {
     super();
-    this.state = {
-        display:'none'
-    }
+    // this.state = {
+    //     display:''
+    // }
 
-    this.visibleState = this.visibleState.bind(this);
+    // this.visibleState = this.visibleState.bind(this);
   }
 
-  visibleState() {
+  // visibleState() {
 
-    if (this.state.display === 'none') {
-        this.setState({
-        display: ''
-            })
-    } else {
-        this.setState({
-            display: 'none'
-        })
-    }
+  //   if (this.state.display === 'none') {
+  //       this.setState({
+  //       display: ''
+  //           })
+  //   } else {
+  //       this.setState({
+  //           display: 'none'
+  //       })
+  //   }
 
-  }
+  // }
 
   render(){
     return(
-        <div className="col-md-6">
-            <h2 onClick = {this.visibleState} style={{textAlign: "center"}}> Create Promos </h2>
+        <div className="mx-5 p-5 w-50">
+            <h3 className="mb-3 font-weight-bold"onClick = {this.visibleState} > Add Promo </h3>
             <form action="/promos/create" method="POST" style={this.state}>
                 <label> Amount </label>
                 <input type="text" name="amount" className="form-control"/>
@@ -47,7 +47,10 @@ class AdminPromos extends React.Component {
 
                 <label> Used </label>
                 <input type="text" name="used" className="form-control"/> <br/>
-                <input type="submit" className="btn-primary btn-block"/>
+                
+                <div className="text-right">
+                    <input type="submit" className="btn btn-primary"/>
+                </div>
             </form>
         </div>
     )
