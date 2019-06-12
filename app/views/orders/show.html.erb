@@ -1,10 +1,10 @@
 <div class="transaction-show d-flex flex-wrap justify-content-around p-2">
-<div class="col-lg-5 border my-4 py-3">
+<div class="col-lg-5 border border-info my-4 py-3">
 <h1> Order Details </h1>
 
 <table class="table table-borderless">
   <tbody>
-    <tr class="border-top">
+    <tr class="border-top border-info">
       <td>
         Order No:
         <%= @order[0].order_number %>
@@ -31,7 +31,7 @@
 
 <table class="table table-borderless">
   <thead>
-    <tr class="border-top border-bottom">
+    <tr class="border-top border-bottom border-info">
       <th>
         Item
       </th>
@@ -66,7 +66,7 @@
     subtotal = subtotal.round(2)
     %>
 
-    <tr class="border-top">
+    <tr class="border-top border-info">
       <td>Subtotal:</td>
       <td></td>
       <td class="text-center">$ <%= sprintf('%.2f', subtotal) %></td>
@@ -113,7 +113,7 @@
       <td class="text-center">$ 5.00</td>
     </tr>
 
-    <tr class="border-top border-bottom">
+    <tr class="border-top border-bottom border-info">
       <td>Total Amount:</td>
       <td></td>
       <td class="text-center">$ <%= sprintf('%.2f', @tranxaction[0].total_amount) %></td>
