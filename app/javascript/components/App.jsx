@@ -78,7 +78,7 @@ export default class App extends React.Component {
                                         }}
                                     >
                                         <h1 className="d-inline" style={{color:'#62aaa7'}}>
-                                            Choco React
+                                            ChocoReact
                                         </h1>
                                         <button
                                             className="btn"
