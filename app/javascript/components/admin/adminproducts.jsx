@@ -52,7 +52,7 @@ class AdminProducts extends React.Component {
                 <label> Price  </label>
                 <input type="text" name="price" className="form-control"/>
 
-                <label> Weight  </label>
+                <label> Weight (number in grams e.g. 100) </label>
                 <input type="text" name="weight" className="form-control"/> <br/>
                 
                 <div className="text-center">

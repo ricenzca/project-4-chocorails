@@ -31,22 +31,23 @@ class AdminPromos extends React.Component {
         <div className="mx-5 p-5 w-50">
             <h3 className="mb-3 font-weight-bold"onClick = {this.visibleState} > Add Promo </h3>
             <form action="/promos/create" method="POST" style={this.state}>
-                <label> Amount </label>
+
+                <label> Percentage (true if amount is in %, false if amount is in $) </label>
+                <input type="text" name="percentage" className="form-control"/>
+
+                <label> Amount (e.g. 10)</label>
                 <input type="text" name="amount" className="form-control"/>
 
-                <label> Limit </label>
+                <label> Limit (number e.g 100) </label>
                 <input type="text" name="limit" className="form-control"/>
 
-                <label> Expiration </label>
+                <label> Expiration (YYYY-MM-DD) </label>
                 <input type="text" name="expiration" className="form-control"/>
 
                 <label> Code </label>
                 <input type="text" name="code" className="form-control"/>
 
-                <label> Percentage </label>
-                <input type="text" name="percentage" className="form-control"/>
-
-                <label> Used </label>
+                <label> Used (number, e.g. 0) </label>
                 <input type="text" name="used" className="form-control"/> <br/>
                 
                 <div className="text-center">
