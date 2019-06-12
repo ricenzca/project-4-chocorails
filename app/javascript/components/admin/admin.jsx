@@ -94,7 +94,7 @@ class Admin extends React.Component {
       // console.log("hello");
       const data = JSON.parse( this.responseText );
       // console.log(data);
-      const uniqDataArray = data.filter(function (item) {
+      const uniqDataArray = data.filter((item) => {
               let key = item.order_number;
               // console.log("key",key);
               // console.log("this",this);
@@ -363,16 +363,16 @@ class Admin extends React.Component {
           <div className="collapse navbar-collapse"id="navbarSupportedContent">
             <ul className="navbar-nav d-flex flex-grow-1 justify-content-around" style={{marginRight: 120}} >
               <li className="nav-item">
-                <h4 className="nav-link" onClick={this.productList}> Products </h4>
+                <h4 className="nav-link" data-toggle="collapse" data-target=".navbar-collapse.show" onClick={this.productList}> Products </h4>
               </li>
               <li className="nav-item">
-                <h4 className="nav-link" onClick={this.orderList}> Orders </h4>
+                <h4 className="nav-link" data-toggle="collapse" data-target=".navbar-collapse.show" onClick={this.orderList}> Orders </h4>
               </li>
               <li className="nav-item">
-                <h4 className="nav-link" onClick={this.customerList}> Customers </h4>
+                <h4 className="nav-link" data-toggle="collapse" data-target=".navbar-collapse.show" onClick={this.customerList}> Customers </h4>
               </li>
               <li className="nav-item">
-                <h4 className="nav-link" onClick={this.promoList}> Promos </h4>
+                <h4 className="nav-link" data-toggle="collapse" data-target=".navbar-collapse.show" onClick={this.promoList}> Promos </h4>
               </li>
             </ul>
           </div>
