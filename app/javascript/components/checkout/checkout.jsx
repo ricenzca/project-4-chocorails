@@ -135,12 +135,12 @@ class Checkout extends React.Component {
               >
                   <a href="/" >
                     <h1 className="d-inline" style={{color: "#62aaa7"}}>
-                        Choco React
+                        ChocoReact
                     </h1>
                   </a>
               </nav>
           </div>
-          <div className="d-flex flex-column justify-content-center align-items-center" style={{height:'100vh'}}>
+          <div className="d-flex flex-column justify-content-center align-items-center" style={{height:'80vh'}}>
             <h5 className="text-center">Thank you for placing your order with us!<br/>
             Your order number is {this.state.orderNumber}<br/>
             </h5>
