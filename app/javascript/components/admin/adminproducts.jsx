@@ -43,7 +43,7 @@ class AdminProducts extends React.Component {
                 <label> Origin  </label>
                 <input type="text" name="origin" className="form-control"/>
 
-                <label> ingredients  </label>
+                <label> Ingredients  </label>
                 <input type="text" name="ingredients" className="form-control"/>
 
                 <label> Description  </label>
